@@ -49,7 +49,7 @@ a {
 a:hover,
 a:focus {
     text-decoration: none;
-    color: #176e61;
+    color: #ec1611;
 }
 
 .light {
@@ -718,8 +718,8 @@ form#contact-form input:focus,form#contact-form select:focus,form#contact-form t
 
 footer {
 	text-align: center;
-	padding: 50px 0 ;
-	
+	padding: 50px 0 10px 0;
+	background: rgb(155, 23, 239);
 }
 
 footer p {
@@ -859,6 +859,7 @@ footer a:hover {
   color: #fff;
   background-color: #666;
   border-color: #666;
+  border-radius: 4px;
 }
 
 
