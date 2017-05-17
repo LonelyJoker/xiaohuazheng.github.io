@@ -257,9 +257,15 @@
 
 				// 如果赢了，则解绑事件
 				if (countContinuous) {
+					let words = ['very good', 'oh, nice', 'oh, cool', 'waaaa! amazing', 'woooo!, unbelievable', 'yeah, wonderful', 'look, nice girl', '咋个那么厉害', 'are you kidding me', 'oh my god, victory']
 					this.chessmans.onclick = null
 					this.win = true
-					alert((role == 1 ? '小小老公勉强' : '小小完') + '胜，' + countContinuous + '杀！')
+					if (role == 1) {
+						alert('小小老公 win, oh yeah, bonus time, give me a kiss');
+					} else {
+						var random_words = words[Math.floor(Math.random()*10)];
+						alert('小小 win, ' + random_words + '！');
+					}
 				}
 			}
 
