@@ -92,8 +92,6 @@
 		</div>
 	</body>
 	<script>
-		console.log('haha!')
-
 		// Class
 		class Gobang {
 
@@ -264,14 +262,13 @@
 				if (countContinuous) {
 					this.chessmans.onclick = null
 					this.win = true
-					// alert(`${role == 1 ? '黑' : '白'}子胜，${countContinuous}杀！`)
-					alert((role == 1 ? '黑' : '白') + '子胜，' + countContinuous + '杀！')
+					alert((role == 1 ? '小小老公勉强' : '小小完') + '胜，' + countContinuous + '杀！')
 				}
 			}
 
 			// 悔棋
 			regretChess() {
-
+				
 				// 找到最后一次的记录，回滚UI，更新矩阵
 				if (this.history.length && !this.win) {
 					const prev = this.history[this.currentStep - 1]
