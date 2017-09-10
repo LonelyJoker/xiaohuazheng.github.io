@@ -44,6 +44,7 @@ a {
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
+    text-decoration: none;
 }
 
 a:hover,
@@ -107,11 +108,20 @@ hr {
 .marginbot-40{margin-bottom:40px !important;}
 .marginbot-50{margin-bottom:50px !important;}
 
+.container {
+	text-align: center;
+}
+.row-flex {
+	display: -webkit-flex;
+	display: flex;
+}
+
 /* ===========================
 --- General sections
 ============================ */
 
 .home-section {
+	text-align: center;
     padding-top: 40px;
     padding-bottom: 10px;
 	display:block;
@@ -294,6 +304,7 @@ input.gn-search {
 		font-weight: 300;
 		font-family: 'Lato', Arial, sans-serif;
 		cursor: pointer;
+		font-size: 19px;
 }
 
 /* placeholder */

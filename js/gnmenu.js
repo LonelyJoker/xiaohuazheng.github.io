@@ -159,3 +159,6 @@ if ( typeof define === 'function' && define.amd ) {
 	window.gnMenu = gnMenu;
 
 } )( window );
+
+
+new gnMenu( document.getElementById( 'gn-menu' ) );
