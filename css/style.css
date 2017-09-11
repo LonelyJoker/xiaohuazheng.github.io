@@ -5,9 +5,8 @@ p { margin: 0 0 20px; font-size: 16px; line-height: 1.6em }
 a { color: #28c3ab; -webkit-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out; transition: all .2s ease-in-out; text-decoration: none }
 a:hover, a:focus { text-decoration: none; color: #ec1611 }
 address { margin-left: 0; padding: 0 }
-.marginbot-50 { margin-bottom: 50px !important }
+.section-heading { margin-bottom: 50px !important }
 
-.container { text-align: center }
 .row-flex-box { display: -webkit-flex; display: flex;overflow: hidden; }
 .row-flex { width: 25%; }
 .home-section { text-align: center; padding-top: 40px; padding-bottom: 10px; display: block; position: relative; z-index: 120 }
