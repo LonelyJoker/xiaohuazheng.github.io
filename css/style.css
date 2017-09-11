@@ -73,7 +73,7 @@ footer { text-align: center; padding: 50px 0 10px 0; background: #9b17ef }
 footer p { color: #f8f8f8 }
 footer a { color: #fefefe }
 footer a:hover { color: #fff }
-.btn-skin:hover, .btn-skin:focus, .btn-skin:active, .btn-skin.active { color: #fff; background-color: #666; border-color: #666; border-radius: 4px }
+.btn-skin:hover, .btn-skin:focus, .btn-skin:active, .btn-skin.active { padding: 10px;color: #fff; background-color: #666; border-color: #666; border-radius: 4px }
 @media(min-width:767px) {
 	.intro { height: 100%; padding: 0 }
 	.intro-text { font-size: 25px }
