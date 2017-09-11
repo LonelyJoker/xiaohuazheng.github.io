@@ -8,7 +8,7 @@ address { margin-left: 0; padding: 0 }
 .marginbot-50 { margin-bottom: 50px !important }
 
 .container { text-align: center }
-.row-flex-box { display: -webkit-flex; display: flex }
+.row-flex-box { display: -webkit-flex; display: flex;overflow: hidden; }
 .row-flex { width: 25%; }
 .home-section { text-align: center; padding-top: 40px; padding-bottom: 10px; display: block; position: relative; z-index: 120 }
 .section-heading h2 { font-size: 40px }
