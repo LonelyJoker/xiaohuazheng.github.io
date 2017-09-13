@@ -65,25 +65,21 @@ input.gn-search:focus { cursor: text }
 .intro .slogan { padding: 250px 0 60px; text-align: center }
 .intro .slogan h1 { color: #fff; line-height: 1.1em; margin-bottom: 20px; font-size: 40px }
 .intro .slogan p { color: #eee; margin-bottom: 50px; font-size: 20px }
-.intro-text { font-size: 18px }
 .boxed-grey { background: #eee; padding: 20px }
 .team h5 { margin-bottom: 10px }
 .team p.subtitle { margin-bottom: 10px }
 .avatar { margin-bottom: 20px }
 footer { text-align: center; padding: 50px 0 10px 0; background: #9b17ef }
 footer p { color: #f8f8f8 }
-footer a { color: #fefefe }
-footer a:hover { color: #fff }
 .btn-skin:hover, .btn-skin:focus, .btn-skin:active, .btn-skin.active { padding: 10px;color: #fff; background-color: #666; border-color: #666; border-radius: 4px }
 @media(min-width:767px) {
-	.intro { height: 100%; padding: 0 }
-	.intro-text { font-size: 25px }
+	.intro { height: 100%; padding: 0; }
 }
 @media(max-width:768px) {
-	.team.boxed-grey { margin-bottom: 30px }
-	.boxed-grey { margin-bottom: 30px }
-	.intro .slogan { padding: 100px 0 60px }
+	.team.boxed-grey { margin-bottom: 30px; }
+	.boxed-grey { margin-bottom: 30px; }
+	.intro .slogan { padding: 100px 0 60px; }
 }
 @media(max-width:480px) {
-	.intro .slogan { padding: 170px 0 60px }
+	.intro .slogan { padding: 170px 0 60px; }
 }
