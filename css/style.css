@@ -44,10 +44,10 @@ input.gn-search:focus { cursor: text }
 .no-touch .gn-menu li.gn-search-item:hover .gn-search:-ms-input-placeholder { color: white }
 .gn-menu-main a.gn-icon-search { position: absolute; top: 0; left: 0; height: 60px }
 .gn-icon::before { display: inline-block; width: 60px; text-align: center; text-transform: none; font-weight: normal; font-style: normal; font-variant: normal; font-family: 'ecoicons'; line-height: 1; speak: none; -webkit-font-smoothing: antialiased }
-.gn-icon-cog::before { content: "\e006" }
-.gn-icon-search::before { content: "\e005" }
-.gn-icon-download::before { content: "\e007" }
-.gn-icon-archive::before { content: "\e00d" }
+.gn-icon-cog::before { content: "♧" }
+.gn-icon-search::before { content: "♢" }
+.gn-icon-download::before { content: "♡" }
+.gn-icon-archive::before { content: "♤" }
 .gn-icon span { width: 0; height: 0; display: block; overflow: hidden }
 .gn-icon-menu::before { margin-left: -15px; vertical-align: -2px; width: 30px; height: 3px; background: #eb5d1e; box-shadow: 0 3px white, 0 -6px #eb5d1e, 0 -9px white, 0 -12px #eb5d1e; content: '' }
 .no-touch .gn-icon-menu:hover::before, .no-touch .gn-icon-menu.gn-selected:hover::before { background: white; box-shadow: 0 3px #eb5d1e, 0 -6px white, 0 -9px #eb5d1e, 0 -12px white }
