@@ -7,7 +7,7 @@ a { color: #046556; -webkit-transition: all .2s ease-in-out; -moz-transition: al
 a:hover, a:focus { text-decoration: none; color: #9b17ef; }
 address { margin-left: 0; padding: 0 }
 .btn-skin:hover, .btn-skin:focus, .btn-skin:active, .btn-skin.active { padding: 10px;color: #fff; background-color: #666; border-color: #666; border-radius: 4px }
-.row-flex-box { display: -webkit-flex; display: flex;overflow: hidden; }
+.flex-box { display: -webkit-flex; display: flex;overflow: hidden; }
 .row-flex { width: 25%; }
 .home-section { text-align: center; padding-top: 40px; padding-bottom: 10px; display: block; position: relative; z-index: 120 }
 .section-heading { margin-bottom: 50px; }
