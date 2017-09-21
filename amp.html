@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-video" src="https://cdn.ampproject.org/v0/amp-video-0.1.js"></script>
     <script async custom-element="amp-facebook-comments" src="https://cdn.ampproject.org/v0/amp-facebook-comments-0.1.js"></script>
     <title>Hello AMP world</title>
     <link rel="canonical" href="index.html">
@@ -19,6 +20,17 @@
     data-numposts="5"
     data-href="http://www.directlyrics.com/adele-25-complete-album-lyrics-news.html">
   </amp-facebook-comments>
+  <amp-video controls
+      width="640"
+      height="360"
+      layout="responsive"
+      poster="https://www.ampproject.org/examples/images/amp.jpg">
+      <source src="https://nettuts.s3.amazonaws.com/763_sammyJSIntro/trailer_test.mp4"
+        type="video/mp4" />
+      <div fallback>
+        <p>This browser does not support the video element.</p>
+      </div>
+    </amp-video>
     <amp-img src="https://www.ampproject.org/examples/images/amp.jpg" width="900" height="508" layout="responsive"></amp-img>
   </body>
 </html>
