@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-facebook-comments" src="https://cdn.ampproject.org/v0/amp-facebook-comments-0.1.js"></script>
     <title>Hello AMP world</title>
     <link rel="canonical" href="index.html">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
@@ -13,6 +14,11 @@
   </head>
   <body>
     <h1>Hello AMP World!</h1>
+    <amp-facebook-comments width=486 height=657
+    layout="responsive"
+    data-numposts="5"
+    data-href="http://www.directlyrics.com/adele-25-complete-album-lyrics-news.html">
+  </amp-facebook-comments>
     <amp-img src="https://www.ampproject.org/examples/images/amp.jpg" width="900" height="508" layout="responsive"></amp-img>
   </body>
 </html>
