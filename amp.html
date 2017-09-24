@@ -1,0 +1,207 @@
+<!doctype html>
+<html ⚡>
+<head>
+    <meta charset="utf-8">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+    <script async custom-element="amp-lightbox" src="https://cdn.ampproject.org/v0/amp-lightbox-0.1.js"></script>
+    <script async custom-element="amp-animation" src="https://cdn.ampproject.org/v0/amp-animation-0.1.js"></script>
+    <title>Xzavier's Blog</title>
+    <link rel="canonical" href="index.html">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-custom>
+        html { width: 100%; height: 100% }
+        body { width: 100%; height: 100%; margin: 0; padding: 0;font-family: 'microsoft yahei', sans-serif; color: #666; background-color: #fff }
+        h1, h2, h3, h4, h5, h6 { margin: 0 0 30px; text-transform: uppercase; letter-spacing: 1px }
+        a { color: #046556; -webkit-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out; transition: all .2s ease-in-out; text-decoration: none;text-decoration: none; cursor: pointer; }
+        .gn-menu-main { position: fixed; top: 0; left: 0; width: 100%; height: 60px;border-bottom: 1px solid #c6d0da; margin: 0; padding: 0; background: #fff; color: #9b17ef; list-style: none; text-transform: none; font-weight: 300; font-family: 'microsoft yahei', sans-serif; line-height: 60px; z-index: 150; }
+        .gn-menu-main a { display: block; height: 100%; color: #9b17ef; }
+        .gn-menu-main .menu-item { display: block; float: left; height: 100%; border-right: 1px solid #c6d0da; text-align: center; }
+        .gn-menu-main .menu-item:last-child { float: right; border-right: 0; }
+        .gn-menu-main .menu-item>a { padding: 0 30px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;font-family: 'Lato'; }
+        .gn-menu-main::after { display: table; clear: both; content: ""; }
+        .gn-icon::before { display: inline-block; width: 60px; text-align: center; }
+        .gn-icon-menu::before { margin-left: -15px; vertical-align: -2px; width: 30px; height: 3px; background: #9b17ef; box-shadow: 0 3px white, 0 -6px #9b17ef, 0 -9px white, 0 -12px #9b17ef; content: ''; }
+        .gn-menu { text-align: left; font-size: 18px;list-style: none;margin: 0; padding: 0; background: #fff; color: #9b17ef; list-style: none; text-transform: none; font-weight: 300; font-family: 'Lato', Arial, sans-serif; line-height: 60px; z-index: 150; }
+        .gn-menu li a { display: block; height: 100%; color: #9b17ef; }
+        
+        .gn-menu li { border-bottom: 1px solid #c6d0da; }
+        input.gn-search { position: relative; z-index: 10; padding-left: 60px; outline: 0; border: 0; background: transparent; color: #9b17ef; font-weight: 300; font-family: 'Lato', Arial, sans-serif; cursor: pointer; font-size: 19px; }
+        .gn-search::-webkit-input-placeholder { color: #9b17ef; }
+        .gn-search:-moz-placeholder { color: #9b17ef; }
+        .gn-search::-moz-placeholder { color: #9b17ef; }
+        .gn-search:-ms-input-placeholder { color: #9b17ef; }
+        .gn-search:focus::-webkit-input-placeholder { color: transparent; }
+        input.gn-search:focus { cursor: text; }
+        .gn-menu li a.gn-icon-search { position: absolute; top: 0; left: 0; height: 60px; }
+        .gn-icon-cog::before { content: "♧"; }
+        .gn-icon-search::before { content: "♢"; }
+        .gn-icon-download::before { content: "♡"; }
+        .gn-icon-archive::before { content: "♤"; }
+        #sidebar1 { margin-top: 61px;background: #fff; }
+        .btn-skin:hover, .btn-skin:focus, .btn-skin:active { padding: 10px;color: #fff; background-color: #666; border-radius: 4px }
+        .flex-box { display: -webkit-flex; display: flex;overflow: hidden; }
+        .flex-row { width: 25%; }
+        .light-box { background: rgba(0,0,0,0.8);width: 100%;height: 100%;position: absolute;display: flex;align-items: center;justify-content: center; }
+        .close-lbox { position: absolute;top: 100px;left: 50%;margin-left: -20px;width: 40px;height: 40px;line-height: 40px;text-align: center;background: #fff;color: #333;border-radius: 50%; }
+        .light-box p { color: #fff; width: 78%;text-align: center; }
+        .home-section { text-align: center; padding: 40px 0 10px; display: block; position: relative; }
+        .section-heading { margin-bottom: 50px; }
+        .section-heading h2 { font-size: 40px; }
+        .section-heading a { color: #046556;}
+        .section-heading a:hover, .section-heading a:focus { text-decoration: none; color: #9b17ef; }
+        .bg-gray { background: #f8f8f8; }
+        .intro { width: 100%; height: 100%; padding: 0;position: relative; background-image: url('http://xiaohuazheng.github.io/img/bg.jpg'); background-size: cover; }
+        .intro a { color: #03fbd3; }
+        .intro .slogan { padding: 250px 0 60px; text-align: center; }
+        .intro .slogan h1 { color: #fff; line-height: 1.1em; margin-bottom: 20px; font-size: 40px; }
+        .intro .slogan p { color: #eee; margin-bottom: 50px; font-size: 20px; }
+        .info-box { background: #eee; padding: 20px; }
+        .info-box h5 { margin-bottom: 10px; }
+        .info-box p.subtitle { margin-bottom: 10px; }
+        footer { text-align: center; padding: 50px 0 10px 0; background: #9b17ef; }
+        footer p { color: #f8f8f8 }
+    </style>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+</head>
+<body>
+    <header class="gn-menu-main">
+        <div class="menu-item"><a class="gn-icon gn-icon-menu" on='tap:sidebar1.open'></a></div>
+        <div class="menu-item"><a href="#contactme" on="tap:contactme.scrollTo">Xzavier.Chris</a></div>
+    </header>
+    <amp-sidebar id="sidebar1" layout="nodisplay" side="left">
+        <ul class="gn-menu">
+            <li class="gn-search-item">
+                <input placeholder="No search now" type="search" class="gn-search">
+                <a class="gn-icon gn-icon-search"></a>
+            </li>
+            <li>
+                <a href="//github.com/xiaohuazheng" class="gn-icon gn-icon-download" target="_blank">Git</a>
+            </li>
+            <li>
+                <a href="//segmentfault.com/blog/xzavier" class="gn-icon gn-icon-cog" target="_blank">Blog</a>
+            </li>
+            <li>
+                <a href="#contactme" on="tap:contactme.scrollTo" class="gn-icon gn-icon-archive">Contact</a>
+            </li>
+        </ul>
+    </amp-sidebar>
+
+    <amp-lightbox id="pop-hobby1" layout="nodisplay">
+        <div class="light-box" on="tap:pop-hobby1.close">            
+            <p>一直爱好打篮球，自从上班后，就一直感谢自己有这个爱好，程序猿爱好身体，可以从打篮球开始！</p>
+        </div>
+    </amp-lightbox>
+
+    <amp-lightbox id="pop-hobby2" layout="nodisplay">
+        <div class="light-box" on="tap:pop-hobby2.close">            
+            <p>发现挺多程序猿都挺喜欢拍照，是现有拍照还是先有程序猿，反正我是先学的拍照！</p>
+        </div>
+    </amp-lightbox>
+
+    <amp-lightbox id="pop-hobby3" layout="nodisplay">
+        <div class="light-box" on="tap:pop-hobby3.close">            
+            <p>健身是大学的时候开始的，那时候来来到成都，控制不住自己，一年长了二十多斤，打球都挑不起来了，愤然健身！上班后，频率断崖式下降，现在已经不行了,曾经那腹肌已过渡至肥肚。但偶尔看到之前的室友们的健硕的身姿，还是会做两个俯卧撑！</p>
+        </div>
+    </amp-lightbox>
+
+    <amp-lightbox id="pop-hobby4" layout="nodisplay">
+        <div class="light-box" on="tap:pop-hobby4.close">            
+            <p>旅行，当然是大多人都爱好的了！我喜欢自由自在不慌不忙的旅行。有足够的时间休息，使旅途劳累感最低化。目前为止，这样的旅行，我只享受了两次，相同点都是非节假日花好多天玩一个地方的两三处景点，并品味当地民族风情和美食！推荐这个方式，不累啊，玩得尽兴啊！</p>
+        </div>
+    </amp-lightbox>
+
+    <amp-selector layout="responsive" role="listbox">
+        <section class="intro">
+            <div class="slogan">
+                <h1 id="animate-target1" on="tap:animation1.start">仰望星空，脚踏实地</h1>
+                <p> Front End Developer </p>
+                <a href="//segmentfault.com/blog/xzavier" class="btn-skin" target="_blank">Xzavier's blog</a>
+            </div>  
+        </section>
+
+        <section class="home-section bg-gray">     
+            <div class="section-heading">
+                <h2>About me</h2>
+                <p>Front-End Developer && TARGET : Full Stack Developer Of Front End！</p>
+            </div>
+
+            <div class="flex-box">
+                <div class="flex-row">
+                    <div class="info-box">
+                        <h5>Play basketball</h5>
+                        <p class="subtitle">hobby</p>
+                        <amp-img on="tap:pop-hobby1" width="200" height="200" src="http://xiaohuazheng.github.io/img/team/1.jpg" alt="" layout="responsive"></amp-img>
+                    </div>
+                </div>
+                <div class="flex-row">
+                    <div class="info-box">
+                        <h5>Photograph</h5>
+                        <p class="subtitle">hobby</p>
+                        <amp-img on="tap:pop-hobby2" width="200" height="200" src="http://xiaohuazheng.github.io/img/team/2.jpg" alt="" layout="responsive"></amp-img>
+                    </div>
+                </div>
+                <div class="flex-row">
+                    <div class="info-box">
+                        <h5>Body-building</h5>
+                        <p class="subtitle">hobby</p>
+                        <amp-img on="tap:pop-hobby3" width="200" height="200" src="http://xiaohuazheng.github.io/img/team/3.jpg" alt="" layout="responsive"></amp-img>
+                    </div>
+                </div>
+                <div class="flex-row">
+                    <div class="info-box">
+                        <h5>journey</h5>
+                        <p class="subtitle">hobby</p>
+                        <amp-img on="tap:pop-hobby4" width="200" height="200" src="http://xiaohuazheng.github.io/img/team/4.jpg" alt="" layout="responsive"></amp-img>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="home-section">  
+            <div class="section-heading">
+                <h2>Ridicule</h2>
+                <p>以梦为码，码梦一生~</p>
+            </div>
+        </section>
+
+        <section class="home-section bg-gray">
+            <div class="section-heading">
+                <h2>professional skills</h2>
+                <p><a href="//segmentfault.com/blog/xzavier" target="_blank">Learing...</a></p>
+            </div>
+        </section>
+
+        <section class="home-section">
+            <div class="section-heading">
+                <h2 id="contactme">More</h2>
+                <p>Git：<a href="//github.com/xiaohuazheng" target="_blank">XiaohuaZheng</a></p>
+                <p>Blog：<a href="//segmentfault.com/blog/xzavier" target="_blank">Xzavier</a></p>
+            </div>
+        </section>
+    </amp-selector>
+
+    <amp-animation layout="nodisplay" id="animation1">
+        <script type="application/json">
+        {
+            "--delay": "0.5s",
+            "--x": "100px",
+            "animations": [{
+                "duration": "1s",
+                "selector": "#animate-target1",
+                "delay": "var(--delay)",
+                "--x": "150px",
+                "keyframes": {
+                    "opacity": [1, 0.1, 0],
+                    "transform": ["scale(1)", "scale(1.1)", "scale(2)"]
+                }
+            }]
+        }
+        </script>
+    </amp-animation>
+    
+    <footer>
+        <p>Copyright &copy; 2017 Xzavier.Chris</p>
+    </footer>
+</body>
+</html>
