@@ -66,8 +66,8 @@
 </head>
 <body>
     <header class="nav-menu-main">
-        <div class="menu-item"><a class="nav-icon nav-icon-menu" on='tap:sidebar1.open'></a></div>
-        <div class="menu-item"><a href="#contactme" on="tap:contactme.scrollTo">Xzavier.Chris</a></div>
+        <div class="menu-item"><a class="nav-icon nav-icon-menu" role="button" tabindex="0" on='tap:sidebar1.open'></a></div>
+        <div class="menu-item"><a href="#contactme" role="button" tabindex="0" on="tap:contactme.scrollTo">Xzavier.Chris</a></div>
     </header>
     <amp-sidebar id="sidebar1" layout="nodisplay" side="left">
         <ul class="nav-menu">
@@ -82,39 +82,39 @@
                 <a href="//segmentfault.com/blog/xzavier" class="nav-icon nav-icon-cog" target="_blank">Blog</a>
             </li>
             <li>
-                <a href="#contactme" on="tap:contactme.scrollTo" class="nav-icon nav-icon-archive">Contact</a>
+                <a href="#contactme" role="button" tabindex="0" on="tap:contactme.scrollTo" class="nav-icon nav-icon-archive">Contact</a>
             </li>
         </ul>
     </amp-sidebar>
 
     <amp-lightbox id="pop-hobby1" layout="nodisplay">
-        <div class="light-box" on="tap:pop-hobby1.close">            
+        <div class="light-box" role="button" tabindex="0" on="tap:pop-hobby1.close">            
             <p>一直爱好打篮球，自从上班后，就一直感谢自己有这个爱好，程序猿爱好身体，可以从打篮球开始！</p>
         </div>
     </amp-lightbox>
 
     <amp-lightbox id="pop-hobby2" layout="nodisplay">
-        <div class="light-box" on="tap:pop-hobby2.close">            
+        <div class="light-box" role="button" tabindex="0" on="tap:pop-hobby2.close">            
             <p>发现挺多程序猿都挺喜欢拍照，是现有拍照还是先有程序猿，反正我是先学的拍照！</p>
         </div>
     </amp-lightbox>
 
     <amp-lightbox id="pop-hobby3" layout="nodisplay">
-        <div class="light-box" on="tap:pop-hobby3.close">            
+        <div class="light-box" role="button" tabindex="0" on="tap:pop-hobby3.close">            
             <p>健身是大学的时候开始的，那时候来来到成都，控制不住自己，一年长了二十多斤，打球都挑不起来了，愤然健身！上班后，频率断崖式下降，现在已经不行了,曾经那腹肌已过渡至肥肚。但偶尔看到之前的室友们的健硕的身姿，还是会做两个俯卧撑！</p>
         </div>
     </amp-lightbox>
 
     <amp-lightbox id="pop-hobby4" layout="nodisplay">
-        <div class="light-box" on="tap:pop-hobby4.close">            
+        <div class="light-box" role="button" tabindex="0" on="tap:pop-hobby4.close">            
             <p>旅行，当然是大多人都爱好的了！我喜欢自由自在不慌不忙的旅行。有足够的时间休息，使旅途劳累感最低化。目前为止，这样的旅行，我只享受了两次，相同点都是非节假日花好多天玩一个地方的两三处景点，并品味当地民族风情和美食！推荐这个方式，不累啊，玩得尽兴啊！</p>
         </div>
     </amp-lightbox>
 
-    <amp-selector layout="responsive" role="listbox">
+    <aside>
         <section class="intro">
             <div class="slogan">
-                <h1 id="animate-target1" on="tap:animation1.start">仰望星空，脚踏实地</h1>
+                <h1 id="animate-target1" role="button" tabindex="0" on="tap:animation1.start">仰望星空，脚踏实地</h1>
                 <p> Front End Developer </p>
                 <a href="//segmentfault.com/blog/xzavier" class="btn-skin" target="_blank">Xzavier's blog</a>
             </div>  
@@ -131,28 +131,28 @@
                     <div class="info-box">
                         <h5>Play basketball</h5>
                         <p>hobby</p>
-                        <amp-img on="tap:pop-hobby1" width="200" height="200" src="//xiaohuazheng.github.io/img/team/1.jpg" alt="" layout="responsive"></amp-img>
+                        <amp-img role="button" tabindex="0" on="tap:pop-hobby1" width="200" height="200" src="//xiaohuazheng.github.io/img/team/1.jpg" alt="" layout="responsive"></amp-img>
                     </div>
                 </div>
                 <div class="flex-row">
                     <div class="info-box">
                         <h5>Photograph</h5>
                         <p>hobby</p>
-                        <amp-img on="tap:pop-hobby2" width="200" height="200" src="//xiaohuazheng.github.io/img/team/2.jpg" alt="" layout="responsive"></amp-img>
+                        <amp-img role="button" tabindex="0" on="tap:pop-hobby2" width="200" height="200" src="//xiaohuazheng.github.io/img/team/2.jpg" alt="" layout="responsive"></amp-img>
                     </div>
                 </div>
                 <div class="flex-row">
                     <div class="info-box">
                         <h5>Body-building</h5>
                         <p>hobby</p>
-                        <amp-img on="tap:pop-hobby3" width="200" height="200" src="//xiaohuazheng.github.io/img/team/3.jpg" alt="" layout="responsive"></amp-img>
+                        <amp-img role="button" tabindex="0" on="tap:pop-hobby3" width="200" height="200" src="//xiaohuazheng.github.io/img/team/3.jpg" alt="" layout="responsive"></amp-img>
                     </div>
                 </div>
                 <div class="flex-row">
                     <div class="info-box">
                         <h5>journey</h5>
                         <p>hobby</p>
-                        <amp-img on="tap:pop-hobby4" width="200" height="200" src="//xiaohuazheng.github.io/img/team/4.jpg" alt="" layout="responsive"></amp-img>
+                        <amp-img role="button" tabindex="0" on="tap:pop-hobby4" width="200" height="200" src="//xiaohuazheng.github.io/img/team/4.jpg" alt="" layout="responsive"></amp-img>
                     </div>
                 </div>
             </div>
@@ -179,7 +179,7 @@
                 <p>Blog：<a href="//segmentfault.com/blog/xzavier" target="_blank">Xzavier</a></p>
             </div>
         </section>
-    </amp-selector>
+    </aside>
 
     <amp-animation layout="nodisplay" id="animation1">
         <script type="application/json">
