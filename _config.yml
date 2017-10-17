@@ -1,10 +1,10 @@
 # Site settings
-title: 窗外蟋蟀
-SEOTitle: 窗外蟋蟀的博客 | Keysaim Blog
+title: Xzavier
+SEOTitle: 窗外蟋蟀的博客 | Xzavier Blog
 header-img: img/home-bg-hill.jpg
-email: keysaim@gmail.com
-description: "描述"
-keyword: "窗外蟋蟀, keysaim, cdn, docker, go, golang, python, C/C++, 流媒体, 分发网络, 音视频, 编解码"
+email: xzavierhua@gmail.com
+description: "xzavier's blog"
+keyword: "xzavier, frontend, javascript, html, css, amp, jquery, vue"
 url: "https://xiaohuazheng.github.io"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
@@ -12,13 +12,13 @@ baseurl: ""                             # for example, '/blog' if your blog host
 
 # SNS settings
 RSS: false
-#weibo_username:     keysaim
-zhihu_username:     keysaim
-github_username:    keysaim
-#twitter_username:   keysaim
-jianshu_username:   e413b88a622b
-#facebook_username:  keysaim
-# linkedin_username:  firstname-lastname-idxxxx
+#weibo_username:       xzavier
+#zhihu_username:       xzavier
+github_username:       xiaohuazheng
+segmentfault_username: xzavier
+#twitter_username:     xzavier
+facebook_username:     xzavier.zheng
+#linkedin_username:    firstname-lastname-idxxxx
 
 
 
@@ -48,7 +48,7 @@ kramdown:
 
 
 # Disqus settings
-#disqus_username: keysaim
+#disqus_username: xzavier
 
 # Netease setttings
 netease_comment: false
