@@ -2,7 +2,7 @@
 layout:     post
 title:      "温故js系列（2）"
 subtitle:   "快速排序&插入排序&选择排序&冒泡排序算法&优化"
-date:       2016-07-03
+date:       2016-07-06
 author:     "xzavier"
 header-img: "img/post-bg-js-version.jpg"
 catalog: true
