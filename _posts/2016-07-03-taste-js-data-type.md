@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "taste javascript - primary data type learn"
-subtitle:   "温故js系列（1）-基本数据类型和引用数据类型判断&存储访问&类型转换"
+title:      "温故js系列（1）"
+subtitle:   "基本数据类型和引用数据类型判断&存储访问&类型转换"
 date:       2016-07-03
 author:     "xzavier"
 header-img: ""
@@ -10,9 +10,6 @@ tags:
     - javascript
     - 温故js系列
 ---
-
-
-# 温故js系列（1）-基本数据类型和引用数据类型判断&存储访问&类型转换
 
 ## 数据类型定义
 
