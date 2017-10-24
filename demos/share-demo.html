@@ -1,0 +1,127 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>分享demo</title>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
+    <style>
+
+        body {
+            margin: 0 auto;
+            font-family: 'microsoft yahei';
+        }
+        h2, p, .share-bar {
+            text-align: center;
+        }
+        .share-bar a {
+            cursor: pointer;
+            border: 1px solid #AAA;
+            background: #FFF;
+            font-family: 'Candal';
+            border-radius: 1px;
+            color: black;
+            padding: 5px 10px;
+            width: auto;
+            margin: 4px;
+            margin-top: 10px;
+            display: inline-block;
+            text-decoration: none;
+            box-shadow: 0px 1px 0px #CCC;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>分享到：</h2>
+    <div class="share-bar">
+        <a href="javascript:void(0);" stype="weibo">weibo</a>
+        <a href="javascript:void(0);" stype="qzone">qzone</a>
+        <a href="javascript:void(0);" stype="qq">qq</a>
+        <a href="javascript:void(0);" stype="weixin">weixin</a>
+        <a href="javascript:void(0);" stype="twitter">twitter</a>
+        <a href="javascript:void(0);" stype="facebook">facebook</a>
+        <a href="javascript:void(0);" stype="linkedin">linkedin</a>
+        <a href="javascript:void(0);" stype="google">google</a>
+        <a href="javascript:void(0);" stype="douban">douban</a>
+    </div>
+    <p>是不是很丑，是不是想优化，那就不要用别人的设计，自己设计的自己最棒</p>
+</body>
+
+
+
+<script>
+    var SocilaShare = function (opts) {
+        opts = opts || {};
+        // 缺省参数 - 初始化的时候阔以指定四个参数，设置多了也麻烦，简单就好。
+        var url = encodeURIComponent(opts.url || location.href),
+            title = encodeURIComponent(opts.title || document.title),
+            content = encodeURIComponent(opts.content || ''),
+            pic = encodeURIComponent(opts.pic || '');
+
+        // 分享平台链接
+        var qzone = 'https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url={url}&title={title}&pics={pic}&summary={content}',
+            weibo = 'https://service.weibo.com/share/share.php?url={url}&title={title}&pic={pic}&searchPic=false',
+            weixin = 'http://qr.liantu.com/api.php?text={url}',
+            douban = 'http://shuo.douban.com/!service/share?href={url}&name={title}&text={content}&image={pic}&starid=0&aid=0&style=11&qq-pf-to=pcqq.c2c',
+            twitter = 'https://twitter.com/intent/tweet?text={content}&url={url}&related=' + document.domain,
+            facebook = 'https://www.facebook.com/sharer/sharer.php?u={url}&t={title}',
+            linkedin = 'https://www.linkedin.com/cws/share?url={url}&token=&isFramed=false&lang=en_US',
+            qq = 'https://connect.qq.com/widget/shareqq/index.html?url={url}&desc={title}&pics={pic}',
+            google = 'https://plus.google.com/share?url={url}';
+
+        // 组装分享链接
+        function openSahre (api) {
+            var ourl = api.replace('{url}', url).replace('{title}', title).replace('{content}', content).replace('{pic}', pic);
+            window.open(ourl, 'newwindow', 'height=600,width=900,top=60,left=40');
+        }
+
+        // 分享调用方法
+        this.qzone = function() {
+            openSahre(qzone);
+        };
+        this.weibo = function() {
+            openSahre(weibo);
+        };
+        this.twitter = function() {
+            openSahre(twitter);
+        };
+        this.facebook = function() {
+            openSahre(facebook);
+        };
+        this.linkedin = function() {
+            openSahre(linkedin);
+        };
+        this.google = function() {
+            openSahre(google);
+        };
+        this.douban = function() {
+            openSahre(douban);
+        };
+        this.qq = function() {
+            openSahre(qq);
+        };
+        this.weixin = function(cb) {
+            if (typeof cb === 'function') {
+                cb(parseUrl(weixin));
+            } else {
+                openSahre(weixin);
+            }
+        };
+
+    };
+
+    var weShare = new SocilaShare({
+        url: 'https://xiaohuazheng.github.io',
+        title: '欢迎来到我的博客',
+        content: '欢迎来到我的博客',
+        pic: 'https://xiaohuazheng.github.io/img/avatar-xzavier.png'
+    });
+    $(document).on('click', '.share-bar a', function() {
+        var type = $(this).attr('stype') || 'weibo';
+        weShare[type]();
+    });
+
+</script>
+
+</body>
+</html>
