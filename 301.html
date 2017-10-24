@@ -32,7 +32,7 @@ permalink: /301.html
     },
     friendDays = Math.ceil((+new Date() - 1347120000000) / (1000*60*60*24)),
     moneyNum = friendDays * 10,
-    moneyEle = new CountUp('money-count', 0, moneyNum, 0, 3, options);
+    moneyEle = new CountUp('money-count', 0, moneyNum, 0, 3, options),
     friendEle = new CountUp('friend-days', 0, friendDays, 0, 3, options);
 
     setTimeout(function() {
