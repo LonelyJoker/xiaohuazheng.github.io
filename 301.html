@@ -1,0 +1,49 @@
+---
+layout: default
+header-img: "img/301-bg.jpg"
+permalink: /301.html
+---
+
+
+<!-- Page Header -->
+<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading" id="tag-heading" style="padding-bottom: 360px;">
+                    <h4 style="color: #9b17ef;">今天结婚可收份子钱</h4>
+                    <h1 style="color: #666;"><span id="money-count"></span><span style="color: #9b17ef;font-size: 30px;">RMB</span></h1>
+                    <p style="color: #666;">今天是DORM 301成立第<span id="friend-days" style="color: #9b17ef;"></span>天</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<script src="/js/count-up.js"></script>
+<script>
+    document.body.classList.add('page-fullscreen');
+    
+    var options = {
+        useEasing: true, 
+        useGrouping: true, 
+        separator: ',', 
+        decimal: '.', 
+    },
+    friendDays = Math.ceil((+new Date() - 1347120000000) / (1000*60*60*24)),
+    moneyNum = friendDays * 10,
+    moneyEle = new CountUp('money-count', 0, moneyNum, 0, 3, options);
+    friendEle = new CountUp('friend-days', 0, friendDays, 0, 3, options);
+
+    setTimeout(function() {
+        if (!moneyEle.error) {
+            moneyEle.start();
+            friendEle.start();
+        } else {
+            document.getElementById('money-count').innerHTML = moneyNum;
+            document.getElementById('friend-days').innerHTML = friendDays;
+        }
+    }, 1000);
+    
+        
+</script>
