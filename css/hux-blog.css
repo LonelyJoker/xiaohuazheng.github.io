@@ -829,6 +829,8 @@ pre code {
   font-style: italic;
   color: #a3a3a3;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .post-content-preview:hover {
   color: #9b17ef;
