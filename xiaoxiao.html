@@ -1,0 +1,45 @@
+---
+layout: default
+header-img: "img/xiaoxiao-bg.jpg"
+permalink: /xiaoxiao.html
+---
+
+
+<!-- Page Header -->
+<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading" id="tag-heading" style="padding-bottom: 320px;">
+                    <h4>今天是我们在一起</h4>
+                    <h1><span id="love-days" style="color: #f70903;font-size: 80px;"></span><span style="color: #f70903;font-size: 30px;">天</span></h1>
+                    <p style="color: #333;">勿忘初心，方得始终</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<script src="/js/count-up.js"></script>
+<script>
+    document.body.classList.add('page-fullscreen');
+    
+    var options = {
+        useEasing: true, 
+        useGrouping: true, 
+        separator: ',', 
+        decimal: '.', 
+    },
+    loveDays = Math.ceil((+new Date() - 1468319430000) / (1000*60*60*24)),
+    loveEle = new CountUp('love-days', 0, loveDays, 0, 3, options);
+
+    setTimeout(function() {
+        if (!loveEle.error) {
+            loveEle.start();
+        } else {
+            document.getElementById('love-days').innerHTML = loveDays;
+        }
+    }, 1000);
+    
+        
+</script>
