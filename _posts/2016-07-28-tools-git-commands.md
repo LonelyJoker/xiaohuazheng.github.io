@@ -7,8 +7,8 @@ author:     "xzavier"
 header-img: "img/posts/git-bg.jpg"
 catalog: true
 tags:
-    - tools
-    - git
+    - Tools
+    - Git
 ---
 
 

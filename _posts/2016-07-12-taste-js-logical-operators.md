@@ -7,7 +7,7 @@ author:     "xzavier"
 header-img: "img/posts/post-bg-js.jpg"
 catalog: true
 tags:
-    - javascript
+    - Javascript
     - 温故js系列
 ---
 
