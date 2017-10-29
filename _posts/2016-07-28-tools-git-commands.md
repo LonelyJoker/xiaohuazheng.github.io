@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "工具系列（1）"
+title:      "工具系列（1）- Git"
 subtitle:   "Git常用命令and设置快捷命令"
 date:       2016-07-28
 author:     "xzavier"

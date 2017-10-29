@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "SublimeText快捷键大全"
-subtitle:   "更轻量，更快捷，高效率，我们爱的sublime"
+title:      "工具系列（2）-SublimeText"
+subtitle:   "SublimeText快捷键大全 - 更轻量，更快捷，更高效"
 date:       2016-08-27
 author:     "xzavier"
 header-img: "img/posts/sublime-bg.jpg"
