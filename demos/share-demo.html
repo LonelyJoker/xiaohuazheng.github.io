@@ -3,7 +3,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>分享demo</title>
-    <script type="text/javascript" src="//apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
     <style>
 
         body {
@@ -34,15 +33,15 @@
 <body>
     <h2>分享到：</h2>
     <div class="share-bar">
-        <a href="javascript:void(0);" stype="weibo">weibo</a>
-        <a href="javascript:void(0);" stype="qzone">qzone</a>
-        <a href="javascript:void(0);" stype="qq">qq</a>
-        <a href="javascript:void(0);" stype="weixin">weixin</a>
-        <a href="javascript:void(0);" stype="twitter">twitter</a>
-        <a href="javascript:void(0);" stype="facebook">facebook</a>
-        <a href="javascript:void(0);" stype="linkedin">linkedin</a>
-        <a href="javascript:void(0);" stype="google">google</a>
-        <a href="javascript:void(0);" stype="douban">douban</a>
+        <a onclick="weShare.weibo()">weibo</a>
+        <a onclick="weShare.qzone()">qzone</a>
+        <a onclick="weShare.qq()">qq</a>
+        <a onclick="weShare.weixin()">weixin</a>
+        <a onclick="weShare.twitter()">twitter</a>
+        <a onclick="weShare.facebook()">facebook</a>
+        <a onclick="weShare.linkedin()">linkedin</a>
+        <a onclick="weShare.google()">google</a>
+        <a onclick="weShare.douban()">douban</a>
     </div>
     <p>是不是很丑，是不是想优化，那就不要用别人的设计，自己设计的自己最棒</p>
 </body>
@@ -115,10 +114,6 @@
         title: '欢迎来到我的博客',
         content: '欢迎来到我的博客',
         pic: 'https://xiaohuazheng.github.io/img/avatar-xzavier.png'
-    });
-    $(document).on('click', '.share-bar a', function() {
-        var type = $(this).attr('stype') || 'weibo';
-        weShare[type]();
     });
 
 </script>
