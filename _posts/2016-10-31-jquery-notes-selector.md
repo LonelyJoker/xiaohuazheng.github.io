@@ -8,7 +8,6 @@ header-img: "img/posts/jquery-bg.jpg"
 catalog: true
 tags:
     - jQuery
-    - jQuery笔记
 ---
 
 # jQuery-选择器浅析
