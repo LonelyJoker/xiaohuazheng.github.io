@@ -51,7 +51,7 @@ F12打开console，即可操作当前网页节点：
     querySelector             获取class第一个或id的节点  返回值为一个节点对象
     querySelectorAll          获取class或id的节点列表    返回值为节点类数组
 
-jQuery在选择器上做的非常好，使用的选择器引擎Sizzle占了jQuery很大一部分。延伸：[jQuery选择器浅析][1]
+jQuery在选择器上做的非常好，使用的选择器引擎Sizzle占了jQuery很大一部分。
 
 `querySelectorAll` 和 `getElementsBy`获取节点数组系列方法有一个很重要的区别：
 
@@ -59,7 +59,7 @@ jQuery在选择器上做的非常好，使用的选择器引擎Sizzle占了jQuer
 
 `getElementsBy`系列的返回的是一个 `Live Node List`
 
-具体可参见[知乎提问，答案很详细][2]
+具体可参见[知乎提问，答案很详细][1]
     
 
 ### 获取HTML元素属性
@@ -293,5 +293,4 @@ PS：IE6 及更低版本不支持removeAttribute()方法。
 一般来说用的多的也就title，URL，cookie，charset等，其他的就不列了。
 
 
-  [1]: https://segmentfault.com/a/1190000006667079
-  [2]: https://www.zhihu.com/question/24702250
+  [1]: https://www.zhihu.com/question/24702250

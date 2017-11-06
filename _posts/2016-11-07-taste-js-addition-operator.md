@@ -164,6 +164,6 @@ Have a good coding day!
     {} + []; //0
 
 
-  [1]: https://xiaohuazheng.github.io/2016/07/12/taste-js-logical-operators/
+  [1]: /2016/07/12/taste-js-logical-operators/
   [2]: http://jsbin.com/fiwemir/2/edit?js,console
   [3]: https://rainsoft.io/javascriptss-addition-operator-demystified/

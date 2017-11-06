@@ -347,5 +347,5 @@ Examples:
 今天好天气，打篮球去咯。代码，篮球，生活...
 
 
-  [1]: https://xiaohuazheng.github.io/2016/07/03/taste-js-data-type/
+  [1]: /2016/07/03/taste-js-data-type/
   [2]: https://sfault-image.b0.upaiyun.com/236/463/2364636534-57c577652fdb2_articlex

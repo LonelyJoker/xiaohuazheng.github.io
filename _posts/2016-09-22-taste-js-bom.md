@@ -281,4 +281,4 @@ screen对象是window 对象的属性,用于获取屏幕的信息。
 document对象见： [温故js系列-DOM][1]
 
 
-  [1]: https://xiaohuazheng.github.io/2016/09/21/taste-js-dom/
+  [1]: /2016/09/21/taste-js-dom/
