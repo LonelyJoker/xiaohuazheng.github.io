@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "小程序 - 实操一把"
-subtitle:   "一个圈子版小程序"
+title:      "微信小程序"
+subtitle:   "实操一把 - 一个圈子版小程序"
 date:       2017-02-19
 author:     "xzavier"
 header-img: "img/posts/xcx-bg.jpg"
@@ -24,6 +24,7 @@ tags:
 # 效果
 
 ## 首页
+
 ![图片描述][1]
 
 ## 首页个人中心
