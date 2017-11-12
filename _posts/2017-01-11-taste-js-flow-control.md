@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "温故js系列（13）"
+title:      "温故js系列（14）"
 subtitle:   "详解代码中的流程控制"
 date:       2017-01-11
 author:     "xzavier"

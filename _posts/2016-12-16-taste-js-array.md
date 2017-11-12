@@ -332,6 +332,6 @@ sort() 方法对数组的元素做原地的排序，并返回这个数组。
 
 延伸阅读：[ES6数组的扩展][3]
 
-  [1]: https://xiaohuazheng.github.io/
-  [2]: https://xiaohuazheng.github.io/
+  [1]: /2016/12/22/taste-js-array-unique/
+  [2]: /2017/01/11/taste-js-flow-control/
   [3]: http://es6.ruanyifeng.com/#docs/array

@@ -480,7 +480,7 @@ hash去重的核心是构建了一个 hash 对象来替代 indexOf。判断hash�
 而`prototype`是每个函数对象都具有的属性，指向原型对象，如果原型对象被添加属性和方法，那么由应的构造函数创建的实例会继承`prototype`上的属性和方法，这也是我们在代码中经常遇到的。构造函数产生实例时，实例通过其对应原型对象的 constructor 访问对应的构造函数对象。所以，我们继承出来的实例往往没有constructor，只是通过原型链查找，会让我们产生错觉，可参见本系列原型链文章。
 
   [1]: https://sfault-image.b0.upaiyun.com/149/829/1498299667-584cb6c104830_articlex
-  [2]: https://xiaohuazheng.github.io/
+  [2]: /2017/01/11/taste-js-flow-control/
   [3]: /2016/07/03/taste-js-data-type/
-  [4]: https://xiaohuazheng.github.io/
+  [4]: /2017/03/14/taste-js-judgement/
 
