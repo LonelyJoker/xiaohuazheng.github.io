@@ -665,6 +665,16 @@ pre code {
     transform: translate3d(0, 100%, 0);
   }
 }
+.cvs-head-box canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+#cvs-words {
+    width: 0;height: 0;overflow: hidden;color: #000;
+}
+
 .intro-header {
   background: no-repeat center center;
   background-color: #cccccc;
@@ -823,6 +833,14 @@ pre code {
   .post-preview .post-meta {
     font-size: 18px;
   }
+}
+.post-heading *, .site-heading * {
+    opacity: 0;
+    transition: opacity 3s;
+    -webkit-transition: opacity 3s;
+}
+.post-heading-show *, .site-heading-show * {
+    opacity: 1;
 }
 .post-content-preview {
   font-size: 13px;

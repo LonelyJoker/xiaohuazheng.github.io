@@ -7,8 +7,8 @@ author:     "xzavier"
 header-img: "img/posts/sublime-bg.jpg"
 catalog: true
 tags:
-    - Tools
     - SublimeText3
+    - Tools
 ---
 
 
