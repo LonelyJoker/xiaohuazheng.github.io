@@ -13,7 +13,7 @@ var S = {
         if (cvsWords) {
             S.UI.simulate(cvsWords);
         } else {
-            S.UI.simulate('Welcome|Xzavier|Blog|#rectangle|#time|');
+            S.UI.simulate(getDefaultWords());
         }
 
         S.Drawing.loop(function() {
@@ -21,6 +21,29 @@ var S = {
         });
     }
 };
+
+
+function getDefaultWords() {
+    try {
+        var dwc = localStorage.getItem('_default_words_count');
+        if (dwc) {
+            dwc = JSON.parse(dwc);
+            if (dwc > 4) {
+                dwc = 1;
+            } else {
+                dwc++;
+            }
+            localStorage.setItem('_default_words_count', JSON.stringify(dwc));
+            if (dwc > 1) {
+                return '#time|';
+            }
+        } else {
+            localStorage.setItem('_default_words_count', 1);
+        }
+    } catch(e) {}
+
+    return 'Welcome|Xzavier|Blog|#rectangle|#time|';
+}
 
 
 S.Drawing = (function() {
