@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "工具系列（2）-Fiddler"
+title:      "工具系列（3）-Fiddler"
 subtitle:   "http协议调试代理工具 - 手机代理调试基本配置和使用"
 date:       2016-10-04
 author:     "xzavier"
