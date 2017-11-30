@@ -27,7 +27,6 @@ const PRECACHE_LIST = [
   "./img/me/3.jpg",
   "./img/me/4.jpg",
   "./img/301-bg.jpg",
-  "./img/xiaoxiao-bg.jpg",
   "./css/hux-blog.min.css",
   "./css/syntax.css",
   "./css/bootstrap.min.css"
