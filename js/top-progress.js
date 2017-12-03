@@ -207,7 +207,7 @@
         div.style.zIndex = 999;
         div.style.top = 0;
         div.style.left = 0;
-        div.style.height = '6px';
+        div.style.height = '4px';
 
         div.style.backgroundColor = this.options.color;
 
