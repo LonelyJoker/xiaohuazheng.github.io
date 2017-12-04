@@ -108,7 +108,7 @@ Fiddler是一个http协议调试代理工具，它能够记录并检查所有你
 
 如果你没开发了在玩手机的时候，发现有什么不对劲儿，大概就是代理导致的，去把它关掉吧。
 
-就到这儿吧，里面的很多功能需要你实际的去使用。
+就到这儿吧，这是Fiddler简单配置和使用，里面的很多功能需要你实际的去使用：[可以看看这个][12]
 
   [1]: https://raw.githubusercontent.com/xiaohuazheng/twbm/master/articles/img/fiddler/1.png
   [2]: https://raw.githubusercontent.com/xiaohuazheng/twbm/master/articles/img/fiddler/2.png
@@ -121,5 +121,6 @@ Fiddler是一个http协议调试代理工具，它能够记录并检查所有你
   [9]: https://raw.githubusercontent.com/xiaohuazheng/twbm/master/articles/img/fiddler/9.jpg
   [10]: https://raw.githubusercontent.com/xiaohuazheng/twbm/master/articles/img/fiddler/10.png
   [11]: https://raw.githubusercontent.com/xiaohuazheng/twbm/master/articles/img/fiddler/11.jpg
+  [12]: http://blog.csdn.net/qq_21445563/article/details/51017605
 
 
