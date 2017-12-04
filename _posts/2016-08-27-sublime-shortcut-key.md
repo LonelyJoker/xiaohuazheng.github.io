@@ -8,7 +8,6 @@ header-img: "img/posts/sublime-bg.jpg"
 catalog: true
 tags:
     - SublimeText3
-    - Tools
 ---
 
 

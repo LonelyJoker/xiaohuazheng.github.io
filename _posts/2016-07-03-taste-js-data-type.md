@@ -8,7 +8,6 @@ header-img: "img/posts/post-bg-js.jpg"
 catalog: true
 tags:
     - Javascript
-    - 温故js系列
 ---
 
 ## 数据类型定义
