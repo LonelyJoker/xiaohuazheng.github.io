@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "随笔"
-subtitle:   "开发闲时都在想啥呢"
+subtitle:   "我这开发闲时都在想啥呢"
 date:       2017-06-19
 author:     "xzavier"
 catalog: true
