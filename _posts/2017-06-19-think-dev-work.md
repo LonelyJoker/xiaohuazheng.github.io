@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "随笔"
+title:      "Developer随笔"
 subtitle:   "我这开发闲时都在想啥呢"
 date:       2017-06-19
 author:     "xzavier"
