@@ -1,10 +1,9 @@
 ---
 layout:     post
-title:      "CSS业务代码中可用的小技巧"
-subtitle:   "业务代码中常常遇到的总结"
+title:      "CSS小技巧"
+subtitle:   "业务代码中常常遇到的小总结"
 date:       2016-11-30
 author:     "xzavier"
-header-img: "img/posts/css3-bg.jpg"
 catalog: true
 tags:
     - CSS3

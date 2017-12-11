@@ -1,10 +1,9 @@
 ---
 layout:     post
-title:      "JavaScript奇味探索"
-subtitle:   "去探索那些发生在js中的奇事儿"
+title:      "你真懂JavaScript吗？"
+subtitle:   "JavaScript奇味探索"
 date:       2017-01-21
 author:     "xzavier"
-header-img: "mg/posts/github-bg.jpg"
 catalog: true
 tags:
     - Javascript
@@ -79,6 +78,11 @@ JavaScript中有很多奇妙的东西，归咎or归功于设计时候的迅速�
 ### querySelectorAll 方法相比 getElementsBy 系列方法有什么区别？
 
  - 知乎问答：[高票回答][22]
+
+### 你真懂JavaScript吗？几个有意思的题目
+
+ - [问题-英文原贴][23] && [问题-汤姆大叔手记][24]
+ - [回答-英文原贴][25] && [详解-汤姆大叔手记][26]
  
 随时遇到问题再补充，有好奇心才会有进步！欢迎评论补充！
 
@@ -105,3 +109,7 @@ JavaScript中有很多奇妙的东西，归咎or归功于设计时候的迅速�
   [20]: http://justjavac.com/javascript/2012/04/05/javascript-continuous-assignment-operator.html
   [21]: http://www.cnblogs.com/snandy/archive/2012/03/01/2373243.html
   [22]: https://www.zhihu.com/question/24702250
+  [23]: http://dmitry.baranovskiy.com/post/91403200
+  [24]: http://www.cnblogs.com/TomXu/archive/2012/02/09/2330578.html
+  [25]: https://www.nczonline.net/blog/2010/01/26/answering-baranovskiys-javascript-quiz/
+  [26]: http://www.cnblogs.com/TomXu/archive/2012/02/10/2342098.html
