@@ -42,7 +42,7 @@ function getDefaultWords() {
         }
     } catch(e) {}
 
-    return 'welcome|Xzavier|BLOG|#rectangle|#time|';
+    return 'welcome|Xzavier|BLOG|#rectangle|';
 }
 
 
