@@ -8,7 +8,6 @@ header-img: "img/posts/github-bg.jpg"
 catalog: true
 tags:
     - 资源汇总
-    - 面试
 ---
 
 ## 简介

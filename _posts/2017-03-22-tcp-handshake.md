@@ -7,8 +7,7 @@ author:     "xzavier"
 header-img: "img/posts/tree-bg.jpg"
 catalog: true
 tags:
-    - TCP
-    - 页面渲染
+    - HTTP
 ---
 
 http知识有太多深层次需要学习，今天简要回顾学习，浅析下这个技术点。
