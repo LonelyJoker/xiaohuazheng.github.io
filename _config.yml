@@ -1,7 +1,6 @@
 # Site settings
 title: Xzavier
 SEOTitle: Xzavier's Blog | xiaohuazheng Blog | zhengxiaohua Blog
-header-img: img/home-bg.jpg
 email: xzavierhua@gmail.com
 description: "xzavier's blog"
 keyword: "xzavier, frontend, javascript, html, css, amp, jquery, vue"
@@ -25,7 +24,7 @@ facebook_username:     xzavier.zheng
 # from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
 highlighter: rouge
 permalink: pretty
-paginate: 20
+paginate: 10
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md","README.zh.md"]
 
 
