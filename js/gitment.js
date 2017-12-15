@@ -2925,7 +2925,7 @@ function renderComments(_ref2, instance) {
   } else if (!comments.length) {
     var emptyBlock = document.createElement('div');
     emptyBlock.className = 'gitment-comments-empty';
-    emptyBlock.innerText = 'No Comment Yet';
+    emptyBlock.innerText = '暂无评论，给博主添点生气呗';
     container.appendChild(emptyBlock);
     return container;
   }
