@@ -851,7 +851,8 @@ pre code {
     color: #ccc;
     font-size: 16px;
     font-style: italic;
-    margin-top: 0
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .post-preview>.post-meta>a {
@@ -885,9 +886,6 @@ pre code {
     font-size: 13px;
     font-style: italic;
     color: #a3a3a3;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .post-content-preview:hover {
