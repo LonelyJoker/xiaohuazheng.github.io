@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "玩玩AMP（1）"
+title:      "AMP初探"
 subtitle:   "Hello , Accelerated Mobile Page"
 date:       2017-12-06
 author:     "xzavier"
@@ -71,9 +71,7 @@ AMP目前的使用者，应该局限于大型的新闻网站，或者内容网�
 如果不是AMP页面，图标就是灰的。
 如果是AMP页面且符合规范，就是绿色的，如果不符合规范，只是警告的红色。
 
-装上这个插件后，随意打开个页面，应该就是灰色的，也阔以打开我的博客关于我页面，应该就是绿色的，哈哈哈：
-
-[My AMP Page][11]
+装上这个插件后，随意打开个页面，应该就是灰色的，也阔以打开我的博客关于我页面，应该就是绿色的。
 
 也阔以打开调试工具，查看elements，第一行长这样：
 
@@ -91,9 +89,63 @@ AMP目前的使用者，应该局限于大型的新闻网站，或者内容网�
     <html amp>
 
 
-嗯，这次我就写到这里，没有满足胃口我很抱歉，今天就简单介绍下AMP，以及AMP Page长啥样。有时间咱就一起玩玩吧~
 
-[Learn AMP by Example][12]
+这些元素 AMP Page 必备：
+
+- 以文档类型 <!doctype html> 开头
+- 包含顶级 <html ⚡> 标记（也接受 <html amp>）
+- 包含 <head> 和 <body> 标记（这些标记在 HTML 中是可选的）
+- 在<head>内包含一个 <link rel="canonical" href="$SOME_URL"> 标记，该标记指向 AMP - HTML 文档的常规 HTML 版本，或在此类 HTML 版本不存在的情况下指向文档本身
+- 包含 <meta charset="utf-8"> 标记作为<head>标记的第一个子项
+- 在<head>标记内包含 <meta name="viewport" content="width=device-width,minimum-scale=1"> 标记。还建议包括 initial-scale=1
+- 包含 <script async src="https://cdn.ampproject.org/v0.js"></script> 标记作为<head>中的最后一个元素（这样做将会包括并加载 AMP JS 库）
+- 在其 <head> 标记内包含以下内容： 
+
+```<style amp-boilerplate>
+        body{
+            -webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;
+            -moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;
+            -ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;
+            animation:-amp-start 8s steps(1,end) 0s 1 normal both;
+        }
+        @-webkit-keyframes -amp-start{
+            from{visibility:hidden}
+            to{visibility:visible}
+        }
+        @-moz-keyframes -amp-start{
+            from{visibility:hidden}
+            to{visibility:visible}
+        }
+        @-ms-keyframes -amp-start{
+            from{visibility:hidden}
+            to{visibility:visible}
+        }
+        @-o-keyframes -amp-start{
+            from{visibility:hidden}
+            to{visibility:visible}
+        }
+        @keyframes -amp-start{
+            from{visibility:hidden}
+            to{visibility:visible}
+       }
+    </style>
+    <noscript><style amp-boilerplate>
+        body{
+            -webkit-animation:none;
+            -moz-animation:none;
+            -ms-animation:none;animation:none
+        }
+    </style></noscript>```
+
+
+完整的demo可以查看
+[My AMP Page][11]，或者官方的 [Learn AMP by Example][12]
+
+嗯，这次我就写到这里，没有满足胃口我很抱歉，今天就简单介绍下AMP，以及AMP Page长啥样。
+
+如果手头这个wap项目要改用AMP HTML，那我就能好好的折腾，写点博客了。
+
+有时间咱就一起玩玩吧~
 
 
 
