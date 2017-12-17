@@ -51,8 +51,7 @@ JavaScript中有很多奇妙的东西，归咎or归功于设计时候的迅速�
 
  - 原始问题：[JavaScript Puzzlers!][12]
  - 参考资料：[解析parseInt() 函数][13]
- - 延伸阅读：[你不可能全会的30题-题目][14]
- - 延伸阅读：[你不可能全会的30题-解析][15]
+ - 延伸阅读：[how insane do you think JavaScript actually is?][14]
  
 ### JavaScript中,{}+{}等于多少?
 
@@ -100,8 +99,8 @@ JavaScript中有很多奇妙的东西，归咎or归功于设计时候的迅速�
   [11]: http://justjavac.com/codepuzzle/2012/11/11/codepuzzle-float-who-stole-your-accuracy.html
   [12]: http://webcache.googleusercontent.com/search?q=cache:http://javascript-puzzlers.herokuapp.com/
   [13]: http://justjavac.com/javascript/2014/02/18/javascript-puzzlers-why-1-2-3-map-parseint-returns-1-NaN-NaN-in-javascript.html
-  [14]: https://segmentfault.com/a/1190000006769211
-  [15]: https://segmentfault.com/a/1190000006769330
+  [14]: /puzzlers.html
+  [15]: /puzzlers.html
   [16]: http://www.2ality.com/2012/01/object-plus-object.html
   [17]: https://segmentfault.com/a/1190000000264418
   [18]: http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html
