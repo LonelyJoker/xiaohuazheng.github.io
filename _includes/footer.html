@@ -201,6 +201,39 @@
 </script>
 {% endif %}
 
+{% if page.puzzlers %}
+<script>
+    function e(e) {
+        e.text(parseInt(e.text(), 10) + 1);
+    }
+    var n = ['You Know Nothing Jon Snow', 'Average Joe', 'Working Practitioner', 'Wise Disciple', 'Hello Brendan'];
+
+    function t() {
+        var e = parseInt($('.running-score .attempts').text(), 10)
+          , t = parseInt($('.running-score .scored').text(), 10);
+        return n[Math.round(t / e * (n.length - 1))]
+    }
+
+    $(document).on('click', '.puzzle .answer', function() {
+        var n = $(this), r = n.closest('.puzzle');
+        if (r.hasClass('did')) {
+            return;
+        }
+        n.addClass('clicked');
+        r.addClass('did');
+        r.find('.explanation').removeClass('hidden');
+        n.hasClass('correct') ? e($('.running-score .scored')) : r.find('.answer.correct').addClass('clicked');
+        e($('.running-score .attempts'));
+
+        if ($('.did').length === $('.puzzle').length || r.hasClass('last')) {
+            $('.running-score').addClass('completed')
+        }
+    });
+    $(document).on('click', '.running-score.completed', function() {
+        $('.running-score').removeClass('completed');
+    });
+</script>
+{% endif %}
 
 
 <!-- Side Catalog -->

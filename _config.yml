@@ -87,7 +87,17 @@ featured-condition-size: 0             # A tag will be featured if the size of i
 chrome-tab-theme-color: "#000000"
 service-worker: true
 
-
+# Hotrecommends
+hotrecommends: [{
+    title: "前端开发资源汇总",
+    href: "/2016/10/01/awesome-frontend-resource/"
+}, {
+    title: "JavaScript Puzzlers",
+    href: "/puzzlers.html"
+}, {
+    title: "你真懂JavaScript吗？",
+    href: "/2017/01/21/play-js-odd/"
+}]
 
 # Friends
 friends: [{
