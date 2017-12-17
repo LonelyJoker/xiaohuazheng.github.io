@@ -125,5 +125,5 @@ tags:
 
 [点击前往Git][2]，觉得有用可以star一下。
 
-  [1]: /demos/share-demo.html
+  [1]: /demos/2016-08-16-share-demo.html
   [2]: https://github.com/xiaohuazheng/SocialShare
