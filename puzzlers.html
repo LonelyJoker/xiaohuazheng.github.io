@@ -284,7 +284,7 @@ console.log(count);</code></div>
                         <span>101</span></span>
                     <span class="answer correct pure-u-5-24">
                         <span>other</span></span>
-                    <p class="explanation pure-u-1 hidden">代码进入一个无限循环，<code>2 ^ 53</code>是javascript中规范的的最大数字，<code>2 ^ 53 + 1 > 2 ^ 53</code>，所以<code>i</code>永远不会变得比这个大。</p></li>
+                    <p class="explanation pure-u-1 hidden">代码进入一个无限循环，<code>2 ^ 53</code>是javascript中规范的精度下能表示的最大数字，<code>2 ^ 53 + 1 </code>也返回<code> 2 ^ 53</code>的值，所以<code>i</code>永远不会变得比这个大。</p></li>
                 <li class="pure-g puzzle" data-puzzle-hash="433383726">
                     <div class="question pure-u-1">7.以下表达式的运行结果是?
                         <code>var ary = [0,1,2]; 
@@ -316,7 +316,7 @@ var six = 0.6;
                     <span class="answer  pure-u-5-24">
                         <span>other</span></span>
                     <p class="explanation pure-u-1 hidden">JavaScript没有精确的数学运算，尽管有时它可以正常工作。严格来说，精确运算问题实际存在，各语言处理上不同罢了。
-                    JavaScript中，两个浮点数相加或者相减，将会导致一定的正常的数据转换造成的精度丢失问题<code>eight-six = 0.20000000000000007</code>。JavaScript中的小数采用的是双精度(64位)表示的，由三部分组成：　<code>符 + 阶码 + 尾数</code>，在十进制中的 1/10，在十进制中可以简单写为 0.1 ，但在二进制中，他得写成：0.0001100110011001100110011001100110011001100110011001…（后面全是 1001 循环）。因为浮点数只有52位有效数字，从第53位开始，就舍入了。这样就造成了“浮点数精度损失”问题。 更严谨的做法是<code>(eight-six ).totoFiexd(1)</code>或者用用<code>Math.round</code>方法回归整数运算。</p></li>
+                    JavaScript中，两个浮点数相加或者相减，将会导致一定的正常的数据转换造成的精度丢失问题<code>eight-six = 0.20000000000000007</code>。JavaScript中的小数采用的是双精度(64位)表示的，由三部分组成：　<code>符 + 阶码 + 尾数</code>，在十进制中的 1/10，在十进制中可以简单写为 0.1 ，但在二进制中，他得写成：0.0001100110011001100110011001100110011001100110011001…（后面全是 1001 循环）。因为浮点数只有52位有效数字，从第53位开始，就舍入了。这样就造成了“浮点数精度损失”问题。 更严谨的做法是<code>(eight-six ).totoFiexd(1)</code>或者用用<code>Math.round</code>方法回归整数运算。<br><a class="jump-a" href="/2017/01/21/play-js-odd/">传送门：为什么 0.1 + 0.2 != 0.3 ？</a></p></li>
                 <li class="pure-g puzzle" data-puzzle-hash="2078336921">
                     <div class="question pure-u-1">9.以下表达式的运行结果是?
                         <code>function showCase(value){
@@ -540,7 +540,7 @@ console.info(a + b);</code></div>
                         <span>NaN</span></span>
                     <span class="answer  pure-u-5-24">
                         <span>Infinity</span></span>
-                    <p class="explanation pure-u-1 hidden">JavaScript精确整数最大为: <code>Math.pow(2,53) - 1 = 9007199254740991</code>。<code>a</code>的值大于javascript所能表示的最大整数精度，因此和任何数值相加将会导致失真。</p></li>
+                    <p class="explanation pure-u-1 hidden">JavaScript精确整数最大为: <code>Math.pow(2,53) = 9007199254740992</code>。<code>a</code>的值大于javascript所能表示的最大整数精度，因此和任何数值相加将会导致失真。</p></li>
                 <li class="pure-g puzzle" data-puzzle-hash="1547899645">
                     <div class="question pure-u-1">21.以下表达式的运行结果是?
                         <code>var x = [].reverse; x();</code></div>
