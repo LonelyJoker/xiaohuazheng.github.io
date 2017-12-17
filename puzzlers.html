@@ -1,0 +1,942 @@
+---
+layout: default
+permalink: /puzzlers.html
+puzzlers: 44
+---
+
+<!-- Page Header -->
+<header class="intro-header cvs-head-box">
+    <canvas class="canvas"></canvas>
+    <div id="cvs-words">JavaScript|</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>JavaScript Puzzlers</h1>
+                    <span class="subheading">基于ECMA 262（5.1）在浏览器环境中行为的JavaScript测验</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<style type="text/css">
+.puzz-from {
+    text-align: center;
+}
+.puzz-from a {
+    color: #337ab7;
+}
+.running-score {
+    position: fixed;
+    top: -40%;
+    left: 30%;
+    background: rgba(238,238,248,0.6);
+    border-radius: 10px;
+    padding: 0 10px;
+}
+
+.running-score .numbers {
+    font-size: 300%
+}
+
+.running-score.completed {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 16px;
+    line-height: 300%;
+    top: 30%;
+    left: 30%;
+    background: #eee;
+    border: solid 1px;
+    border-color: #bbb;
+    padding-top: 4%;
+    height: 20%;
+    width: 40%;
+    border-radius: 4px;
+    transition: all 0.5s ease
+}
+
+.puzzle {
+    padding-top: 2em;
+    padding-bottom: 2em;
+    border-bottom: solid 1px lightgray
+}
+
+.puzzle:hover {
+    background: #fffded
+}
+
+.puzzle .question {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.puzzle .question code {
+    display: block;
+    white-space: pre;
+    padding: 10px;
+    background: #f2f2f2;
+}
+
+.puzzle .answer {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #eeeeee;
+    border: solid 1px;
+    border-color: #bbb;
+    margin: 16px;
+    padding: 16px 0;
+    border-radius: 4px
+}
+
+.puzzle .answer:hover {
+    cursor: pointer;
+    background-color: #e1e1e1;
+    text-decoration: none;
+}
+
+.puzzle .answer.clicked {
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    color: #fff
+}
+
+.puzzle .answer.clicked.correct {
+    background-color: #5cb85c;
+    border-color: #4cae4c
+}
+
+.puzzle .explanation {
+    margin: 2em 0 16px 16px
+}
+
+.puzzle .explanation code {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+}
+
+.puzzle .explanation .jump-a {
+    color: #0366d6;
+}
+
+.pure-g {
+    letter-spacing: -5px;
+    *letter-spacing: normal;
+    *word-spacing: -6px;
+    text-rendering: optimizespeed;
+    font-family: FreeSans, Arimo, "Droid Sans", Helvetica, Arial, sans-serif;
+    display: -webkit-flex;
+    -webkit-flex-flow: row wrap;
+    display: -ms-flexbox;
+    -ms-flex-flow: row wrap
+}
+
+.opera-only:-o-prefocus, .pure-g {
+    word-spacing: -6px
+}
+
+.pure-u {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    letter-spacing: normal;
+    word-spacing: normal;
+    vertical-align: top;
+    text-rendering: auto
+}
+
+.pure-g [class *="pure-u"] {
+    font-family: sans-serif
+}
+.pure-u-1, .pure-u-5-24 {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    letter-spacing: normal;
+    word-spacing: normal;
+    vertical-align: top;
+    text-rendering: auto
+}
+.pure-u-1 {
+    width: 100%
+}
+.pure-u-5-24 {
+    width: 20.8333%;
+    *width: 20.8023%
+}
+.hidden {
+    display: none;
+}
+
+</style>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="running-score">
+                <span class="numbers">
+                    <span class="scored">0</span>/
+                    <span class="attempts">0</span>&nbsp;of&nbsp;
+                    <span class="total">44</span>
+                </span>
+            </div>
+    <div class="row">
+        <ol>
+                <li class="pure-g puzzle" data-puzzle-hash="550819249">
+                    <div class="question pure-u-1">1.这个表达的结果是什么?
+                    <code>[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].map(parseInt)</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[1, 2, 3]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[0, 1, 2]</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">map对数组的每个元素调用定义的回调函数并返回包含结果的数组。<code>["1","2","3"].map(parseInt)</code>对于数组中每个元素调用<code>paresInt</code>。<br/>map中回调函数的语法如下所示：<code>function callbackfn(value, index, array1)</code>，可使用最多三个参数来声明回调函数。第一参数value，数组元素的值；第二个参数index，数组元素的数组索引；第三个参数array1，包含该元素的数组对象。
+因此，题目等同于<code>[parseInt(1,0),parseInt(2,1),parseInt(3,2)]</code>最终返回<code>[1, NaN, NaN]</code>。</p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="1889552841">
+                    <div class="question pure-u-1">2.以下表达式的运行结果是?
+                        <code>[typeof null, null instanceof Object]</code></div>
+                    <span class="answer correct pure-u-5-24">
+                        <span>[&quot;object&quot;, false]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[null, false]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[&quot;object&quot;, true]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                        <code>typeof</code>用以获取一个变量或者表达式的类型，typeof一般只能返回如下几个结果：<br/><code>number,boolean,string,function（函数）,object（NULL,数组，对象）,undefined</code><br/>
+<code>instanceof</code> 表示某个变量是否是某个对象的实例，<code>null</code>是个特殊的Object类型的值 ，表示空引用的意思 。但null返回object这个其实是最初JavaScript的实现的一个错误， 
+然后被ECMAScript沿用了，成为了现在的标准，不过我们把null可以理解为尚未存在的对象的占位符，这样就不矛盾了 ，虽然这是一种“辩解”。
+对于我们开发人员 还是要警惕这种“语言特性”。最终返回：<code>["object", false]</code>。<br><a class="jump-a" href="/2016/07/03/taste-js-data-type/">传送门：数据类型判断</a></p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="1844488318">
+                    <div class="question pure-u-1">3.以下表达式的运行结果是?
+                        <code>[ [3,2,1].reduce(Math.pow), [].reduce(Math.pow) ]</code></div>
+                    <span class="answer correct pure-u-5-24">
+                        <span>an error</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[9, 0]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[9, NaN]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[9, undefined]</span></span>
+                    <p class="explanation pure-u-1 hidden"><code>pow(x, y)</code> 方法可返回 x 的 y 次幂的值。执行<code>Math.pow(3,2)</code>和<code>Math.pow(2,1)</code>，最终返回9和9。
+但是要注意pow的参数都是必须的，<code>[].reduce(Math.pow)</code>，等同于执行 <code>Math.pow(); </code>会抛出错误:
+                        <code>TypeError</code></p>
+                </li>
+                <li class="pure-g puzzle" data-puzzle-hash="605475010">
+                    <div class="question pure-u-1">4.以下表达式的运行结果是?
+                        <code>var val = 'smtg'; 
+console.log('Value is ' + (val === 'smtg') ? 'Something' : 'Nothing');</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>Value is Something</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>Value is Nothing</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>NaN</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden"><code>+</code>运算符优先于三元运算符。先执行字符串拼接，再执行校验，返回<code>Something</code>。<br><a class="jump-a" href="/2016/07/12/taste-js-logical-operators/">传送门：详解运算符 & 运算符优先级</a></p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="1481196172">
+                    <div class="question pure-u-1">5.以下表达式的运行结果是?
+                        <code>var name = 'World!'; 
+(function () { 
+    if (typeof name === 'undefined') { 
+        var name = 'Jack'; 
+        console.log('Goodbye ' + name); 
+    } else { 
+        console.log('Hello ' + name); 
+    }
+})();</code></div>
+                    <span class="answer correct pure-u-5-24">
+                        <span>Goodbye Jack</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>Hello Jack</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>Hello undefined</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>Hello World</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                        <code>var</code>声明被提升到函数作用域最前。判断语句被包裹在立即调用函数里，函数内部无法访问外部值为'World'的name，因此<code>typeof name === 'undefined'</code>为真，执行下一步操作，最终输出<code>Goodbye Jack</code></p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="3828034299">
+                    <div class="question pure-u-1">6.以下表达式的运行结果是?
+                        <code>var END = Math.pow(2, 53); 
+var START = END - 100; 
+var count = 0; 
+for (var i = START; i &lt;= END; i++) { 
+    count++; 
+} 
+console.log(count);</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>0</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>100</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>101</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">代码进入一个无限循环，<code>2 ^ 53</code>是javascript中规范的的最大数字，<code>2 ^ 53 + 1 > 2 ^ 53</code>，所以<code>i</code>永远不会变得比这个大。</p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="433383726">
+                    <div class="question pure-u-1">7.以下表达式的运行结果是?
+                        <code>var ary = [0,1,2]; 
+ary[10] = 10;
+ary.filter(function(x) { return x === undefined;});</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>[undefined &times; 7]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[0, 1, 2, 10]</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>[]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[undefined]</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                        <code>Array.prototype.filter</code>不会调用没有被赋值的元素，即在ary中，长度为10但实际数值元素列表为<code>[0, 1, 2, 10]</code>，因此，最终返回一个空的数组<code>[]</code>。</p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="3812735826">
+                    <div class="question pure-u-1">8.以下表达式的运行结果是?
+                        <code>var two = 0.2;
+var one = 0.1;
+var eight = 0.8;
+var six = 0.6;
+[two - one == one, eight - six == two]</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>[true, true]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[false, false]</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>[true, false]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">JavaScript没有精确的数学运算，尽管有时它可以正常工作。严格来说，精确运算问题实际存在，各语言处理上不同罢了。
+                    JavaScript中，两个浮点数相加或者相减，将会导致一定的正常的数据转换造成的精度丢失问题<code>eight-six = 0.20000000000000007</code>。JavaScript中的小数采用的是双精度(64位)表示的，由三部分组成：　<code>符 + 阶码 + 尾数</code>，在十进制中的 1/10，在十进制中可以简单写为 0.1 ，但在二进制中，他得写成：0.0001100110011001100110011001100110011001100110011001…（后面全是 1001 循环）。因为浮点数只有52位有效数字，从第53位开始，就舍入了。这样就造成了“浮点数精度损失”问题。 更严谨的做法是<code>(eight-six ).totoFiexd(1)</code>或者用用<code>Math.round</code>方法回归整数运算。</p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="2078336921">
+                    <div class="question pure-u-1">9.以下表达式的运行结果是?
+                        <code>function showCase(value){
+    switch(value){
+        case 'A':
+            console.info('Case A');
+            break;
+        case 'B':
+            console.info('Case B');
+            break;
+        case undefined :
+            console.info('undefined');
+            break;
+        default:
+            console.info('Do not know!');
+            break;
+    }
+}
+showCase(new String('A'));</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>Case A</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>Case B</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>Do not know!</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>undefined</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                        <code>switch</code>判断用的
+                        <code>===</code>，且
+                        <code>new String(x) !== x</code>。使用<code>new String()</code>构造函数将调用一个全新的对象作为this变量的值，并且隐式返回这个新对象作为调用的结果，因此<code>showCase()</code>接收的参数为<code>String {0: "A"}</code>为不是我们所认为的<code>A</code>。<br><a class="jump-a" href="/2017/01/11/taste-js-flow-control/">传送门：代码中的流程控制</a></p>
+                </li>
+                <li class="pure-g puzzle" data-puzzle-hash="1578880391">
+                    <div class="question pure-u-1">10.以下表达式的运行结果是?
+                        <code>function showCase(value){
+    switch(value){
+        case 'A':
+            console.info('Case A');
+            break;
+        case 'B':
+            console.info('Case B');
+            break;
+        case undefined :
+            console.info('undefined');
+            break;
+        default:
+            console.info('Do not know!');
+            break;
+    }
+}
+showCase(String('A'));</code></div>
+                    <span class="answer correct pure-u-5-24">
+                        <span>Case A</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>Case B</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>Do not know!</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>undefined</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                        <code>String(x)</code>不创建对象，返回一个字符串，即： 
+                        <code>typeof String(1) === &quot;string&quot;</code>。<br><a class="jump-a" href="/2017/01/11/taste-js-flow-control/">传送门：代码中的流程控制</a></p>
+                </li>
+                <li class="pure-g puzzle" data-puzzle-hash="641253173">
+                    <div class="question pure-u-1">11.以下表达式的运行结果是?
+                        <code>function isOdd(num) {
+    return num % 2 == 1;
+}
+function isEven(num) {
+    return num % 2 == 0;
+}
+function isSane(num) {
+    return isEven(num) || isOdd(num);
+}
+var values = [7,4,'13',-9,Infinity];
+values.map(isSane);</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>[true, true, true, true, true]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[true, true, true, true, false]</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>[true, true, true, false, false]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[true, true, false, false, false]</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                        <code>isSane</code>函数判断num是否为正整数，<code>'13'</code>被强制转换为数值<code>13</code>，<code>-9 % 2</code>结果为<code>-1</code>，<code>Infinity % 2</code>为<code>NaN</code></p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="3976068285">
+                    <div class="question pure-u-1">12.以下三个表达式的运行结果是?
+                        <code>parseInt(3, 8) parseInt(3, 2) parseInt(3, 0)</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>3, 3, 3</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>3, 3, NaN</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>3, NaN, NaN</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                        <code>3</code>无法按
+                        <code>2</code>进制转换，所以返回
+                        <code>NaN</code>， 对于
+                        <code>0</code>，
+                        <code>parseInt</code>数字将以 <code>10</code> 为基础来解析，所以返回
+                        <code>3</code>。所以答案应该为：<code>[3, NaN, 3]</code></p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="4133009437">
+                    <div class="question pure-u-1">13.以下表达式的运行结果是?
+                        <code>Array.isArray( Array.prototype )</code></div>
+                    <span class="answer correct pure-u-5-24">
+                        <span>true</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>false</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>error</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                    <code>Array.prototype</code>是一个数组，<code>Array.isArray(a)</code>是一个判断a是否为数组的方法。
+                <li class="pure-g puzzle" data-puzzle-hash="1480816623">
+                    <div class="question pure-u-1">14.以下表达式的运行结果是?
+                        <code>var a = [0];
+if([0]) {
+    console.info(a == true);
+} else {
+    console.info("false");
+}</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>true</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>false</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>&quot;false&quot;</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                        <code>[0]</code>会被认为是一个
+                        <code>truely</code>值，在if条件判断语句相对于==比较宽松中，只要<code>if(n)</code>，n不为<code>null</code>，<code>0</code>，<code>undefined</code>，<code>''</code>值，都会认为是truely值。进入<code>console.info(a == true);</code>最终返回<code>false</code>。<br><a class="jump-a" href="/2017/03/14/taste-js-judgement/">传送门：代码中的那些判断</a></p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="3242201261">
+                    <div class="question pure-u-1">15.以下表达式的运行结果是?
+                        <code>[]==[]</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>true</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>false</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>error</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                        数组，在 Javascript 中是对象，对象使用 <code>==</code> 比较都是比较的引用。简单的说，就是，如果是同一个对象，就相等，如果不是同一个对象，就不等。每次使用 [] 都是新建一个数组对象，所以 <code>[] == []</code> 这个语句里建了两个数据对象，它们不等。<br><a class="jump-a" href="/2017/03/14/taste-js-judgement/">传送门：代码中的那些判断</a></p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="2011165602">
+                    <div class="question pure-u-1">16.以下两个表达式的运行结果是?
+                        <code>'5' + 3 ; '5' - 3</code></div>
+                    <span class="answer correct pure-u-5-24">
+                        <span>&quot;53&quot;, 2</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>8, 2</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>error</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">执行<code>'5' + 3</code>，加号具备拼接字符串功能，会将3强制转换为字符串'3'和'5'拼接。
+执行<code>'5' - 3</code>，减号只具备数值运算的功能，因此会将'5'转化为数值，进行 <code>5 - 3</code>的数值运算。<br><a class="jump-a" href="/2016/11/07/taste-js-addition-operator/">传送门：详解加法运算符</a></p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="1454054620">
+                    <div class="question pure-u-1">17.以下表达式的运行结果是?
+                        <code>1 + - + + + - + 1</code></div>
+                    <span class="answer correct pure-u-5-24">
+                        <span>2</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>1</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>error</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden"><code>1 + (- (+ (+ (+ (- (+ 1))))))</code><br><a class="jump-a" href="/2016/11/07/taste-js-addition-operator/">传送门：详解加法运算符</a></p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="3281462634">
+                    <div class="question pure-u-1">18.以下表达式的运行结果是?
+                        <code>var arr = Array(3);
+arr[0] = 2
+arr.map(function(elem){return '1';});</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>[2, 1, 1]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[&quot;1&quot;, &quot;1&quot;, &quot;1&quot;]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[2, &quot;1&quot;, &quot;1&quot;]</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden"><code>map</code>仅对已被初始化的
+                        <code>Array</code>的元素调用执行。区分赋值和声明。虽然<code>var arr = Array(3);</code>创建一个长度为3的数组，但是实际只有一个元素被赋值，因此arr的实际长度为1，即最终参与map的只有一个元素，返回<code>[1]</code> or <code>[&quot;1&quot;, undefined &times; 2](某些浏览器控制台)</code></p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="927824437">
+                    <div class="question pure-u-1">19.以下表达式的运行结果是?
+                        <code>function sidEffecting(arr){
+    arr[0] = arr[2];
+}
+function bar(a, b, c){
+    c = 10;
+    sidEffecting(arguments);
+    return a + b + c;
+}
+bar(1, 1, 1);</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>3</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>12</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>error</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                        <code>return 10 + 1 + 10;</code>返回值<code>21</code>，<code>arguments</code>值可以改变。</p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="1146880933">
+                    <div class="question pure-u-1">20.以下表达式的运行结果是?
+                        <code>var a = 111111111111111110000;
+b = 1111;
+console.info(a + b);</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>111111111111111111111</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>111111111111111110000</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>NaN</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>Infinity</span></span>
+                    <p class="explanation pure-u-1 hidden">JavaScript精确整数最大为: <code>Math.pow(2,53) - 1 = 9007199254740991</code>。<code>a</code>的值大于javascript所能表示的最大整数精度，因此和任何数值相加将会导致失真。</p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="1547899645">
+                    <div class="question pure-u-1">21.以下表达式的运行结果是?
+                        <code>var x = [].reverse; x();</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>[]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>undefined</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>error</span></span>
+                    <span class="answer pure-u-5-24">
+                        <span>window</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                        </code>正确调用方式为<code>x.call([])</code></p>
+                </li>
+                <li class="pure-g puzzle" data-puzzle-hash="98137596">
+                    <div class="question pure-u-1">22.以下表达式的运行结果是?
+                        <code>Number.MIN_VALUE &gt; 0</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>false</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>true</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>error</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                    <code>Number.MIN_VALUE</code>表示的最小值为<code>5e-324</code>，<code>MIN_VALUE</code>代表的并不是负最小，而是最接近0的一个数，因此<code>Number.MIN_VALUE > 0</code>。
+负最小值可以使用<code>-Number.MAX_VALUE</code>表示。</p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="56942969">
+                    <div class="question pure-u-1">23.以下表达式的运行结果是?
+                        <code>[1 &lt; 2 &lt; 3, 3 &lt; 2 &lt; 1]</code></div>
+                    <span class="answer correct pure-u-5-24">
+                        <span>[true, true]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[true, false]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>error</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden"><code>1 < 2</code>，返回<code>true</code>，执行<code>true < 3</code>，会强制将<code>true</code>转换为<code>1</code>，<code>1 < 3</code>，最终返回<code>true</code>。
+<code>3 < 2</code>，返回<code>false</code>，执行<code>false < 1</code>,会强制将<code>false</code>转换为<code>0</code>，<code>0 < 1</code>，最终返回<code>true</code>。</p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="1004285737">
+                    <div class="question pure-u-1">24.以下表达式的运行结果是?
+                        <code>2 == [[[2]]]</code></div>
+                    <span class="answer correct pure-u-5-24">
+                        <span>true</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>false</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>undefined</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">使用<code>a == b</code>判断a和b对象是否相等，可以会将b对象强制转换为a对象的类型，即执行<code>2 == [[[2]]]</code>，会调用<code>[[[2]]].valueOf().toString()</code>将<code>[[[2]]]</code>强制转化为基本类型，即<code>'2'</code>，<code>2 == '2'</code>也会再做一下转化，最终返回<code>true</code>。</p>
+                </li>
+                <li class="pure-g puzzle" data-puzzle-hash="2830900762">
+                    <div class="question pure-u-1">25.以下三个表达式的运行结果是?
+                        <code>3.toString() ; 3..toString() ; 3...toString()</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>&quot;3&quot;, error, error</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>&quot;3&quot;, &quot;3.0&quot;, error</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>error, &quot;3&quot;, error</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                        Number中的<code>toString(a)</code>，能够将数值转化成为a进制的值。但<code>a</code>缺省时，默认转化为十进制。
+一般使用方法为：<code>var n = 3;3.toString();</code>
+执行<code>3.toString()</code>，因为<code>3</code>只是为数值型变量，为非Number实例，因此对于3不能直接调用Number方法。而执行<code>3..toString()</code>，会强制将3转化为数字实例，因此能够被解释，输出<code>3</code>，同样可以使用<code>(3).toString()</code>。
+                <li class="pure-g puzzle" data-puzzle-hash="614153915">
+                    <div class="question pure-u-1">26.以下表达式的运行结果是?
+                        <code>(function(){
+    var x = y =1;
+})();
+console.info(y);
+console.info(x);</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>1, 1</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>error, error</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>1, error</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                        在立即调用函数内执行，<code>var x = y =1;</code>创建局部变量<code>x</code>和全局变量<code>y</code>。函数外部试图访问函数内部的变量，将会导致错误<code>ReferenceError</code>。</p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="3885610804">
+                    <div class="question pure-u-1">27.以下两个表达式的运行结果是?
+                        <code>var a = /123/, 
+    b = /123/; 
+console.log(a == b);
+console.log(a === b);</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>true, true</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>true, false</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>false, false</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">按照规范代码中的两个正则表达式字面值计算为永远不会相等的正则表达式对象，即使两个字面值的内容相同，也是不等的。</p>
+                </li>
+                <li class="pure-g puzzle" data-puzzle-hash="1947505584">
+                    <div class="question pure-u-1">28.以下四个表达式的运行结果是?
+                        <code>var a = [1, 2, 3], 
+    b = [1, 2, 3], 
+    c = [1, 2, 4];
+a == b;
+a === b; 
+a &gt; c;
+a &lt; c</code></div>
+                    <span class="answer correct pure-u-5-24">
+                        <span>false, false, false, true</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>false, false, false, false</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>true, true, false, true</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">数组用
+                        <code>&gt;</code>和
+                        <code>&lt;</code>是按照字典顺序进行比较, 但不能用
+                        <code>==</code>和
+                        <code>===</code>进行比较</p>
+                </li>
+                <li class="pure-g puzzle" data-puzzle-hash="3589536699">
+                    <div class="question pure-u-1">29.以下表达式的运行结果是?
+                        <code>var a = {}, 
+    b = Object.prototype; 
+[a.prototype === b, Object.getPrototypeOf(a) === b]</code></div>
+                    <span class="answer correct pure-u-5-24">
+                        <span>[false, true]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[true, true]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[false, false]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                    函数都有一个<code>prototype</code>属性，但不是所有<code>Object</code>都是这样，<code>a.prototype</code>是<code>undefined</code>。每个<code>Object</code>都有一个可以通过<code>Object.getPrototypeOf</code>访问的内部属性。<br><a class="jump-a" href="/2016/12/09/taste-js-object/">传送门：对象使用</a></p>
+                </li>
+                <li class="pure-g puzzle" data-puzzle-hash="1362643533">
+                    <div class="question pure-u-1">30.以下表达式的运行结果是?
+                        <code>function f() {} 
+var a = f.prototype, 
+    b = Object.getPrototypeOf(f); 
+a === b</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>true</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>false</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>null</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                        <code>f.prototype</code>是任何用
+                        <code>new f</code>创建的对象的父对象，而
+                        <code>Object.getPrototypeOf</code>返回继承层次结构中的原型对象。比如数字继承自<code>Number</code>，字符串继承自<code>String</code>。<br><a class="jump-a" href="/2016/12/09/taste-js-object/">传送门：对象使用</a></p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="1269591631">
+                    <div class="question pure-u-1">31.以下表达式的运行结果是?
+                        <code>function foo() { } 
+var oldName = foo.name; 
+foo.name = &quot;bar&quot;; 
+[oldName, foo.name]</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>error</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[&quot;&quot;, &quot;&quot;]</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>[&quot;foo&quot;, &quot;foo&quot;]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[&quot;foo&quot;, &quot;bar&quot;]</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                        函数的<code>name</code>是一个只读属性，但JavaScript并没有让赋值语句报错，而是直接忽略。</p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="3375046992">
+                    <div class="question pure-u-1">32.以下表达式的运行结果是?
+                        <code>&quot;1 2 3&quot;.replace(/\d/g, parseInt)</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>&quot;1 2 3&quot;</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>&quot;0 1 2&quot;</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>&quot;NaN 2 3&quot;</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>&quot;1 NaN 3&quot;</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                        <code>String.prototype.replace</code>的回调<code>parseInt</code>接收多个参数，第一个是捕获组的每一个参数，然后是匹配的子字符串的偏移量，最后是原始字符串本身的偏移量。 所以<code>parseInt</code>将调用这些参数：
+                        <code>[1, 0]</code>,
+                        <code>[2, 2]</code>,
+                        <code>[3, 4]</code>。所以返回值：<code>"1 NaN 3"</code>。</p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="1921171315">
+                    <div class="question pure-u-1">33.以下表达式的运行结果是?
+                        <code>function f() {} 
+var parent = Object.getPrototypeOf(f); 
+f.name // ? 
+parent.name // ? 
+typeof eval(f.name) // ? 
+typeof eval(parent.name) // ?</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>&quot;f&quot;, &quot;&quot;, &quot;function&quot;, &quot;function&quot;</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>&quot;f&quot;, undefined, &quot;function&quot;, error</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>&quot;f&quot;, &quot;&quot;, &quot;function&quot;, "undefined"</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">函数的<code>name</code>是一个只读属性，可访问。<code>Object.getPrototypeOf</code>返回继承层次结构中的原型对象，就是它自己。</p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="2432198890">
+                    <div class="question pure-u-1">34.以下表达式的运行结果是?
+                        <code>var lowerCaseOnly = /^[a-z]+$/; 
+[lowerCaseOnly.test(null), lowerCaseOnly.test()]</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>[true, false]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>error</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>[true, true]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[false, true]</span></span>
+                    <p class="explanation pure-u-1 hidden">test的参数被隐式转换为一个字符串，所以表达式中的参数被转换成了：
+                        <code>&quot;null&quot;</code>和
+                        <code>&quot;undefined&quot;</code>。所以返回<code>[true, true]</code></p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="4231974582">
+                    <div class="question pure-u-1">35.以下表达式的运行结果是?
+                        <code>[,,,].join(&quot;, &quot;)</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>&quot;, , , &quot;</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>&quot;undefined, undefined, undefined, undefined&quot;</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>&quot;, , &quot;</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>&quot;&quot;</span></span>
+                    <p class="explanation pure-u-1 hidden">JavaScript中，数组允许有一个尾随的逗号。所以<code>[,,,].length === 3</code>，所以答案为：<code>", , "</code></p>
+                </li>
+
+                <li class="pure-g puzzle" data-puzzle-hash="852201032">
+                    <div class="question pure-u-1">36.以下表达式的运行结果是?
+                        <code>var a = {class: &quot;Animal&quot;, name: 'Fido'}; a.class</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>&quot;Animal&quot;</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>Object</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>an error</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">这取决于浏览器。 <code>class</code>是一个保留字，但它被Chrome，Firefox和Opera等接受可以作为属性名称。 IE则不行。</p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="462112512">
+                    <div class="question pure-u-1">37.以下表达式的运行结果是?
+                        <code>new Date(&quot;epoch&quot;)</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>Thu Jan 01 1970 01:00:00 GMT+0100 (CET)</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>current time</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>error</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">返回值：
+                        <code>Invalid Date</code>。
+                        <code>new Date()</code>构造函数这四种形式有效：<br><code>new Date();<br>
+new Date(value);<br>
+new Date(dateString);<br>
+new Date(year, month[, day[, hour[, minutes[, seconds[, milliseconds]]]]]);<br>
+</code>如果没有输入任何参数，则Date的构造器会依据系统设置的当前时间来创建一个Date对象。
+如果提供了至少两个参数，其余的参数均会默认设置为1（如果没有提供day参数）或者0。如果传入的是字符串，该字符串应该能被 <code>Date.parse()</code> 方法识别。
+                <li class="pure-g puzzle" data-puzzle-hash="158706070">
+                    <div class="question pure-u-1">38.以下表达式的运行结果是?
+                        <code>var a = Function.length, 
+    b = new Function().length;
+a === b</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>true</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>false</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>error</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                    <code>Function.length</code>定义为<code>1</code>。另一方面，<code>Function</code>原型对象的<code>length</code>属性定义为<code>0</code>。</p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="3671621881">
+                    <div class="question pure-u-1">39.以下表达式的运行结果是?
+                        <code>var a = Date(0); 
+var b = new Date(0); 
+var c = new Date(); 
+[a === b, b === c, a === c]</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>[true, true, true]</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>[false, false, false]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[false, true, false]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[true, false, false]</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                        <code>Date</code>，当它作为一个函数被调用时，<code>Date(0);</code>，它返回一个当前时间的字符串。被调用为构造函数时，<code>new Date(0);</code>，它将返回一个相对于该纪元的对象<code>Thu Jan 01 1970 08:00:00 GMT+0800 (CST)</code>。 当缺少参数时，返回当前日期。如果没有输入任何参数，则<code>Date</code>的构造器会依据系统设置的当前时间来创建一个<code>Date</code>对象。</li>
+                <li class="pure-g puzzle" data-puzzle-hash="3901693173">
+                    <div class="question pure-u-1">40.以下表达式的运行结果是?
+                        <code>var min = Math.min(), 
+    max = Math.max()；
+min &lt; max</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>true</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>false</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>error</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">当没有提供参数时，
+                        <code>Math.min</code>返回
+                        <code>+Infinity</code>，
+                        <code>Math.max</code>返回
+                        <code>-Infinity</code>。</p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="1642931420">
+                    <div class="question pure-u-1">41.以下表达式的运行结果是?
+                        <code>function captureOne(re, str) {
+  var match = re.exec(str);
+  return match && match[1];
+}
+var numRe  = /num=(\d+)/ig,
+    wordRe = /word=(\w+)/i,
+    a1 = captureOne(numRe,  "num=1"),
+    a2 = captureOne(wordRe, "word=1"),
+    a3 = captureOne(numRe,  "NUM=2"),
+    a4 = captureOne(wordRe,  "WORD=2");
+[a1 === a2, a3 === a4]</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>[true, true]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[false, false]</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>[true, false]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[false, true]</span></span>
+                    <p class="explanation pure-u-1 hidden">如果使用<code>/g</code>标志符，则正则表达式在匹配时会携带<code>lastIndex</code>状态，即使它作用于不同的字符串。 所以<code>a3</code>值为<code>null</code>。</p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="2216963060">
+                    <div class="question pure-u-1">42.以下表达式的运行结果是?
+                        <code>var a = new Date("2014-03-19"),
+    b = new Date(2014, 03, 19);
+[a.getDay() === b.getDay(), a.getMonth() === b.getMonth()]</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>[true, true]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[true, false]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[false, true]</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>[false, false]</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                    JavaScript中，<code>Date</code>的<code>month</code>是从<code>0</code>开始计算的，<code>day</code>，即今天是一周的第几天，是从周日-<code>0</code>开始计算的。<code>new Date()</code>，传的字符串需要被 <code>Date.parse()</code> 方法识别，字符串中的月份按正常值传即可。如果是按多参数传值，月份则需要按<code>0-索引</code>的形式传至。所以，上面代码改为：<code>b = new Date(2014, 02, 19)</code>，则返回：<code>[true, true]</code>。 </p></li>
+                <li class="pure-g puzzle" data-puzzle-hash="445179607">
+                    <div class="question pure-u-1">43.以下表达式的运行结果是?
+                        <code>if ('http://giftwrapped.com/picture.jpg'.match('.gif')) {
+  'a gif file'
+} else {
+  'not a gif file'
+}</code></div>
+                    <span class="answer correct pure-u-5-24">
+                        <span>'a gif file'</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>'not a gif file'</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>error</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">
+                        <code>String.prototype.match</code>隐式地将字符串转换成一个正则表达式
+                        <code>/.gif/</code>：
+                        <code>/.gif/.test('/gif') === true</code>。<br><a class="jump-a" href="/2016/09/12/taste-js-regular-expression/">传送门：正则表达式</a></p></li>
+                <li class="pure-g puzzle last" data-puzzle-hash="3088138764">
+                    <div class="question pure-u-1">44.以下表达式的运行结果是?
+                        <code>function foo(a) {
+    var a;
+    return a;
+}
+function bar(a) {
+    var a = 'bye';
+    return a;
+}
+[foo('hello'), bar('hello')]</code></div>
+                    <span class="answer  pure-u-5-24">
+                        <span>[&quot;hello&quot;, &quot;hello&quot;]</span></span>
+                    <span class="answer correct pure-u-5-24">
+                        <span>[&quot;hello&quot;, &quot;bye&quot;]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>[&quot;bye&quot;, &quot;bye&quot;]</span></span>
+                    <span class="answer  pure-u-5-24">
+                        <span>other</span></span>
+                    <p class="explanation pure-u-1 hidden">在函数中，声明变量和参数变量是一样的时候，声明变量会被挂起或者说是删除。
+                        再结合声明提升理解，且参数变量是可以被改变赋值的。所以<code>foo('hello')</code> 返回<code>hello</code>，<code>bar('hello')</code> 返回<code>bye</code></p></li>
+            </ol>
+        <p class="puzz-from">译自: <a href="http://javascript-puzzlers.herokuapp.com/">http://javascript-puzzlers.herokuapp.com/</a></p>
+        <p class="puzz-from">其中加了自己的理解，还请大方之家<a href="https://github.com/xiaohuazheng/iocomments/issues/39">评论斧正</a>！</p>
+    </div>
+</div>
