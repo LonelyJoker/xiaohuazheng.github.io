@@ -4,7 +4,6 @@ title:      "温故js系列（6）"
 subtitle:   "DOM - 对象&节点&方法"
 date:       2016-09-21
 author:     "xzavier"
-header-img: "img/posts/post-bg-js.jpg"
 catalog: true
 tags:
     - Javascript

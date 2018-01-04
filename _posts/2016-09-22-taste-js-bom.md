@@ -4,7 +4,6 @@ title:      "温故js系列（7）"
 subtitle:   "BOM - 浏览器对象模型"
 date:       2016-09-22
 author:     "xzavier"
-header-img: "img/posts/post-bg-js.jpg"
 catalog: true
 tags:
     - Javascript

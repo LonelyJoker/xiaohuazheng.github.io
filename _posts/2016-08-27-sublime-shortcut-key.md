@@ -4,7 +4,6 @@ title:      "工具系列（2）-SublimeText"
 subtitle:   "SublimeText快捷键大全 - 更轻量，更快捷，更高效"
 date:       2016-08-27
 author:     "xzavier"
-header-img: "img/posts/sublime-bg.jpg"
 catalog: true
 tags:
     - SublimeText3

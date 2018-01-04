@@ -4,7 +4,6 @@ title:      "SocialShare-分享到"
 subtitle:   "微博，QQ，空间，Twitter，Facebook - 简易版社会化分享代码"
 date:       2016-08-16
 author:     "xzavier"
-header-img: "img/posts/some-bg.jpg"
 catalog: true
 tags:
     - Javascript

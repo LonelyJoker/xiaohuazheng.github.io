@@ -4,7 +4,6 @@ title:      "工具系列（1）- Git"
 subtitle:   "Git常用命令and设置快捷命令"
 date:       2016-07-28
 author:     "xzavier"
-header-img: "img/posts/sublime-bg.jpg"
 catalog: true
 tags:
     - Git

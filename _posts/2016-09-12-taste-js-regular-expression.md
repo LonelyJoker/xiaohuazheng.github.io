@@ -4,7 +4,6 @@ title:      "温故js系列（5）"
 subtitle:   "正则表达式&常用正则代码"
 date:       2016-09-12
 author:     "xzavier"
-header-img: "img/posts/post-bg-js.jpg"
 catalog: true
 tags:
     - Javascript

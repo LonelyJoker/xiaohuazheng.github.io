@@ -4,7 +4,6 @@ title:      "温故js系列（3）"
 subtitle:   "cookie优缺点&cookie操作"
 date:       2016-07-08
 author:     "xzavier"
-header-img: "img/posts/post-bg-js.jpg"
 catalog: true
 tags:
     - Javascript
