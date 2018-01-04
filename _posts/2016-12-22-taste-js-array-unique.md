@@ -4,7 +4,6 @@ title:      "温故js系列（13）"
 subtitle:   "数组去重 - 由慢到快由繁到简"
 date:       2016-12-22
 author:     "xzavier"
-header-img: "img/posts/post-bg-js.jpg"
 catalog: true
 tags:
     - Javascript

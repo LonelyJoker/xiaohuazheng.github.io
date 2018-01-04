@@ -4,7 +4,6 @@ title:      "前端资源汇总"
 subtitle:   "教程/模块化/规范化/工程化/优化&工具/调试/值得关注的博客/Git/面试资源"
 date:       2016-10-01
 author:     "xzavier"
-header-img: "img/posts/github-bg.jpg"
 catalog: true
 tags:
     - 资源汇总

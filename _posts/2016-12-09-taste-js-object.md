@@ -4,7 +4,6 @@ title:      "温故js系列（11）"
 subtitle:   "对象 & 对象使用详解"
 date:       2016-12-09
 author:     "xzavier"
-header-img: "img/posts/post-bg-js.jpg"
 catalog: true
 tags:
     - Javascript

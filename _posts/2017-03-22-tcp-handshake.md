@@ -4,7 +4,6 @@ title:      "TCP三次握手 & Render Tree页面渲染"
 subtitle:   "简述从输入URL到页面显示的主要过程？"
 date:       2017-03-22
 author:     "xzavier"
-header-img: "img/posts/tree-bg.jpg"
 catalog: true
 tags:
     - HTTP

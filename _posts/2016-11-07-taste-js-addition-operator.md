@@ -4,7 +4,6 @@ title:      "温故js系列（9）"
 subtitle:   "详解加法运算符"
 date:       2016-11-07
 author:     "xzavier"
-header-img: "img/posts/post-bg-js.jpg"
 catalog: true
 tags:
     - Javascript

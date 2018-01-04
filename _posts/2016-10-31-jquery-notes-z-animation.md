@@ -4,7 +4,6 @@ title:      "jQuery笔记（2）"
 subtitle:   "动画效果"
 date:       2016-10-31
 author:     "xzavier"
-header-img: "img/posts/jquery-bg.jpg"
 catalog: true
 tags:
     - jQuery

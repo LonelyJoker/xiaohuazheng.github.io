@@ -4,7 +4,6 @@ title:      "温故js系列（15）"
 subtitle:   "闭包 & 垃圾回收 & 内存泄露 & 闭包应用 & 作用域链"
 date:       2017-02-08
 author:     "xzavier"
-header-img: "img/posts/post-bg-js.jpg"
 catalog: true
 tags:
     - Javascript

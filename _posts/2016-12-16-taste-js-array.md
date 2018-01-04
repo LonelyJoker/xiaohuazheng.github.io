@@ -4,7 +4,6 @@ title:      "温故js系列（12）"
 subtitle:   "数组 & 数组使用详解"
 date:       2016-12-16
 author:     "xzavier"
-header-img: "img/posts/post-bg-js.jpg"
 catalog: true
 tags:
     - Javascript

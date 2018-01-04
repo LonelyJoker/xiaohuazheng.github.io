@@ -4,7 +4,6 @@ title:      "温故js系列（8）"
 subtitle:   "事件Event"
 date:       2016-10-18
 author:     "xzavier"
-header-img: "img/posts/post-bg-js.jpg"
 catalog: true
 tags:
     - Javascript

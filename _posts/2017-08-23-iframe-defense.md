@@ -4,7 +4,6 @@ title:      "Iframe攻防"
 subtitle:   "见招拆招那些事儿"
 date:       2017-08-23
 author:     "xzavier"
-header-img: "img/posts/tree-bg.jpg"
 catalog: true
 tags:
     - Iframe

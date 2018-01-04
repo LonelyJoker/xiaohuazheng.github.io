@@ -4,7 +4,6 @@ title:      "温故js系列（17）"
 subtitle:   "相等==&严格相等===&代码里的那些判断"
 date:       2017-03-14
 author:     "xzavier"
-header-img: "img/posts/post-bg-js.jpg"
 catalog: true
 tags:
     - Javascript

@@ -4,7 +4,6 @@ title:      "微信小程序"
 subtitle:   "实操一把 - 一个圈子版小程序"
 date:       2017-02-19
 author:     "xzavier"
-header-img: "img/posts/xcx-bg.jpg"
 catalog: true
 tags:
     - 小程序

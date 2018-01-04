@@ -4,7 +4,6 @@ title:      "温故js系列（16）"
 subtitle:   "原型 & 原型链 & 原型继承"
 date:       2017-03-03
 author:     "xzavier"
-header-img: "img/posts/post-bg-js.jpg"
 catalog: true
 tags:
     - Javascript

@@ -4,7 +4,6 @@ title:      "温故js系列（14）"
 subtitle:   "详解代码中的流程控制"
 date:       2017-01-11
 author:     "xzavier"
-header-img: "img/posts/post-bg-js.jpg"
 catalog: true
 tags:
     - Javascript
