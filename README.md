@@ -1,6 +1,6 @@
 # xiaohuazheng.github.io
 
-[Xzavier's Blog][1]
+右转：[Xzavier's Blog][1]
 
 爱生活的程序猿，爱分享的程序猿
 
