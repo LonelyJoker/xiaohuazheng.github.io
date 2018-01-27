@@ -142,6 +142,47 @@ IE 有个 security="restricted" 来做限制，是禁止掉js，显然不符合�
 
 好，逻辑还清晰，但是，我还不知道，反正我目的达到了，而且，再做下去，就是个死循环了，都是程序猿，何苦呢，而且，我没做坏事儿。
 
+## X-Frame-Options
+
+还有种情况啊，很苦恼，当你iframe别人页面的时候，报错：
+
+    Refused to display 'https://github.com/hwclass/awesome-sound' in a frame because it set 'X-Frame-Options' to 'deny'.
+
+这里就要说下X-Frame-Options是什么了？
+
+>X-Frame-Options HTTP 响应头是用来给浏览器指示允许一个页面可否在 <frame>, <iframe> 或者 <object> 中展现的标记。网站可以使用此功能，来确保自己网站的内容没有被嵌到别人的网站中去，也从而避免了点击劫持 (clickjacking) 的攻击。
+
+-- 引自MDN
+
+它有三个值：
+
+    X-Frame-Options: DENY
+    表示该页面不允许在 frame 中展示，即便是在相同域名的页面中嵌套也不允许。但这样做自己的网站也不能嵌套自己了。
+
+    X-Frame-Options: SAMEORIGIN
+    表示该页面可以在相同域名页面的 frame 中展示。
+
+    X-Frame-Options: ALLOW-FROM https://xiaohuazheng.github.io/
+    表示该页面可以在指定来源的 frame 中展示， 例子则是只有https://xiaohuazheng.github.io/ 嵌套的iFrame内才生效。
+
+当然，不指定 `X-Frame-Options` 则表示网页可以被任何iFrame嵌套。
+
+现在还不是所有浏览器都支持，所以其实有些低版本的浏览器可以打开高版本浏览器打不开的iframe页面。
+
+对于这种情况，我一时找不到彻底的解决方案。但产品不可能一直等着你找解决方案。
+我就先给产品找了个替代方案，当时产品是想在我们的页面打开别人的页面，目的是为了减少网页切换，其实看完了别人的页面也就关了。
+
+那我就用 window.open() 新开了个窗口，size设计到window的一半差不多。先让产品运营着，然后自己再慢慢研究。
+
+
+X-Frame-Options: SAMEORIGIN
+X-Frame-Options: ALLOW-FROM http://caibaojian.com/
+
+
+
+
+
+
 
   [1]: http://seclab.stanford.edu/websec/framebusting/framebust.pdf
   [2]: https://blog.codinghorror.com/we-done-been-framed/
