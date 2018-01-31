@@ -175,12 +175,6 @@ IE 有个 security="restricted" 来做限制，是禁止掉js，显然不符合�
 那我就用 window.open() 新开了个窗口，size设计到window的一半差不多。先让产品运营着，然后自己再慢慢研究。
 
 
-X-Frame-Options: SAMEORIGIN
-X-Frame-Options: ALLOW-FROM http://caibaojian.com/
-
-
-
-
 
 
 
