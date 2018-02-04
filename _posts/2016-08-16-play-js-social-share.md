@@ -7,7 +7,6 @@ author:     "xzavier"
 catalog: true
 tags:
     - Javascript
-    - 插件
 ---
 
 # SocailShare
