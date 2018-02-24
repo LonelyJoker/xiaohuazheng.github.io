@@ -408,7 +408,6 @@ SF内有很多高手，可以前去排行榜看看。。。
  - [前端开发面试题][299]
  - [前端开发面试题 - GitHub][300]
  - [前端开发面试问题及答案整理][301]
- - [front-end development interview questions and answers][302]
  - [如何面试一名前端开发工程师？][303]
  - [前端实习生面试总结][304]
  - [前端开发面试题大收集][305]
@@ -723,7 +722,7 @@ SF内有很多高手，可以前去排行榜看看。。。
   [299]: https://segmentfault.com/a/1190000000465431
   [300]: https://github.com/markyun/My-blog/blob/master/Front-end-Developer-Questions/Questions-and-Answers/README.md
   [301]: https://segmentfault.com/a/1190000004071610
-  [302]: https://github.com/hawx1993/Front-end-Interview-questions
+  [302]: javascript:void(0)
   [303]: http://www.html-js.com/article/Large-search-front-team-column%202961
   [304]: http://www.cnblogs.com/xiaoruo/p/4665163.html
   [305]: https://github.com/paddingme/Front-end-Web-Development-Interview-Question
