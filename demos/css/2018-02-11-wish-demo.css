@@ -1,0 +1,124 @@
+html,body,div{
+    margin:0;
+    padding: 0;
+}
+html{
+  overflow: hidden;
+}
+.body-wrap{
+  color: #fff;
+  width: 100%;
+  height: 768px;
+  font-family: "microsoft yahei";  
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  background: #363636;
+}
+.canvas-barrage {
+  width: 100%;
+  height: 768px;
+  position: absolute;
+  top: 0;
+  left: 0px;
+  opacity: 1;
+  z-index: 2;
+}
+.canvas-barrage div {
+  z-index: 3;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 28px;
+  font-weight: bold;
+  font-family: 'microsoft yahei';
+  visibility: hidden;
+}
+
+.danmu-ani1 {
+  -webkit-animation: danmu 10s linear 0s 1;
+  animation: danmu 10s linear 0s 1;
+}
+
+.danmu-ani2 {
+  -webkit-animation: danmu 14s linear 0s 1;
+  animation: danmu 14s linear 0s 1;
+}
+
+.danmu-ani3 {
+  -webkit-animation: danmu 7s linear 0s 1;
+  animation: danmu 7s linear 0s 1;
+}
+
+.danmu-ani4 {
+  -webkit-animation: danmu 18s linear 0s 1;
+  animation: danmu 18s linear 0s 1;
+}
+
+.danmu-ani5 {
+  -webkit-animation: danmu 11s linear 0s 1;
+  animation: danmu 11s linear 0s 1;
+}
+
+.danmu-ani6 {
+  -webkit-animation: danmu 12s linear 0s 1;
+  animation: danmu 12s linear 0s 1;
+}
+
+.danmu-ani7 {
+  -webkit-animation: danmu 13s linear 0s 1;
+  animation: danmu 13s linear 0s 1;
+}
+
+.danmu-ani8 {
+  -webkit-animation: danmu 15s linear 0s 1;
+  animation: danmu 15s linear 0s 1;
+}
+
+.danmu-ani9 {
+  -webkit-animation: danmu 11s linear 0s 1;
+  animation: danmu 11s linear 0s 1;
+}
+
+.danmu-ani10 {
+  -webkit-animation: danmu 13s linear 0s 1;
+  animation: danmu 13s linear 0s 1;
+}
+
+.danmu-ani11 {
+  -webkit-animation: danmu 16s linear 0s 1;
+  animation: danmu 16s linear 0s 1;
+}
+
+.danmu-ani12 {
+  -webkit-animation: danmu 11s linear 0s 1;
+  animation: danmu 11s linear 0s 1;
+}
+
+.danmu-ani13 {
+  -webkit-animation: danmu 13s linear 0s 1;
+  animation: danmu 13s linear 0s 1;
+}
+
+
+@-webkit-keyframes danmu {
+  from {
+    visibility: visible; 
+    -webkit-transform: translateX(1366px);
+  }
+  to { 
+    visibility: visible; 
+    -webkit-transform: translateX(-100%); 
+  }
+}
+
+@keyframes danmu {
+  from {
+    visibility: visible; 
+    transform: translateX(1366px);
+  }
+  to { 
+    visibility: visible; 
+    transform: translateX(-100%); 
+  }
+}

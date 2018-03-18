@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'/>
+        <meta HTTP-EQUIV="Pragma" CONTENT="no-cache"/>
+        <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache"/>
+        <meta HTTP-EQUIV="Expires" CONTENT="0"/>
+        <meta http-equiv="x-dns-prefetch-control" content="on"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+        <title>剧情发展你来决定！</title>
+        <link href="css/2018-02-12-drama-click.css" type="text/css" rel="stylesheet"/>
+    </head>
+    <body class="bodybox">
+        <div class="wrap" id="wrap">
+            <div class="item item-2 ">
+                <div class="mask-btn"></div>
+                <ul class="vote-btn-list">
+                    <li class="btn01" r="2">
+                        <span>紫霞</span>
+                        <div class="btn-out"></div>
+                        <div class="btn-in"></div>
+                    </li>
+                    <li class="btn02" r="2">
+                        <span>白晶晶</span>
+                        <div class="btn-out"></div>
+                        <div class="btn-in"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <script src="https://xiaohuazheng.github.io/js/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/mo-js/0.288.2/mo.min.js"></script>
+        <script>
+            var meteors = new mojs.Burst({
+                radius: {
+                    0: 200
+                },
+                count: 7,
+                angle: {
+                    0: 120
+                },
+                opacity: {
+                    1: 0
+                },
+                left: 0,
+                top: 0,
+                children: {
+                    fill: ['#06dfff'],
+                    stroke: '#06dfff'
+                }
+
+            });
+
+
+            $('[data-name="mojs-shape"]').css('z-index', 10000);
+
+            $('.vote-btn-list li').on('touchstart', function(e) {
+
+                $(this).append('<i class="add-effect">+1</i>');
+
+                var $add = $(this).find('.add-effect').last();
+                $add.addClass('add-one').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                    $add.remove();
+                });
+
+                var _touch = e.originalEvent.targetTouches[0];
+                meteors
+                    .tune({
+                        x: _touch.pageX,
+                        y: _touch.pageY
+                    })
+                    .replay();
+            });
+        </script>
+    </body>
+</html>

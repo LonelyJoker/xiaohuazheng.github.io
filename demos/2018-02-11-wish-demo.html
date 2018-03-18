@@ -1,0 +1,739 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset='utf-8'/>
+        <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'/>
+        <meta http-equiv="x-dns-prefetch-control" content="on"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Barrage</title>
+        <link href="css/2018-02-11-wish-demo.css" type="text/css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="wrap" class="">
+            <div class="body-wrap">
+                <div id="canvasBarrage" class="canvas-barrage"></div>
+            </div>
+        </div>
+        <script>
+        </script>
+        <script src="https://xiaohuazheng.github.io/js/jquery.min.js"></script>
+        <script>
+            window.onload = function() {
+                var data = [{
+                    "value": "抽奖一等奖是我就好了",
+                    "color": "#fff"
+                }, {
+                    "value": "我想中奖100万",
+                    "color": "#ff7e20"
+                }, {
+                    "value": "新年新气象，好运加惊喜",
+                    "color": "#fff"
+                }, {
+                    "value": "年会中大奖",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "(╯°A°)╯︵○○○去吧大师球！",
+                    "color": "#fff"
+                }, {
+                    "value": "按照惯例，一般我都会中奖的！",
+                    "color": "#fff"
+                }, {
+                    "value": "祝我抽中公司最大的奖 啊哈哈哈哈哈哈哈",
+                    "color": "#fff"
+                }, {
+                    "value": "希望年底奖金多有一个月的工资就满足啦。",
+                    "color": "#fff"
+                }, {
+                    "value": "我是第一美女！",
+                    "color": "#fffd46"
+                }, {
+                    "value": "想要一台Apple MacBook",
+                    "color": "#fff"
+                }, {
+                    "value": "狗年大吉！我在中个大奖，美美哒！",
+                    "color": "#ff7e20"
+                }, {
+                    "value": "希望得个斯伯丁篮球",
+                    "color": "#fff"
+                }, {
+                    "value": "想要个智能手环 ，今年好好跑跑步，身体健康",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "想要一只超难买的YSL丝绒唇釉#8 ～ 抱住大腿！",
+                    "color": "#fffd46"
+                }, {
+                    "value": "希望得个斯伯丁篮球",
+                    "color": "#fff"
+                }, {
+                    "value": "想要全套纪念品 还要中大奖",
+                    "color": "#fff"
+                }, {
+                    "value": "两张滑雪票",
+                    "color": "#fff"
+                }, {
+                    "value": "想涨工资靴靴",
+                    "color": "#fff"
+                }, {
+                    "value": "家人平平安安，新的一年顺顺利利",
+                    "color": "#fff"
+                }, {
+                    "value": "希望2018年公司会带我们出去旅游！",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "希望明年公司蒸蒸日上！年会让我中一个奖吧，有个彩头就好！",
+                    "color": "#fffd46"
+                }, {
+                    "value": "给我一个钥匙扣嘛哈哈哈",
+                    "color": "#fff"
+                }, {
+                    "value": "全家人平平安安，健健康康！",
+                    "color": "#fff"
+                }, {
+                    "value": "年会中个18888大奖，要现金哈哈哈",
+                    "color": "#fff"
+                }, {
+                    "value": "有个大红包 有个国外游 有个大玩偶",
+                    "color": "#fff"
+                }, {
+                    "value": "iPhoneX",
+                    "color": "#fff"
+                }, {
+                    "value": "想要iPhone X哈哈哈哈哈",
+                    "color": "#fff"
+                }, {
+                    "value": "全家人平平安安，健健康康！",
+                    "color": "#ff7e20"
+                }, {
+                    "value": "有抽奖 欧皇一波就美滋滋",
+                    "color": "#fff"
+                }, {
+                    "value": "来个生肖公仔全套吧",
+                    "color": "#fff"
+                }, {
+                    "value": "中大奖！！新年快乐！",
+                    "color": "#fff"
+                }, {
+                    "value": "18年想拥有一台自己的单反相机?",
+                    "color": "#fff"
+                }, {
+                    "value": "送我一台电脑吧 利于办公 全心全意为公司服务",
+                    "color": "#fff"
+                }, {
+                    "value": "希望亲爱的家人身体健康～",
+                    "color": "#fff"
+                }, {
+                    "value": "想娶像一样美丽的姑娘当媳妇！！！",
+                    "color": "#fffd46"
+                }, {
+                    "value": "这么大的雾霾，想要一台，小米米家pro空气净化器",
+                    "color": "#fff"
+                }, {
+                    "value": "能中一个手机?换掉已快瘫痪的它",
+                    "color": "#fff"
+                }, {
+                    "value": "让我中个奖！让我升个职！让我加个薪！",
+                    "color": "#ff7e20"
+                }, {
+                    "value": "心愿很简单，一台256g的iPhone X足矣！",
+                    "color": "#fff"
+                }, {
+                    "value": "让我在生日前夕中个头奖吧！",
+                    "color": "#fff"
+                }, {
+                    "value": "我希望年会抽大奖 缺手机 哈哈哈",
+                    "color": "#fff"
+                }, {
+                    "value": "世界和平，我要大奖",
+                    "color": "#fff"
+                }, {
+                    "value": "希望中个彩票",
+                    "color": "#fff"
+                }, {
+                    "value": "臀控/足控/手控。看着办哦",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "外星人水冷主机一台  希望能实现，2018一定好好工作",
+                    "color": "#fff"
+                }, {
+                    "value": "加薪、加薪、加薪…",
+                    "color": "#fff"
+                }, {
+                    "value": "一套汪仔生肖全套公仔",
+                    "color": "#fff"
+                }, {
+                    "value": "中奖，钱，多多益善",
+                    "color": "#fff"
+                }, {
+                    "value": "希望奖品更丰富！ 节目更好看！ 祝好！",
+                    "color": "#fff"
+                }, {
+                    "value": "还是来个大红包吧～嘻嘻～",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "上台热舞一个！！！",
+                    "color": "#fffd46"
+                }, {
+                    "value": "每一年都许愿，能实现的又有多少？靠谱点的，那就是收获健康吧。",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "大号烤箱和蛋糕器具。单反相机可以吗，哈哈哈。新年快乐",
+                    "color": "#fff"
+                }, {
+                    "value": "我要中大奖，一等奖！！！！",
+                    "color": "#fff"
+                }, {
+                    "value": "年会有设计奖品的话，希望抽中",
+                    "color": "#fff"
+                }, {
+                    "value": "五个比特币",
+                    "color": "#fff"
+                }, {
+                    "value": "爱公司么么哒",
+                    "color": "#fff"
+                }, {
+                    "value": "抽到大奖(/ω＼)谢谢老板(??ω?`)请给我上台领奖的机会",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "今年一定要中头奖",
+                    "color": "#fff"
+                }, {
+                    "value": "我要一部sony A7二代",
+                    "color": "#fff"
+                }, {
+                    "value": "iphoneX 就是你啦。",
+                    "color": "#fffd46"
+                }, {
+                    "value": "愿家人身体健康，平平安安！",
+                    "color": "#fff"
+                }, {
+                    "value": "在空气质量爆表的冬天?，想要一台小米空气净化器",
+                    "color": "#fff"
+                }, {
+                    "value": "小公主健健康康的，早日解决掉她那些烦事，开心的享受生活",
+                    "color": "#fff"
+                }, {
+                    "value": "帮我变一个扫地机出来吧！让我也可以偷懒一下下！",
+                    "color": "#fffd46"
+                }, {
+                    "value": "越来越好！",
+                    "color": "#fff"
+                }, {
+                    "value": "今抱着回家吧！！",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "买房，脱单",
+                    "color": "#fff"
+                }, {
+                    "value": "想吃大龙虾",
+                    "color": "#fff"
+                }, {
+                    "value": "第一：XX 第二：XXX 第三：XXXX （比心 ^o^）",
+                    "color": "#fff"
+                }, {
+                    "value": "iPad  pro",
+                    "color": "#fff"
+                }, {
+                    "value": "中大奖！！  抱两个汪仔回家家！",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "让我中个一等奖吧",
+                    "color": "#fff"
+                }, {
+                    "value": "一个超级炫酷的拍立得  那样我就可以没完没了拍",
+                    "color": "#fff"
+                }, {
+                    "value": "晚宴好吃",
+                    "color": "#fff"
+                }, {
+                    "value": "我想出去玩儿",
+                    "color": "#fff"
+                }, {
+                    "value": "愿世界和平没有灾难，祖国昌盛锦锈灿烂，人民富强平平安安！",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "送我日本往返机票吧！！",
+                    "color": "#ff7e20"
+                }, {
+                    "value": "新年愿望想要抽中一等奖！",
+                    "color": "#fff"
+                }, {
+                    "value": "新年心愿就是抽中一等奖！?人要有梦想，万一实现了呢?",
+                    "color": "#fff"
+                }, {
+                    "value": "与有情人终成眷属。",
+                    "color": "#fff"
+                }, {
+                    "value": "让我也中个大奖吧！",
+                    "color": "#fff"
+                }, {
+                    "value": "来个上台领一等奖的机会",
+                    "color": "#fff"
+                }, {
+                    "value": "想要iphone x",
+                    "color": "#ff7e20"
+                }, {
+                    "value": "来个现实的体脂秤吧",
+                    "color": "#fff"
+                }, {
+                    "value": "敢不敢多涨一点工资！",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "希望今年年会中大奖！！！",
+                    "color": "#fff"
+                }, {
+                    "value": "想要666大红包",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "祝身体健康快乐！多帮忙排我们的需求。",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "新年心愿就是求加薪或现场舞一曲，钢管舞最佳！",
+                    "color": "#fff"
+                }, {
+                    "value": "生个可爱的狗宝宝",
+                    "color": "#fff"
+                }, {
+                    "value": "希望年会抽中大奖，新年一年能力升升升，工资涨涨涨",
+                    "color": "#fff"
+                }, {
+                    "value": "想要一部苹果X...哈哈哈哈哈，还希望涨工资。",
+                    "color": "#ff7e20"
+                }, {
+                    "value": "希望瘦，希望瘦，希望瘦。然后上台领个一等奖 ！！！",
+                    "color": "#fff"
+                }, {
+                    "value": "苹果X",
+                    "color": "#fff"
+                }, {
+                    "value": "2018希望带着孩儿和孩儿她爸一起来个马尔代夫豪华游吧……",
+                    "color": "#fffd46"
+                }, {
+                    "value": "希望暴富哈哈哈哈哈哈哈比如抽大奖",
+                    "color": "#fff"
+                }, {
+                    "value": "新年晚会获得最大奖。",
+                    "color": "#fff"
+                }, {
+                    "value": "希望中年会的大奖～希望公司越来越好～希望家人朋友开心健康",
+                    "color": "#fff"
+                }, {
+                    "value": "想要一个扫地机器人或者烤箱。",
+                    "color": "#fff"
+                }, {
+                    "value": "新年越来越好",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "一等奖，一等奖，一等奖，哈哈……重要的事情说三遍",
+                    "color": "#fff"
+                }, {
+                    "value": "中个小奖就好",
+                    "color": "#fff"
+                }, {
+                    "value": "红包，靠谱吗(╯°A°)╯︵○○○哈哈哈",
+                    "color": "#ff7e20"
+                }, {
+                    "value": "长生不老！",
+                    "color": "#fff"
+                }, {
+                    "value": "家人身体健康，一部相机",
+                    "color": "#fff"
+                }, {
+                    "value": "中特等奖",
+                    "color": "#fffd46"
+                }, {
+                    "value": "希望可以得到一个苹果手表，送给自己唯一的姐姐当生日礼物。",
+                    "color": "#fff"
+                }, {
+                    "value": "希望可以得一个苹果手表，送给唯一的姐姐当生日礼物。",
+                    "color": "#fff"
+                }, {
+                    "value": "简单点，要不就X给我要不就给我一个超实用的男盆友！好害羞",
+                    "color": "#fff"
+                }, {
+                    "value": "嗷，我的愿望很小，来个扫地机成么？从来年会中不了奖的人苦求",
+                    "color": "#fff"
+                }, {
+                    "value": "钱！！！多多",
+                    "color": "#fff"
+                }, {
+                    "value": "给一部iPad pro2吧",
+                    "color": "#fff"
+                }, {
+                    "value": "希望新的一年一切顺利，家人平安健康快乐，年会能中大奖，哈哈",
+                    "color": "#fff"
+                }, {
+                    "value": "一台kindle",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "新年愿望，能收到公司发的大大的红包",
+                    "color": "#fff"
+                }, {
+                    "value": "年会大奖，来两份！",
+                    "color": "#fff"
+                }, {
+                    "value": "祝尽快脱单结婚。哈哈哈",
+                    "color": "#fffd46"
+                }, {
+                    "value": "我想要一个平衡车上班不挤地铁(╯°A°)╯︵○○○",
+                    "color": "#fff"
+                }, {
+                    "value": "200万资金缺口",
+                    "color": "#fff"
+                }, {
+                    "value": "想要一只超大汪仔",
+                    "color": "#ff7e20"
+                }, {
+                    "value": "2018,好好的",
+                    "color": "#fff"
+                }, {
+                    "value": "一箱小龙坎方便火锅!!!",
+                    "color": "#fff"
+                }, {
+                    "value": "想要一台空气净化器给即将出世的宝宝，成都的“毒”惹不起。",
+                    "color": "#fff"
+                }, {
+                    "value": "涨工资，涨工资，涨工资",
+                    "color": "#fff"
+                }, {
+                    "value": "希望人人都能拿奖，不管多少。希望在年会可以见到王总",
+                    "color": "#fff"
+                }, {
+                    "value": "我想要个旺仔公仔",
+                    "color": "#fff"
+                }, {
+                    "value": "空气质量不太好～想要一个空气净化器放在房间里嘤嘤嘤～",
+                    "color": "#fff"
+                }, {
+                    "value": "可以带爸妈出国玩一趟^O^",
+                    "color": "#fffd46"
+                }, {
+                    "value": "祝公司越来越好！我想换手机！",
+                    "color": "#fff"
+                }, {
+                    "value": "越来越多钱！",
+                    "color": "#fff"
+                }, {
+                    "value": "祝愿工作一切顺利，来年好运！",
+                    "color": "#fff"
+                }, {
+                    "value": "一等奖",
+                    "color": "#fffd46"
+                }, {
+                    "value": "2018，希望家人身体健康，自己多多努力！",
+                    "color": "#fff"
+                }, {
+                    "value": "一束花哈哈哈",
+                    "color": "#ff7e20"
+                }, {
+                    "value": "想要加薪，靴靴......不然有一部新手机也不错",
+                    "color": "#fff"
+                }, {
+                    "value": "大奖，大奖，我要大奖！",
+                    "color": "#fff"
+                }, {
+                    "value": "中大奖 来年实现之前许下而没实现的愿望",
+                    "color": "#fffd46"
+                }, {
+                    "value": "科沃斯扫地机器人",
+                    "color": "#fff"
+                }, {
+                    "value": "中现金奖！！！！！",
+                    "color": "#fff"
+                }, {
+                    "value": "希望新的一年身体健康，全家平安",
+                    "color": "#fff"
+                }, {
+                    "value": "瘦20斤",
+                    "color": "#fff"
+                }, {
+                    "value": "从来没中过大奖，2018让我中一次吧！！！感恩！！！！",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "想要抱枕",
+                    "color": "#fff"
+                }, {
+                    "value": "加薪，求加薪啊！",
+                    "color": "#ff7e20"
+                }, {
+                    "value": "希望祖国繁荣富强！",
+                    "color": "#fff"
+                }, {
+                    "value": "有抽奖环节没？ 希望中一个iphone X 谢谢大佬",
+                    "color": "#fff"
+                }, {
+                    "value": "先定一个小目标吧，年会的特等奖是我的！",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "希望可以获得一个定制春联礼盒",
+                    "color": "#fff"
+                }, {
+                    "value": "2018，要做更好的自己！（P.S. 年会当天要抽到大奖哦）",
+                    "color": "#fff"
+                }, {
+                    "value": "希望一家人健康快乐！",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "希望新的一年在工作上能棒棒的做到AA级，最后年会中大奖！",
+                    "color": "#fff"
+                }, {
+                    "value": "奖励我一台iphoneX吧。么么，好人一生平安",
+                    "color": "#fff"
+                }, {
+                    "value": "aj6黑红一双",
+                    "color": "#fff"
+                }, {
+                    "value": "抽奖中大疆无人机！！！",
+                    "color": "#fff"
+                }, {
+                    "value": "想要圣诞铃铛钥匙扣",
+                    "color": "#ff7e20"
+                }, {
+                    "value": "祝公司越来越好，生意兴隆。自己想换个iPhoneX",
+                    "color": "#ff7e20"
+                }, {
+                    "value": "抽中一等奖，大号公仔",
+                    "color": "#fff"
+                }, {
+                    "value": "新的一年愿大家越来越好",
+                    "color": "#fffd46"
+                }, {
+                    "value": "家庭投影仪 2k高清曲面屏显示器 家庭空气净化器",
+                    "color": "#fff"
+                }, {
+                    "value": "新年愿望：中一个大奖，比如一个苹果手机或者现金！！！",
+                    "color": "#fff"
+                }, {
+                    "value": "1索尼55寸彩电2blueair空气净化器3三菱柜式2p空调",
+                    "color": "#ff7e20"
+                }, {
+                    "value": "1iphonex2索尼55寸4K彩电3iRobot扫地机器人",
+                    "color": "#fff"
+                }, {
+                    "value": "我有一个小小的心愿，就是在北京有一个小小的四合院就好了",
+                    "color": "#fff"
+                }, {
+                    "value": "房价降降降，买个big house。",
+                    "color": "#fffd46"
+                }, {
+                    "value": "想要一个ipaid",
+                    "color": "#fff"
+                }, {
+                    "value": "求扫地机啊，让我年会中次奖吧",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "新的一年，天天开心。希望身边的人都能健康开心。。啾啾啾",
+                    "color": "#fff"
+                }, {
+                    "value": "明确的晋升渠道，还有奖金",
+                    "color": "#fff"
+                }, {
+                    "value": "请给我发个红包！不是空的红包！",
+                    "color": "#fffd46"
+                }, {
+                    "value": "请赐予我iphone 10",
+                    "color": "#fff"
+                }, {
+                    "value": "苍井空都结婚了，我…无欲无求！",
+                    "color": "#ff7e20"
+                }, {
+                    "value": "一台电脑，好好吃鸡，并祝愿公司越来越好！",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "希望家里人都能健康快乐，所以能送个空气净化器吗(╯°A°)╯︵○○○",
+                    "color": "#fff"
+                }, {
+                    "value": "来个iPad就阔以啦～～哈哈哈",
+                    "color": "#fffd46"
+                }, {
+                    "value": "平安健康，来一台加湿器。",
+                    "color": "#fff"
+                }, {
+                    "value": "大大的年终奖～",
+                    "color": "#fff"
+                }, {
+                    "value": "有个安慰奖就可以了。。",
+                    "color": "#fffd46"
+                }, {
+                    "value": "那就要一个新年的红包吧！",
+                    "color": "#fff"
+                }, {
+                    "value": "iPhoneX",
+                    "color": "#fffd46"
+                }, {
+                    "value": "成为负翁！",
+                    "color": "#fff"
+                }, {
+                    "value": "想要一只大汪仔，送给喜欢的女孩",
+                    "color": "#fffd46"
+                }, {
+                    "value": "抽中个新年奖！奖品随意啦??",
+                    "color": "#fff"
+                }, {
+                    "value": "新年愿望：《忒修斯之船》这本书",
+                    "color": "#ff7e20"
+                }, {
+                    "value": "远方的朋友希望能提前两天回家，思念我的家人",
+                    "color": "#fff"
+                }, {
+                    "value": "我想要个小礼物，什么都可以～",
+                    "color": "#fff"
+                }, {
+                    "value": "新年愿望是抽中一等奖?希望还是要赋予的，万一实现了呢?",
+                    "color": "#fff"
+                }, {
+                    "value": "好好学习，天天向上。",
+                    "color": "#ff7e20"
+                }, {
+                    "value": "努力且认真的工作，尽快转正，学习和成长到很多很多",
+                    "color": "#fff"
+                }, {
+                    "value": "一年比一年好，多点大奖",
+                    "color": "#fff"
+                }, {
+                    "value": "希望能有一次旅行",
+                    "color": "#fff"
+                }, {
+                    "value": "希望得到一部苹果x",
+                    "color": "#fff"
+                }, {
+                    "value": "啦啦啦，中年会大奖，身体健康",
+                    "color": "#fff"
+                }, {
+                    "value": "一等奖",
+                    "color": "#ff7e20"
+                }, {
+                    "value": "我要换手机。这就是愿望。",
+                    "color": "#fff"
+                }, {
+                    "value": "愿小公主健康，所有都好一切都顺，因为有我！",
+                    "color": "#fffd46"
+                }, {
+                    "value": "努力工作，成功转正，父母体检的费用，是愿望",
+                    "color": "#fff"
+                }, {
+                    "value": "想要一台switch！！！",
+                    "color": "#fff"
+                }, {
+                    "value": "希望得到一台苹果x手机",
+                    "color": "#fff"
+                }, {
+                    "value": "2018，发发发！",
+                    "color": "#fff"
+                }, {
+                    "value": "再整套房子！",
+                    "color": "#fff"
+                }, {
+                    "value": "有安慰奖",
+                    "color": "#fff"
+                }, {
+                    "value": "祝公司红红火火，祝同事们心想事成，祝自己",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "想要汪仔鸡年的玩偶",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "远方的朋友希望过年能提前两天回家，思念我的亲人",
+                    "color": "#fff"
+                }, {
+                    "value": "来个扫地机器人",
+                    "color": "#fff"
+                }, {
+                    "value": "希望孩子能永远能平安长大",
+                    "color": "#ff7e20"
+                }, {
+                    "value": "来一台iPhone X",
+                    "color": "#fff"
+                }, {
+                    "value": "开心健康是好！最后年会中大奖！",
+                    "color": "#fff"
+                }, {
+                    "value": "抽个新年奖！",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "想要最萌的仔哈哈哈哈～",
+                    "color": "#fff"
+                }, {
+                    "value": "世界和平",
+                    "color": "#fff"
+                }, {
+                    "value": "我老婆的手机屏幕是坏了的，你说我愿望是什么！！！",
+                    "color": "#fffd46"
+                }, {
+                    "value": "当了好久的中奖绝缘体了，希望中个小奖，比如手机啥的。  ?",
+                    "color": "#fff"
+                }, {
+                    "value": "来一台iPhone x xxxxxxx 呗~",
+                    "color": "#fff"
+                }, {
+                    "value": "希望在新的一年里可以用拍立得记录团队与我?的成长",
+                    "color": "#fff"
+                }, {
+                    "value": "魅族EP52 蓝牙运动耳机入耳式 手机耳机无线运动耳麦红黑色",
+                    "color": "#fff"
+                }, {
+                    "value": "新年愿望是新的一年身体健康心想事成！",
+                    "color": "#fffd46"
+                }, {
+                    "value": "希望得到一部最新苹果x手机",
+                    "color": "#fff"
+                }, {
+                    "value": "不贪心，最高等级的奖给我吧！！！",
+                    "color": "#fff"
+                }, {
+                    "value": "中大奖！最好是一台空净",
+                    "color": "#fff"
+                }, {
+                    "value": "希望全家人永远幸福健康快乐！",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "能得到一次旅行",
+                    "color": "#fff"
+                }, {
+                    "value": "任天堂switch",
+                    "color": "#fff"
+                }, {
+                    "value": "减肥",
+                    "color": "#fff"
+                }, {
+                    "value": "我是第一大美女！",
+                    "color": "#30e8fe"
+                }, {
+                    "value": "一家人健健康康。。。",
+                    "color": "#fffd46"
+                }];
+                canvasBarrage(data);
+            }
+
+            var barageIndex = 0;
+            function canvasBarrage(data) {
+
+                renderDanmu();
+                setInterval(function() {
+                    renderDanmu();
+                }, 3500);
+
+
+                function renderDanmu() {
+                    var arr = data.slice(barageIndex, barageIndex + 12);
+                    barageIndex += 12;
+
+                    if (barageIndex > data.length) {
+                        barageIndex = Math.floor(Math.random() * 100);
+                    }
+
+                    arr.forEach(function(s) {
+                        var div = '<div class="" style="color: ' + s.color + ';top: ' + (Math.floor(Math.random() * 700) + 10) + 'px;">' + s.value + '</div>';
+                        $('#canvasBarrage').append(div);
+
+                        var $one = $('#canvasBarrage div').last(),
+                            cls = 'danmu-ani' + (1 + Math.floor(Math.random() * 13));
+
+                        $one.addClass(cls).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                            $one.remove();
+                        });
+                    });
+                }
+            }
+        </script>
+    </body>
+</html>
