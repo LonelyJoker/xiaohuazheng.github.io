@@ -326,12 +326,14 @@ css3:
     }
 
 
+[简易demo][3]
 哈哈，总算解决了。再加些花边动画，背景再温馨些，中奖人弹出的效果再酷炫些。哟西。
 
 通过GPU进行渲染，解放CPU果然很nice。但其实只要不频繁操作DOM就好多了。
 
   [1]: http://www.zhangxinxu.com/wordpress/2017/09/html5-canvas-video-barrage/
   [2]: http://taobaofed.org/blog/2016/02/22/canvas-performance/
+  [3]: /demos/2018-02-11-wish-demo.html
 
 
 

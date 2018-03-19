@@ -67,6 +67,7 @@ tags:
 
 
 这上面的svg效果还是非常赞的： [mojs][2]
+[手机查看demo][3]
 
 LED互动剧：
 主要还是swiper切屏，在需要操作的页面判断使用Enter键操作。
@@ -190,6 +191,7 @@ LED互动剧：
 
   [1]: http://jxqy.qq.com/act/a20171027h5/?from=timeline
   [2]: http://mojs.io/tutorials/burst/
+  [3]: /demos/2018-02-12-drama-click.html
 
 
 
