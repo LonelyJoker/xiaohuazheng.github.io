@@ -20,9 +20,6 @@
             </div>
         </div>
         <script src="https://xiaohuazheng.github.io/js/jquery.min.js"></script>
-        <script type="text/javascript">
-            var rewardList="8,8,8,8,8";var currGameRound=229;
-        </script>
         <script>
             // canvas
             var canvas,
@@ -44,16 +41,13 @@
                 isKnocking = false,
                 canStatic = false,
                 isCurrGameStart = false,
-                isCurrGameEnd = false,
-                canNextPress = false,
-                currRoundBonusAppended = false;
+                canNextPress = false;
             // 定时器
             var ktimer = null,
                 dtimer = null,
                 stimer = null,
                 autoTimer = null,
-                endtimer = null,
-                poptimer = null;
+                endtimer = null;
 
             // 中奖号码
             var prizeTens = [];
@@ -96,7 +90,6 @@
             }
 
             function newRound() {
-                isCurrGameEnd = false;
                 isCurrGameStart = false;
                 prizeTens = [];
                 backendBonus = [];
@@ -121,7 +114,6 @@
                 clearInterval(ktimer);
                 clearTimeout(stimer);
                 clearTimeout(endtimer);
-                clearTimeout(poptimer);
                 canStatic = false;
 
                 context.clearRect(0, 0, width, height);
@@ -151,16 +143,12 @@
             }
 
             function appendBonusNum() {
-                if (currRoundBonusAppended) {
-                    return;
-                }
                 var tenBStr = '';
                 for (var i = 0; i < backendBonus.length; i++) {
                     var bColor = backendBonus[i] % 2 === 0 ? 'blue' : 'red';
                     tenBStr += '<div class="bonus-ball ball-small' + (i + 1) + ' ' + bColor + '" style="display: none;">' + backendBonus[i] + '</div>';
                 }
                 $('.lotterry-box').append(tenBStr);
-                currRoundBonusAppended = true;
             }
 
 
@@ -219,10 +207,6 @@
 
             // 响应enter键
             function enterPress() {
-
-                if (isCurrGameEnd) {
-                    return;
-                }
                 if (isCurrGameStart) {
                     return;
                 }
@@ -238,8 +222,6 @@
                 autoTimer = setInterval(function() {
                     if (prizeTens.length > 9) {
                         isCurrGameStart = false;
-
-                        isCurrGameEnd = true;
                         setNextPress();
                         clearInterval(autoTimer);
                         return;
