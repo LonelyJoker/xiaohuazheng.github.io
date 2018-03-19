@@ -231,11 +231,11 @@
                 }, 3600);
             }
 
-            // 10s后可以点击进行下一轮
+            // 控制一下，一段时间后可以点击进行下一轮
             function setNextPress() {
                 endtimer = setTimeout(function() {
                     canNextPress = true;
-                }, 10000);
+                }, 1000);
             }
 
             function knockAnimate() {
