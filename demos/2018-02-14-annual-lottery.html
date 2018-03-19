@@ -1,0 +1,451 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset='utf-8'/>
+        <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'/>
+        <meta http-equiv="x-dns-prefetch-control" content="on"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>LOTTERY</title>
+        <link rel="shortcut icon" href="https://xiaohuazheng.github.io/img/favicon.ico">
+        <link href="css/2018-02-14-annual-lottery.css" type="text/css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="body-wrap">
+            <div class="content">
+                <canvas id="canvas"></canvas>
+                <div class="lotterry-box">
+                    <div class="ball-small" style="display: none;"></div>
+                    <div class="mask"></div>
+                </div>
+            </div>
+        </div>
+        <script src="https://xiaohuazheng.github.io/js/jquery.min.js"></script>
+        <script type="text/javascript">
+            var rewardList="8,8,8,8,8";var currGameRound=229;
+        </script>
+        <script>
+            // canvas
+            var canvas,
+                context,
+                width = 270,
+                height = 230;
+            // 碰撞球和下落球
+            var nBalls = [],
+                kBalls = [],
+                dBalls = [],
+                colors = {};
+            // 参数配置
+            var g = 9.8,
+                friction = 0.5,
+                collarg = 0.8,
+                ballRadius = 15,
+                ballLen = 30,
+                pxpm = 0,
+                isKnocking = false,
+                canStatic = false,
+                isCurrGameStart = false,
+                isCurrGameEnd = false,
+                canNextPress = false,
+                currRoundBonusAppended = false;
+            // 定时器
+            var ktimer = null,
+                dtimer = null,
+                stimer = null,
+                autoTimer = null,
+                endtimer = null,
+                poptimer = null;
+
+            // 中奖号码
+            var prizeTens = [];
+            // 统一后续更新球的颜色值
+            for (var z = 0; z < ballLen; z++) {
+                colors[(z + 1) + ''] = z % 2 === 0 ? 'rgb(239, 60, 18)' : 'rgb(37, 110, 220)';
+            }
+
+            var currentIndex = 0, // 当前摇到第几个
+                backendBonus = [], // 后端返回的中奖号码
+                ballWinners = []; // 中奖者们
+
+            window.onload = function() {
+                canvas = document.getElementById('canvas');
+                context = canvas.getContext('2d');
+                canvas.width = width;
+                canvas.height = height;
+                context.globalAlpha = 1;
+                pxpm = width / 20;
+
+                // 初始化 新一轮
+                newRound();
+            }
+
+
+            // 键盘控制
+            document.onkeyup = function(e) {
+                if (window.event) {
+                    e = window.event;
+                }
+
+                var code = e.charCode || e.keyCode;
+                if (code == 13) {
+                    enterPress();
+                }
+
+                if (code == 40) {
+                    nextRound();
+                }
+            }
+
+            function newRound() {
+                isCurrGameEnd = false;
+                isCurrGameStart = false;
+                prizeTens = [];
+                backendBonus = [];
+                ballWinners = [];
+                currentIndex = 0;
+                canNextPress = false;
+                currRoundBonusAppended = false;
+
+                $('.bonus-ball').remove();
+                getBonusNumAsync();
+
+                var newNums = [];
+                for (var n = 0; n < ballLen; n++) {
+                    newNums.push(n + 1);
+                }
+
+                nBalls = newNums.splice(0);
+                kBalls = [];
+                createKBalls();
+
+                clearInterval(dtimer);
+                clearInterval(ktimer);
+                clearTimeout(stimer);
+                clearTimeout(endtimer);
+                clearTimeout(poptimer);
+                canStatic = false;
+
+                context.clearRect(0, 0, width, height);
+                dropBalls();
+            }
+
+
+            function nextRound() {
+                if (!canNextPress) {
+                    return;
+                }
+
+                newRound();
+            }
+
+
+            function getBonusNumAsync() {
+                var balls = []
+                for (var i = 0; i < 30; i++) {
+                    balls.push(i + 1);
+                }
+                balls.sort(function() {
+                    return Math.random() - 0.5;
+                });
+                backendBonus = balls.slice(0, 10);
+                appendBonusNum();
+            }
+
+            function appendBonusNum() {
+                if (currRoundBonusAppended) {
+                    return;
+                }
+                var tenBStr = '';
+                for (var i = 0; i < backendBonus.length; i++) {
+                    var bColor = backendBonus[i] % 2 === 0 ? 'blue' : 'red';
+                    tenBStr += '<div class="bonus-ball ball-small' + (i + 1) + ' ' + bColor + '" style="display: none;">' + backendBonus[i] + '</div>';
+                }
+                $('.lotterry-box').append(tenBStr);
+                currRoundBonusAppended = true;
+            }
+
+
+            function createKBalls() {
+                for (var i = 0; i < nBalls.length; i++) {
+                    var color = colors['' + nBalls[i]];
+
+                    var ball = {
+                        x: Math.random() * (width - 2 * ballRadius) + ballRadius,
+                        y: Math.random() * (height - 2 * ballRadius) + ballRadius,
+                        vx: Math.pow(-1, Math.ceil(Math.random() * 2)) * Math.random() * 4 + 6,
+                        vy: Math.pow(-1, Math.ceil(Math.random() * 2)) * Math.random() * 2 + 4,
+                        radius: ballRadius,
+                        color: color,
+                        number: nBalls[i]
+                    }
+
+                    kBalls[i] = ball;
+                }
+            }
+
+
+            function reduceBalls() {
+                var currNum = backendBonus[currentIndex];
+                prizeTens.push(currNum);
+                downOneBall(currNum);
+
+                currentIndex++;
+
+                console.log('摇出第 ' + prizeTens.length + '个: ' + currNum);
+
+
+                var newNums = []
+                for (var n = 0; n < nBalls.length; n++) {
+                    if (nBalls[n] !== currNum) {
+                        newNums.push(nBalls[n]);
+                    }
+                }
+
+                nBalls = newNums.splice(0);
+                kBalls = [];
+                createKBalls();
+            }
+
+            function downOneBall(num) {
+                var sColor = num % 2 === 0 ? 'small-blue' : 'small-red',
+                    bColor = num % 2 === 0 ? 'blue' : 'red';
+
+                $('.ball-small').addClass(sColor).html(num).show().addClass('ball-ani').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                    $('.ball-small').removeClass('ball-ani small-blue small-red').html('').hide();
+                    $('.ball-small' + currentIndex).show();
+                    $('.ball-small' + currentIndex).addClass('ball-ani' + currentIndex);
+                });
+            }
+
+
+            // 响应enter键
+            function enterPress() {
+
+                if (isCurrGameEnd) {
+                    return;
+                }
+                if (isCurrGameStart) {
+                    return;
+                }
+                isCurrGameStart = true;
+
+                autoDropLottery();
+            }
+
+
+            // 循序摇奖
+            function autoDropLottery() {
+                knockAnimate();
+                autoTimer = setInterval(function() {
+                    if (prizeTens.length > 9) {
+                        isCurrGameStart = false;
+
+                        isCurrGameEnd = true;
+                        setNextPress();
+                        clearInterval(autoTimer);
+                        return;
+                    }
+
+                    knockAnimate();
+                }, 3600);
+            }
+
+            // 10s后可以点击进行下一轮
+            function setNextPress() {
+                endtimer = setTimeout(function() {
+                    canNextPress = true;
+                }, 10000);
+            }
+
+            function knockAnimate() {
+                clearInterval(dtimer);
+                clearInterval(ktimer);
+                clearTimeout(stimer);
+                canStatic = false;
+
+                context.clearRect(0, 0, width, height);
+
+                if (isKnocking) {
+                    isKnocking = false;
+                    stop();
+                } else {
+                    isKnocking = true;
+                    start();
+                }
+            }
+
+
+            // 开始运动
+            function start() {
+                ktimer = setInterval(function() {
+                    drawBall();
+
+                    if (isKnocking) {
+                        updateBall();
+                    }
+                }, 7);
+            }
+
+            // 停止运动并往下降
+            function stop() {
+                clearInterval(ktimer);
+                context.clearRect(0, 0, width, height);
+                reduceBalls();
+                dropBalls();
+            }
+
+
+            // 往下降
+            function dropAnimate() {
+                context.clearRect(0, 0, width, height);
+                var t = 16 / 1000;
+
+                collision(dBalls);
+                dBalls.forEach(function(b) {
+                    b.drop(t);
+                });
+
+                if (canStatic) {
+                    mkstatic();
+                }
+            }
+
+            // setInterval 模拟动画往下降
+            function dropBalls() {
+                // 清空之前的数据，重新画新球往下降
+                dBalls = [];
+                for (var i = 0; i < kBalls.length; i++) {
+                    var b = kBalls[i];
+                    var nb = new DBall(b.x, b.y, b.radius, b.vx, b.vy, b.color, b.number);
+                    dBalls.push(nb);
+                }
+
+                dtimer = setInterval(function() {
+                    dropAnimate();
+                }, 8);
+
+                stimer = setTimeout(function() {
+                    canStatic = true;
+                }, 4000)
+            }
+
+            // 下降过后一段时间不在重绘，使处于静态
+            function mkstatic() {
+                clearInterval(dtimer);
+                clearInterval(ktimer);
+                context.clearRect(0, 0, width, height);
+                for (var i = 0; i < dBalls.length; i++) {
+                    draw(dBalls[i]);
+                }
+            }
+
+            // 画球
+            function drawBall() {
+                context.clearRect(0, 0, width, height);
+                for (var i = 0; i < kBalls.length; i++) {
+                    draw(kBalls[i]);
+                }
+            }
+
+            // 更新球的位置
+            function updateBall() {
+                for (var i = 0; i < kBalls.length; i++) {
+                    var one = kBalls[i];
+                    one.x += one.vx;
+                    one.y += one.vy;
+                    if (one.x < one.radius || one.x > width - one.radius) {
+                        one.vx = -one.vx;
+                    }
+                    if (one.y < one.radius || one.y > height - one.radius) {
+                        one.vy = -one.vy;
+                    }
+                }
+            }
+
+            // 画个球
+            function draw(ball) {
+                var grd = context.createRadialGradient(ball.x, ball.y, 0, ball.x, ball.y, ball.radius);
+                grd.addColorStop(0, '#eee');
+                grd.addColorStop(1, ball.color);
+                context.fillStyle = grd;
+
+                context.beginPath();
+                context.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2, true);
+                context.closePath();
+
+                context.fill();
+
+                context.fillStyle = '#fff';
+                context.textAlign = 'center';
+                context.font = 'bold 20px arial';
+                context.fillText(ball.number, ball.x, ball.y + 8);
+            }
+
+            // 碰撞检测
+            function collision(balls) {
+                for (var i = 0; i < balls.length; i++) {
+                    for (var j = 0; j < balls.length; j++) {
+                        var b1 = balls[i],
+                            b2 = balls[j];
+                        if (b1 !== b2) {
+                            var rc = Math.sqrt(Math.pow(b1.x - b2.x, 2) + Math.pow(b1.y - b2.y, 2));
+                            if (Math.ceil(rc) < (b1.radius + b2.radius + 2)) {
+                                //获得碰撞后速度的增量
+                                var ax = ((b1.vx - b2.vx) * Math.pow((b1.x - b2.x), 2) + (b1.vy - b2.vy) * (b1.x - b2.x) * (b1.y - b2.y)) / Math.pow(rc, 2);
+                                var ay = ((b1.vy - b2.vy) * Math.pow((b1.y - b2.y), 2) + (b1.vx - b2.vx) * (b1.x - b2.x) + (b1.y - b2.y)) / Math.pow(rc, 2);
+                                //给与小球新的速度
+                                b1.vx = (b1.vx - ax) * collarg;
+                                b1.vy = (b1.vy - ay) * collarg;
+                                b2.vx = (b2.vx + ax) * collarg;
+                                b2.vy = (b2.vy + ay) * collarg;
+                                //获取两球斜切位置并且强制旋转
+                                var clength = ((b1.radius + b2.radius + 2) - rc) / 2;
+                                var cx = clength * (b1.x - b2.x) / rc;
+                                var cy = clength * (b1.y - b2.y) / rc;
+                                b1.x = b1.x + cx;
+                                b1.y = b1.y + cy;
+                                b2.x = b2.x - cx;
+                                b2.y = b2.y - cy;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // 每次停止转动后重新创建新的drop ball，用构造函数去创建
+            var DBall = function(x, y, r, vx, vy, color, number) {
+                this.x = x;
+                this.y = y;
+                this.oldx = x;
+                this.oldy = y;
+                this.vx = vx;
+                this.vy = vy;
+                this.radius = r;
+                this.color = color;
+                this.number = number;
+            };
+            DBall.prototype = {
+                paint: function() {
+                    draw(this);
+                },
+                drop: function(t) {
+                    this.oldx = this.x;
+                    this.oldy = this.y;
+                    this.vx += this.vx > 0 ? -friction * t : friction * t;
+                    this.vy = this.vy + g * t;
+                    this.x += t * this.vx * pxpm;
+                    this.y += t * this.vy * pxpm;
+                    if (this.y > canvas.height - ballRadius || this.y < ballRadius) {
+                        this.y = this.y < ballRadius ? ballRadius : (canvas.height - ballRadius);
+                        this.vy = -this.vy * collarg
+                    }
+                    if (this.x > canvas.width - ballRadius || this.x < ballRadius) {
+                        this.x = this.x < ballRadius ? ballRadius : (canvas.width - ballRadius);
+                        this.derectionX = !this.derectionX;
+                        this.vx = -this.vx * collarg;
+                    }
+                    this.paint();
+                },
+            }
+        </script>
+    </body>
+</html>
