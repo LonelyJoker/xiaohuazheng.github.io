@@ -333,6 +333,6 @@ I: yes，那你用着，我去了解下，更多的方式。
   [1]: http://www.zhangxinxu.com/wordpress/2016/01/contenteditable-plaintext-only/
   [2]: https://developer.mozilla.org/zh-CN/docs/Web/API/Document/execCommand
   [3]: https://www.kancloud.cn/wangfupeng/wangeditor3/332599
-  [4]: ///
+  [4]: /demos/2018-03-29-editor-demo.html
 
 

@@ -1,0 +1,100 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="https://xiaohuazheng.github.io/img/favicon.ico">
+    <title>富文本编辑器</title>
+    <style>
+        body {
+            margin: 0 auto;
+            font-family: 'microsoft yahei';
+        }
+
+        a {
+            cursor: pointer;
+        }
+
+        .point-event-prevent {
+            pointer-events: none;
+        }
+
+        .editor-box {
+            box-shadow: 0 0 2px #666;
+            min-height: 150px;
+            max-width: 800px;
+            overflow: auto;
+            padding: 1em;
+            margin: 20px auto 0;
+            resize: vertical;
+            outline: none;
+        }
+
+        .editor-css3 {
+            user-modify: read-write-plaintext-only;
+            -webkit-user-modify: read-write-plaintext-only;
+        }
+
+        .editor-toolbar {
+            text-align: center;
+        }
+
+        .editor-toolbar a {
+            border: 1px solid #AAA;
+            background: #FFF;
+            font-family: 'Candal';
+            border-radius: 1px;
+            color: black;
+            padding: 5px 10px;
+            width: auto;
+            margin: 4px;
+            margin-top: 10px;
+            display: inline-block;
+            text-decoration: none;
+            box-shadow: 0px 1px 0px #CCC;
+        }
+
+        .tip {
+            text-align: center;
+            color: #096;
+            margin-top: 40px;
+        }
+    </style>
+    <script src="https://xiaohuazheng.github.io/js/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="editor-toolbar">
+        <a href="javascript: void(0);" data-command='bold'>加粗</a>
+        <a href="javascript: void(0);" data-command='insertUnorderedList'>●列表</a>
+        <a href="javascript: void(0);" data-command='insertOrderedList'>数字列表</a>
+        <a href="javascript: void(0);" data-command='h1'>H1</a>
+        <a href="javascript: void(0);" data-command='h3'>H3</a>
+        <a href="javascript: void(0);" data-command='p'>P</a>
+    </div>
+
+    <div class='editor-box' contenteditable></div>
+
+    <p class="tip">contenteditable="plaintext-only"</p>
+    <div class='editor-box' contenteditable="plaintext-only"></div>
+
+    <p class="tip">user-modify: read-write-plaintext-only;</p>
+    <div class='editor-box editor-css3' contenteditable></div>
+</body>
+
+<script>
+    $('.editor-toolbar a').click(function(e) {
+        var command = $(this).data('command');
+
+        if (command == 'h1' || command == 'h3' || command == 'p') {
+            document.execCommand('formatBlock', false, command);
+        } else {
+            var isOk = document.execCommand(command, false, null);
+            if (!isOk) {
+                // TODO
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
