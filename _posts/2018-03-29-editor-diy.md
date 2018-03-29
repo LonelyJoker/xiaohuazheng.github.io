@@ -31,7 +31,7 @@ U: 嗯，可以加几个功能按钮嘛？
 
 ### document.execCommand
 
-I: 了解。我有这个： 
+I: 了解。我有这个 ([MDN docs][2])
 
     bool = document.execCommand(aCommandName, aShowDefaultUI, aValueArgument)
 
@@ -326,9 +326,13 @@ I: yes，那你用着，我去了解下，更多的方式。
 
 ### DEMO
 
-[来个demo][2]
+[来个demo][4]
+
+如果你觉得用别人的插件不影响的话，可以试试这个[wangEditor][3]
 
   [1]: http://www.zhangxinxu.com/wordpress/2016/01/contenteditable-plaintext-only/
-  [2]: ///
+  [2]: https://developer.mozilla.org/zh-CN/docs/Web/API/Document/execCommand
+  [3]: https://www.kancloud.cn/wangfupeng/wangeditor3/332599
+  [4]: ///
 
 
