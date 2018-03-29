@@ -9,7 +9,7 @@ tags:
     - Javascript
 ---
 
-这篇文章就换个形式写吧，缓一缓口味。
+这篇文章就换个形式写吧，换一换口味。
 
 ### contenteditable
 
@@ -44,12 +44,12 @@ I: 了解。我有这个 ([MDN docs][2])
 >aValueArgument -- 一些命令（例如insertImage）需要额外的参数（insertImage需要提供插入image的url），默认为null。
 
     <div class="editor-toolbar">
-        <span data-command='bold'>加粗</span>
-        <span data-command='insertUnorderedList'>●列表</span>
-        <span data-command='insertOrderedList'>数字列表</span>
-        <span data-command='h1'>H1</span>
-        <span data-command='h3'>H3</span>
-        <span data-command='p'>P</span>
+        <a href="javascript: void(0);" data-command='bold'>加粗</a>
+        <a href="javascript: void(0);" data-command='insertUnorderedList'>●列表</a>
+        <a href="javascript: void(0);" data-command='insertOrderedList'>数字列表</a>
+        <a href="javascript: void(0);" data-command='h1'>H1</a>
+        <a href="javascript: void(0);" data-command='h3'>H3</a>
+        <a href="javascript: void(0);" data-command='p'>P</a>
     </div>    
     $('.editor-toolbar span').click(function(e) {
         var command = $(this).data('command');
@@ -57,7 +57,7 @@ I: 了解。我有这个 ([MDN docs][2])
         if (command == 'h1' || command == 'h3' || command == 'p') {
             document.execCommand('formatBlock', false, command);
         } else {
-            var isOk = document.execCommand($(this).data('command'), false, null);
+            var isOk = document.execCommand(command, false, null);
             if (!isOk) {
                 // TODO
             }
