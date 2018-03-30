@@ -234,8 +234,10 @@ U: 我想从其他地方拷贝内容过来，但是怎么有样式?
 I: 耶，我处理一下。哈哈哈，偷工一下：
 
     var eeditor = document.getElementById('editor');
-    document.addEventListener('paste', function() {
-        $('#editor').append(eeditor.innerHTML.replace(/<[^>]*>/g, ''));
+    eeditor.addEventListener('paste', function() {
+        setTimeout(function() {
+            eeditor.innerHTML = eeditor.innerHTML.replace(/<[^>]*>/g, '');
+        }, 0)
     });
 
 U: 光标变了。
