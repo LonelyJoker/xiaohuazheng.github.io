@@ -21,7 +21,7 @@ tags:
 
 从设计说起吧，双色球摇奖。就让球在一个容器里摇晃，摇晃可以用css3设计出球，然后不断地改变它的边距，看着就像它在运动。但在canvas也占据一片天地的今天，显然canvas设计会更加合理。
 
-准备画布：
+### 准备画布
 
     canvas = document.getElementById('canvas');
     context = canvas.getContext('2d');
@@ -37,7 +37,9 @@ tags:
         colors[(z + 1) + ''] = z % 2 === 0 ? 'rgb(239, 60, 18)' : 'rgb(37, 110, 220)';
     }
 
-每一次都新建一轮游戏，重置所以状态：
+每一次都新建一轮游戏，重置所有状态
+
+### 初始化-状态重置
 
     function newRound() {
         isCurrGameStart = false;
@@ -70,7 +72,7 @@ tags:
         dropBalls();
     }
 
-产生新的球球参数：
+### 产生新的球球参数
 
     function createKBalls() {
         for (var i = 0; i < nBalls.length; i++) {
@@ -90,7 +92,7 @@ tags:
         }
     }
 
-画球方法：
+### 画球
 
     // 画个球
     function draw(ball) {
@@ -121,7 +123,9 @@ tags:
         }
     }
 
-动画过程中，就是不断的画球，就需要不断的更新球的参数：
+动画过程中，就是不断的画球，就需要不断的更新球的参数
+
+### 不断更新球的位置
 
     // 更新球的位置
     function updateBall() {
@@ -138,7 +142,9 @@ tags:
         }
     }
 
-随机生成10个中奖号码，添加到DOM，准备动画：
+随机生成10个中奖号码，添加到DOM，准备动画
+
+### 出奖动画
 
     function getBonusNumAsync() {
         var balls = []
@@ -161,7 +167,9 @@ tags:
         $('.lotterry-box').append(tenBStr);
     }
 
-每摇出一个球，就把盒子的球把要出的球减去，不再渲染此球：
+### 保障观感真实性
+
+每摇出一个球，就把盒子的球把要出的球减去，不再渲染此球
 
     function reduceBalls() {
         var currNum = backendBonus[currentIndex];
@@ -198,7 +206,9 @@ tags:
         });
     }
 
-一开始我们设计是enter一下，摇一个球，后来觉得操作频繁，容易失误，就还是循序摇奖：
+### 定时摇出每个号码
+
+一开始我们设计是enter一下，摇一个球，后来觉得操作频繁，容易失误，就还是循序摇奖。
 
     function autoDropLottery() {
         knockAnimate();
@@ -214,7 +224,7 @@ tags:
         }, 3600);
     }
 
-球球摇滚：
+### 球球摇滚
 
     function knockAnimate() {
         clearInterval(dtimer);
@@ -253,7 +263,9 @@ tags:
         dropBalls();
     }
 
-摇一个球后需要所有球重力下降，才有真实感啊：
+### 摇一个全部下落
+
+摇一个球后需要所有球重力下降，才有真实感啊
 
     // 往下降
     function dropAnimate() {
@@ -290,8 +302,8 @@ tags:
     }
     
 
-下落的球做碰撞检测
-            
+### 下落的球做碰撞检测
+
     function collision(balls) {
         for (var i = 0; i < balls.length; i++) {
             for (var j = 0; j < balls.length; j++) {
@@ -322,6 +334,8 @@ tags:
         }
     }
 
+### 球球静止
+
 当球到达地面后就应该慢慢静止了：
 
     // 下降过后一段时间不在重绘，使处于静态
@@ -336,6 +350,8 @@ tags:
 
 之后就是不断的循环了。写了个demo，但只做了摇奖动画，其他元素都被窝略去了，对你有用的话，拿去随意增加。
 
+### 拓展
+
 可以更多拓展：
 
 1、球球在摇滚过程中的碰撞检测，让球的运动轨迹发生改变。我这儿做的只是检测碰撞容器，球球之间状态独立。
@@ -344,6 +360,7 @@ tags:
 
 3、优化。
 
+### Demo
 
 [摇奖demo][1]，进入页面，Enter开始摇奖，下键新一轮（摇奖中无效）
 
