@@ -49,7 +49,25 @@ tags:
         // 组装分享链接
         function openSahre (api) {
             var ourl = api.replace('{url}', url).replace('{title}', title).replace('{content}', content).replace('{pic}', pic);
-            window.open(ourl, 'newwindow', 'height=600,width=900,top=60,left=40');
+            
+    
+            openWindow(ourl, 'xzavier', 900, 600);
+        }
+    
+        function openWindow(url, title, w, h) {
+            var dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left
+            var dualScreenTop = window.screenTop !== undefined ? window.screenTop : screen.top
+    
+            var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width
+            var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height
+    
+            var left = ((width / 2) - (w / 2)) + dualScreenLeft
+            var top = ((height / 2) - (h / 2)) + dualScreenTop
+            var newWindow = window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left)
+    
+            if (window.focus) {
+                newWindow.focus()
+            }
         }
     
         // 分享调用方法
