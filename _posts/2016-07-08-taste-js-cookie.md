@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "温故js系列（3）"
-subtitle:   "cookie优缺点&cookie操作"
+subtitle:   "cookie优缺点 & cookie操作"
 date:       2016-07-08
 author:     "xzavier"
 catalog: true

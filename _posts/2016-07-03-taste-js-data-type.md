@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "温故js系列（1）"
-subtitle:   "基本数据类型和引用数据类型判断&存储访问&类型转换"
+subtitle:   "基本数据类型和引用数据类型判断 & 存储访问 & 类型转换"
 date:       2016-07-03
 author:     "xzavier"
 catalog: true
@@ -280,7 +280,7 @@ Boolean转换对象很特别，除了以下六个值转换为false，其他都�
 
 
 
-写写博客打打球...要代码，要篮球，更要生活。。。
+写写博客打打球...代码，篮球，生活。。。
 
 
   [1]: https://sfault-image.b0.upaiyun.com/130/011/1300118440-57c4093986c6d_articlex
