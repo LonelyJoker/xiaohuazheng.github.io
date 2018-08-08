@@ -29,7 +29,11 @@ tags:
 
 ### DEMO
 
-[来个demo][5]
+[来个demo][5]，PC 打开为移动端模式。
+
+手机扫描二维码：
+
+![audio-player][6]
 
 
   [1]: /2017/04/18/audio-player/
