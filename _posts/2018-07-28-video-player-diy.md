@@ -66,7 +66,7 @@ tags:
   [3]: https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/video
   [4]: https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Media_events
   [5]: /demos/2018-07-28-video-player-demo.html
-  [6]: /img/qrCode/audio-player.png
+  [6]: /img/qrCode/video-player.png
   [7]: https://x5.tencent.com/tbs/guide/video.html
 
 
