@@ -58,7 +58,7 @@ tags:
 
 手机扫描二维码：
 
-![audio-player][6]
+![video-player][6]
 
 
   [1]: https://github.com/xiaohuazheng/videoplayer
