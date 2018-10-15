@@ -97,28 +97,28 @@ if (window.speechSynthesis) {
 }
 
 function playit() {
-    const init = new SpeechSynthesisUtterance();
-    let voices = window.speechSynthesis.getVoices();  // 必须先调用一次，第二次用户行为才能成功调用
-    let voiceIdx = 1; // 声音索引 - getVoices() 获取的列表
+    var init = new SpeechSynthesisUtterance();
+    var voices = window.speechSynthesis.getVoices();  // 必须先调用一次，第二次用户行为才能成功调用
+    var voiceIdx = 1; // 声音索引 - getVoices() 获取的列表
     
     // test code
-    // let tryCount = 10;
-    // for (let i = 0; i < tryCount; i++) {
+    // var tryCount = 10;
+    // for (var i = 0; i < tryCount; i++) {
         
     //     voices = window.speechSynthesis.getVoices();
     //     console.log(voices);   
     // }
 
-    $('.range-rate').change(() => {
+    $('.range-rate').change(function() {
         $('.rate-val').text($(this).val());
     });
-    $('.range-pitch').change(() => {
+    $('.range-pitch').change(function() {
         $('.pitch-val').text($(this).val());
     });
-    $('.range-volume').change(() => {
+    $('.range-volume').change(function() {
         $('.volume-val').text($(this).val());
     });
-    $('.speech-voice').click(() => {
+    $('.speech-voice').click(function() {
         if (voices.length) {
             $('#voices-field').show();
             return;
@@ -127,28 +127,28 @@ function playit() {
         renderVoices(voices);
         $('#voices-field').show();
     });
-    $(document).on('click', '.v-item', () => {
-        let $this = $(this);
+    $(document).on('click', '.v-item', function() {
+        var $this = $(this);
         voiceIdx = $this.index();
         $('.speech-voice span').text($this.text());
         $('#voices-field').hide();
     });
 
-    $('.cancel').click(() => {
+    $('.cancel').click(function() {
         window.speechSynthesis.cancel();
     });
-    $('.pause').click(() => {
+    $('.pause').click(function() {
         window.speechSynthesis.pause();
     });
-    $('.resume').click(() => {
+    $('.resume').click(function() {
         window.speechSynthesis.resume();
     });
 
-    $('.speak').click(() => {
+    $('.speak').click(function() {
         window.speechSynthesis.cancel(); // 先取消掉之前的语音
 
-        let txt = $('.txt-in').val();
-        let ssu = new SpeechSynthesisUtterance();
+        var txt = $('.txt-in').val();
+        var ssu = new SpeechSynthesisUtterance();
         ssu.text = txt;
 
         voices = window.speechSynthesis.getVoices() || [];
@@ -164,25 +164,25 @@ function playit() {
         ssu.pitch = $('.range-pitch').val();
         
         
-        ssu.onboundary = () => {
+        ssu.onboundary = function() {
             console.log('onboundary');
         }
-        ssu.onerror = () => {
+        ssu.onerror = function() {
             console.log('onerror');
         }
-        ssu.onpause = () => {
+        ssu.onpause = function() {
             console.log('onpause');
         }
-        ssu.onresume = () => {
+        ssu.onresume = function() {
             console.log('onresume');
         }
-        ssu.onstart = () => {
+        ssu.onstart = function() {
             console.log('onstart');
         }
-        ssu.onmark = () => {
+        ssu.onmark = function() {
             console.log('onmark');
         }
-        ssu.onend = e => {
+        ssu.onend = function(e) {
             console.log(`elapsed time： ${e.elapsedTime} ms`); // speak 到 cancel/end 的时间
         }
 
@@ -191,8 +191,8 @@ function playit() {
 }
 
 function renderVoices(data) {
-    let htmlStr = '';
-    for(let one of data) {
+    var htmlStr = '';
+    for(var one of data) {
         htmlStr += `<li class="v-item">voiceURI: ${one.voiceURI} / name: ${one.name} / lang: ${one.lang}</li>`;
     }
     $('#voices-box').html(htmlStr);
