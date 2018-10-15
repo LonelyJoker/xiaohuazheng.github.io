@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<meta HTTP-EQUIV="Pragma" CONTENT="no-cache"/>
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache"/>
+<meta HTTP-EQUIV="Expires" CONTENT="0"/>
+<meta http-equiv="x-dns-prefetch-control" content="on"/>
+<meta name="description" content="Web Speech语音说话">
+<meta name="keywords"  content="Web Speech">
+<meta name="author" content="Xzavier">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<link rel="Shortcut Icon" href="https://xiaohuazheng.github.io/img/favicon.ico"/>
+<title>Web Speech</title>
+<style type="text/css">
+    ul,li {
+        list-style: none;
+    }
+    .container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    .container h2 {
+        text-align: center;
+    }
+    .demo-box {
+        padding: 20px 10%;
+    }
+    .txt-in {
+        width: 100%;
+        height: 60px;
+        font-size: 16px;
+        resize: none;
+        border: 1px solid #ddd;
+    }
+    .demo-box button {
+        background: #096;
+    }
+    .num-val {
+        display: inline-block;
+        width: 30px;
+    }
+    .v-item {
+        cursor: pointer;
+        border-bottom: 1px solid #ddd;
+    }
+</style>
+</head>
+<body>
+ 
+<div class="container">
+    <h2>Web Speech</h2>
+    <div class="demo-box">
+        <textarea class="txt-in" placeholder="foucus here">I know how to find the answer, and I'll find the answer.</textarea>
+        <fieldset>
+            <legend>Speech Settings</legend>
+
+            <label for="rate">语速———当前值：<span class="num-val rate-val">1</span></label>
+            <input type="range" class="range-rate" name="rate" min="0.1" max="10" value="1" step="0.1" />
+            
+            <br>
+
+            <label for="pitch">音高———当前值：<span class="num-val pitch-val">0</span></label>
+            <input type="range" class="range-pitch" name="pitch" min="0" max="2" value="0" step="0.1" />
+
+            <br>
+
+            <label for="volume">音量———当前值：<span class="num-val volume-val">0</span></label>
+            <input type="range" class="range-volume" name="volume" min="0" max="1" value="1" step="0.1" />
+            
+            <br>
+
+            <div class="speech-voice"><button>声音</button> : <span>voiceURI: Alex / name: Alex / lang: en-US</span></div>
+        </fieldset>
+
+        <button class="speak">Speak</button>
+        <button class="pause">Pause</button>
+        <button class="resume">Resume</button>
+        <button class="cancel">Cancel</button>
+
+        <fieldset id="voices-field" style="display: none;">
+            <legend>Speech Voices</legend>
+            <div id="voices-box"></div>
+        </fieldset>
+        
+        
+    </div>
+</div>
+
+<script src="https://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    if (!window.speechSynthesis) {
+        $('body').html(`Your browser doesn't supports speech synthesis.`);
+    }
+
+    const init = new SpeechSynthesisUtterance();
+    let voices = window.speechSynthesis.getVoices();  // 必须先调用一次，第二次用户行为才能成功调用
+    let voiceIdx = 1; // 声音索引 - getVoices() 获取的列表
+    
+    // test code
+    // let tryCount = 10;
+    // for (let i = 0; i < tryCount; i++) {
+        
+    //     voices = window.speechSynthesis.getVoices();
+    //     console.log(voices);   
+    // }
+
+    $('.range-rate').change(() => {
+        $('.rate-val').text($(this).val());
+    });
+    $('.range-pitch').change(() => {
+        $('.pitch-val').text($(this).val());
+    });
+    $('.range-volume').change(() => {
+        $('.volume-val').text($(this).val());
+    });
+    $('.speech-voice').click(() => {
+        if (voices.length) {
+            $('#voices-field').show();
+            return;
+        }
+        voices = window.speechSynthesis.getVoices() || [];
+        renderVoices(voices);
+        $('#voices-field').show();
+    });
+    $(document).on('click', '.v-item', () => {
+        let $this = $(this);
+        voiceIdx = $this.index();
+        $('.speech-voice span').text($this.text());
+        $('#voices-field').hide();
+    });
+
+    $('.cancel').click(() => {
+        window.speechSynthesis.cancel();
+    });
+    $('.pause').click(() => {
+        window.speechSynthesis.pause();
+    });
+    $('.resume').click(() => {
+        window.speechSynthesis.resume();
+    });
+
+    $('.speak').click(() => {
+        window.speechSynthesis.cancel(); // 先取消掉之前的语音
+
+        let txt = $('.txt-in').val();
+        let ssu = new SpeechSynthesisUtterance();
+        ssu.text = txt;
+
+        voices = window.speechSynthesis.getVoices() || [];
+        renderVoices(voices);
+        
+        if (/[\u4e00-\u9fa5]/.test(txt)) {
+            voiceIdx = 0; // 如果是中文用第一个，猜测每个地区返回的voices列表不一
+        }
+        ssu.voice = voices[voiceIdx];
+
+        ssu.volume = $('.range-volume').val();
+        ssu.rate = $('.range-rate').val();
+        ssu.pitch = $('.range-pitch').val();
+        
+        
+        ssu.onboundary = () => {
+            console.log('onboundary');
+        }
+        ssu.onerror = () => {
+            console.log('onerror');
+        }
+        ssu.onpause = () => {
+            console.log('onpause');
+        }
+        ssu.onresume = () => {
+            console.log('onresume');
+        }
+        ssu.onstart = () => {
+            console.log('onstart');
+        }
+        ssu.onmark = () => {
+            console.log('onmark');
+        }
+        ssu.onend = e => {
+            console.log(`elapsed time： ${e.elapsedTime} ms`); // speak 到 cancel/end 的时间
+        }
+
+        window.speechSynthesis.speak(ssu);
+    });
+
+    function renderVoices(data) {
+        let htmlStr = '';
+        for(let one of data) {
+            htmlStr += `<li class="v-item">voiceURI: ${one.voiceURI} / name: ${one.name} / lang: ${one.lang}</li>`;
+        }
+        $('#voices-box').html(htmlStr);
+    }
+</script>
+</body>
+</html>
