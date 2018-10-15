@@ -60,17 +60,9 @@ tags:
 
 [Demo][1]
 
-二维码：
-
-![SpeechSynthesis][2]
-
 #### 语音识别
 
 [Demo][3]
-
-二维码：
-
-![SpeechRecognition][4]
 
 ### SpeechSynthesisUtterance
 
