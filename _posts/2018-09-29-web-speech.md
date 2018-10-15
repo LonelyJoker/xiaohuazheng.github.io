@@ -64,6 +64,8 @@ tags:
 
 [Demo][3]
 
+需要翻墙哟。
+
 ### SpeechSynthesisUtterance
 
 用于合成语音的接口。
@@ -285,6 +287,7 @@ Fired when the speech recognition service returns a result — a word or phrase 
         ..
     }
 
+目前需要翻墙才能触发这个收到结果。
 
 #### Methods
 
