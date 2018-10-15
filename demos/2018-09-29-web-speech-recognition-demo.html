@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<meta HTTP-EQUIV="Pragma" CONTENT="no-cache"/>
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache"/>
+<meta HTTP-EQUIV="Expires" CONTENT="0"/>
+<meta http-equiv="x-dns-prefetch-control" content="on"/>
+<meta name="description" content="Web Speech Recognition 语音识别">
+<meta name="keywords"  content="Web Speech Recognition">
+<meta name="author" content="Xzavier">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<link rel="Shortcut Icon" href="https://xiaohuazheng.github.io/img/favicon.ico"/>
+<title>Web SpeechRecognition</title>
+<style>
+* {
+    font-family: Verdana, Arial, sans-serif;
+}
+
+.center {
+    padding: 10px;
+    text-align: center;
+}
+
+.final {
+    color: black;
+    padding-right: 3px;
+}
+
+.interim {
+    color: gray;
+}
+
+.right {
+    float: right;
+}
+
+#headinfo {
+    font-size: 32px;
+    font-weight: 300;
+}
+
+#results {
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: left;
+    min-height: 150px;
+}
+
+#start_button {
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    outline:none;
+}
+</style>
+<div class="container">
+    <h1 class="center" id="headinfo">SpeechRecognition</h1>
+    <div class="right">
+        <button id="start_button" onclick="startButton(event)">
+            <img alt="Start" id="start_img" src="https://xiaohuazheng.github.io/demos/img/recordstart.gif">
+        </button>
+    </div>
+    <div id="results">
+        <span id="final_span" class="final"></span>
+        <span id="interim_span" class="interim"></span>
+    </div>
+    <div class="center">
+        <select id="select_language" onchange="updateCountry()"></select>
+        &nbsp;&nbsp;
+        <select id="select_dialect"></select>
+    </div>
+</div>
+<script>
+var langs =
+    [
+        ['Afrikaans', ['af-ZA']],
+        ['Bahasa Indonesia', ['id-ID']],
+        ['Bahasa Melayu', ['ms-MY']],
+        ['Català', ['ca-ES']],
+        ['Čeština', ['cs-CZ']],
+        ['Deutsch', ['de-DE']],
+        ['English', ['en-AU', 'Australia'],
+            ['en-CA', 'Canada'],
+            ['en-IN', 'India'],
+            ['en-NZ', 'New Zealand'],
+            ['en-ZA', 'South Africa'],
+            ['en-GB', 'United Kingdom'],
+            ['en-US', 'United States']
+        ],
+        ['Español', ['es-AR', 'Argentina'],
+            ['es-BO', 'Bolivia'],
+            ['es-CL', 'Chile'],
+            ['es-CO', 'Colombia'],
+            ['es-CR', 'Costa Rica'],
+            ['es-EC', 'Ecuador'],
+            ['es-SV', 'El Salvador'],
+            ['es-ES', 'España'],
+            ['es-US', 'Estados Unidos'],
+            ['es-GT', 'Guatemala'],
+            ['es-HN', 'Honduras'],
+            ['es-MX', 'México'],
+            ['es-NI', 'Nicaragua'],
+            ['es-PA', 'Panamá'],
+            ['es-PY', 'Paraguay'],
+            ['es-PE', 'Perú'],
+            ['es-PR', 'Puerto Rico'],
+            ['es-DO', 'República Dominicana'],
+            ['es-UY', 'Uruguay'],
+            ['es-VE', 'Venezuela']
+        ],
+        ['Euskara', ['eu-ES']],
+        ['Français', ['fr-FR']],
+        ['Galego', ['gl-ES']],
+        ['Hrvatski', ['hr_HR']],
+        ['IsiZulu', ['zu-ZA']],
+        ['Íslenska', ['is-IS']],
+        ['Italiano', ['it-IT', 'Italia'],
+            ['it-CH', 'Svizzera']
+        ],
+        ['Magyar', ['hu-HU']],
+        ['Nederlands', ['nl-NL']],
+        ['Norsk bokmål', ['nb-NO']],
+        ['Polski', ['pl-PL']],
+        ['Português', ['pt-BR', 'Brasil'],
+            ['pt-PT', 'Portugal']
+        ],
+        ['Română', ['ro-RO']],
+        ['Slovenčina', ['sk-SK']],
+        ['Suomi', ['fi-FI']],
+        ['Svenska', ['sv-SE']],
+        ['Türkçe', ['tr-TR']],
+        ['български', ['bg-BG']],
+        ['Pусский', ['ru-RU']],
+        ['Српски', ['sr-RS']],
+        ['한국어', ['ko-KR']],
+        ['中文', ['cmn-Hans-CN', '普通话 (中国大陆)'],
+            ['cmn-Hans-HK', '普通话 (香港)'],
+            ['cmn-Hant-TW', '中文 (台灣)'],
+            ['yue-Hant-HK', '粵語 (香港)']
+        ],
+        ['日本語', ['ja-JP']],
+        ['Lingua latīna', ['la']]
+    ];
+
+var startGif = 'https://xiaohuazheng.github.io/demos/img/recordstart.gif';
+var recordingGif = 'https://xiaohuazheng.github.io/demos/img/recording.gif';
+
+for (var i = 0; i < langs.length; i++) {
+    select_language.options[i] = new Option(langs[i][0], i);
+}
+
+select_language.selectedIndex = 6;  // 默认选中英文为识别语言
+updateCountry();
+select_dialect.selectedIndex = 6;
+
+var wSR;
+var final_transcript = '';  // 最后识别的结果
+var recognizing = false;  // 识别中
+var start_timestamp;
+
+if (!('webkitSpeechRecognition' in window)) {
+    start_button.style.visibility = 'hidden';
+    showInfo('Web Speech API is not supported by this browser.');
+} else {
+    start_button.style.display = 'inline-block';
+    wSR = new webkitSpeechRecognition();
+    wSR.continuous = true;  // 设定连续识别模式
+    wSR.interimResults = true;  // 设定输出中间结果
+
+    wSR.onstart = function() {
+        recognizing = true;
+        showInfo('Speak now.');
+        start_img.src = recordingGif;
+        console.log('onstart');
+    };
+
+    wSR.onerror = function(event) {
+        start_img.src = startGif;
+        console.log('onerror:' + event.error);
+    };
+
+    wSR.onend = function() {
+        recognizing = false;
+        console.log('onend');
+        start_img.src = startGif;
+        showInfo('');
+    };
+
+    wSR.onresult = function(event) {
+        var interim_transcript = '';
+        for (var i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+                final_transcript += event.results[i][0].transcript;
+            } else {
+                interim_transcript += event.results[i][0].transcript;
+            }
+        }
+        final_transcript = capitalize(final_transcript);
+        final_span.innerHTML = linebreak(final_transcript);
+        interim_span.innerHTML = linebreak(interim_transcript);
+    };
+
+    wSR.onaudiostart = function() {
+        console.log('onaudiostart');
+    };
+    wSR.onaudioend = function() {
+        console.log('onaudioend');
+    };
+    wSR.onsoundstart = function() {
+        console.log('onsoundstart');
+    };
+    wSR.onsoundend = function() {
+        console.log('onsoundend');
+    };
+    wSR.onspeechstart = function() {
+        console.log('onspeechstart');
+    };
+    wSR.onspeechend = function() {
+        console.log('onspeechend');
+    };
+    wSR.onnomatch = function() {
+        console.log('onnomatch');
+    };
+}
+
+
+function linebreak(s) {
+    return s.replace(/\n\n/g, '<p></p>').replace(/\n/g, '<br>');
+}
+
+function capitalize(s) {
+    return s.replace(/\S/, function(m) {
+        return m.toUpperCase();
+    });
+}
+
+function startButton(event) {
+    if (recognizing) {
+        wSR.stop();
+        return;
+    }
+    final_transcript = '';
+    wSR.lang = select_dialect.value;
+    wSR.start();
+    final_span.innerHTML = '';
+    interim_span.innerHTML = '';
+    showInfo('Click "Allow"');
+    start_timestamp = event.timeStamp;
+}
+
+function updateCountry() {
+    for (var i = select_dialect.options.length - 1; i >= 0; i--) {
+        select_dialect.remove(i);
+    }
+    var list = langs[select_language.selectedIndex];
+    for (var i = 1; i < list.length; i++) {
+        select_dialect.options.add(new Option(list[i][1], list[i][0]));
+    }
+    select_dialect.style.visibility = list[1].length === 1 ? 'hidden' : 'visible';
+}
+
+function showInfo(s) {
+    if (!s) {
+        headinfo.innerHTML = 'SpeechRecognition';
+        return;
+    }
+    headinfo.innerHTML = s;
+}
+
+</script>

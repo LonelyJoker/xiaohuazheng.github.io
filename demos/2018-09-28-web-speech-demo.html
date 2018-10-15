@@ -90,10 +90,13 @@
 
 <script src="https://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
-    if (!window.speechSynthesis) {
-        $('body').html(`Your browser doesn't supports speech synthesis.`);
-    }
+if (window.speechSynthesis) {
+    playit();
+} else {
+    $('body').html(`Your browser doesn't supports speech synthesis.`);
+}
 
+function playit() {
     const init = new SpeechSynthesisUtterance();
     let voices = window.speechSynthesis.getVoices();  // 必须先调用一次，第二次用户行为才能成功调用
     let voiceIdx = 1; // 声音索引 - getVoices() 获取的列表
@@ -185,14 +188,15 @@
 
         window.speechSynthesis.speak(ssu);
     });
+}
 
-    function renderVoices(data) {
-        let htmlStr = '';
-        for(let one of data) {
-            htmlStr += `<li class="v-item">voiceURI: ${one.voiceURI} / name: ${one.name} / lang: ${one.lang}</li>`;
-        }
-        $('#voices-box').html(htmlStr);
+function renderVoices(data) {
+    let htmlStr = '';
+    for(let one of data) {
+        htmlStr += `<li class="v-item">voiceURI: ${one.voiceURI} / name: ${one.name} / lang: ${one.lang}</li>`;
     }
+    $('#voices-box').html(htmlStr);
+}
 </script>
 </body>
 </html>
