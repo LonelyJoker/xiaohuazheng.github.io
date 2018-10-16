@@ -381,6 +381,7 @@ SF内有很多高手，可以前去排行榜看看。。。
  - [微信调试的那些事][280]
  - [在线二维码图片生成器][281]
  - [Smart PNG and JPEG compression在线图片压缩][282]
+ - [imagecompressor][362]
  - [easyicon 图标下载][283]
  - [Icon Hover Effects][284]
  - [easy-mock][361]
@@ -736,4 +737,5 @@ SF内有很多高手，可以前去排行榜看看。。。
   [313]: https://segmentfault.com/a/1190000004569460
   [360]: https://docschina.org/ 
   [361]: https://easy-mock.com/
+  [362]: https://www.websiteplanet.com/zh-hans/webtools/imagecompressor/
 
