@@ -60,11 +60,23 @@ tags:
 
 [Demo][1]
 
+二维码：
+
+![vSpeechSynthesis][2]
+
+Android支持不友好，IOS微信扫码或者Safari打开测试可行。
+
 #### 语音识别
 
 [Demo][3]
 
-需要翻墙哟。
+二维码：
+
+![SpeechRecognition][4]
+
+Android支持不友好，IOS暂不支持。
+
+PC测试需要翻墙哟，短期内手机端支持了应该也需要翻墙。不翻墙无法获取到识别结果。
 
 ### SpeechSynthesisUtterance
 
