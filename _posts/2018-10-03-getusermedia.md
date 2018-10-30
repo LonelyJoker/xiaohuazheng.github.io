@@ -247,6 +247,17 @@ constraints 参数是一个包含了video 和 audio两个成员的MediaStreamCon
 
 [CSS3 filter][8]
 
+#### 手机前后摄像头
+
+用手机模式打开，PC打开为Demo1.
+
+[Demo][9]
+
+二维码：
+
+![filter][10]
+
+
 ### 历史
 
 在做web前端中，我们发现，需要获取用户设备时，对web前端总是很艰难。基本上都是交给APP前端去做。
@@ -310,10 +321,10 @@ navigator.permissions 下有个query方法可以查询。
 
 
 
-[参考：getusermedia intro][9]
+[参考：getusermedia intro][11]
 
 
-[参考：Web Speech API][10]
+[参考：Web Speech API][12]
 
   [1]: https://developer.mozilla.org/zh-CN/docs/Web/API/MediaDevices/getUserMedia
   [2]: /demos/2018-10-03-getusermedia-demo.html?idx=1
@@ -323,7 +334,9 @@ navigator.permissions 下有个query方法可以查询。
   [6]: /demos/2018-10-03-getusermedia-demo.html?idx=3
   [7]: /img/qrCode/getusermedia-demo3.png
   [8]: https://developer.mozilla.org/zh-CN/docs/Web/CSS/filter
-  [9]: https://www.html5rocks.com/en/tutorials/getusermedia/intro/
-  [10]: https://dvcs.w3.org/hg/speech-api/raw-file/9a0075d25326/speechapi.html
+  [9]: /demos/2018-10-03-getusermedia-demo.html?idx=4
+  [10]: /img/qrCode/getusermedia-demo4.png
+  [11]: https://www.html5rocks.com/en/tutorials/getusermedia/intro/
+  [12]: https://dvcs.w3.org/hg/speech-api/raw-file/9a0075d25326/speechapi.html
 
 
