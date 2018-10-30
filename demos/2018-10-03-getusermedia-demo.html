@@ -287,10 +287,10 @@ function initDemo3() {
 
 
 function initDemo4() {
-    document.querySelector('.container').innerHTML = '<div id="demo4" style="text-align:center;"><video></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="toggle-button">切换镜头</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p></div>';
+    document.querySelector('.container').innerHTML = '<div id="demo4" style="text-align:center;"><video></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="toggle-button">user</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p></div>';
     
     let faceUser = true;
-    let constraints = { video: { facingMode: 'user' } };
+    let constraints = { audio: false, video: { facingMode: 'user' } };
 
     const video = document.querySelector('#demo4 video');
     const captureBtn = document.querySelector('#demo4 .capture-button');
@@ -298,7 +298,6 @@ function initDemo4() {
     const toggleBtn = document.querySelector('#demo4 .toggle-button');
 
     function getMedia() {
-        console.log(constraints);
         navigator.mediaDevices.getUserMedia(constraints).
         then(function(mediaStram) {
             localMediaStream = mediaStram;
@@ -323,9 +322,11 @@ function initDemo4() {
 
     toggleBtn.onclick = function() {
         if (faceUser) {
-            constraints = { video: { facingMode: 'environment' } };
+            toggleBtn.innerHTML = 'environment';
+            constraints = { audio: false, video: { facingMode: 'environment' } };
         } else {
-            constraints = { video: { facingMode: 'user' } };
+            toggleBtn.innerHTML = 'user';
+            constraints = { audio: false, video: { facingMode: 'user' } };
         }
         
         getMedia();
