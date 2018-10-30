@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<meta HTTP-EQUIV="Pragma" CONTENT="no-cache"/>
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache"/>
+<meta HTTP-EQUIV="Expires" CONTENT="0"/>
+<meta http-equiv="x-dns-prefetch-control" content="on"/>
+<meta name="description" content="Capturing Audio Video in HTML5">
+<meta name="keywords"  content="navigator.mediaDevices.getUserMedia">
+<meta name="author" content="Xzavier">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<link rel="Shortcut Icon" href="https://xiaohuazheng.github.io/img/favicon.ico"/>
+<title>navigator.mediaDevices.getUserMedia</title>
+<style>
+* {
+    font-family: Verdana, Arial, sans-serif;
+}
+
+
+video, img {
+    width: 320px;
+    height: 240px;
+    margin: 0 auto;
+    display: block;
+}
+
+video {
+    border: 1px solid #ccc;
+}
+
+canvas {
+    margin: 0 auto;
+    display: block;
+    border: 1px solid #ccc;
+}
+
+button {
+    background: #333;
+    color: #fff;
+    border-radius: 4px;
+    border: 0;
+    padding: 10px 14px;
+    outline:none;
+}
+
+.blur {
+  -webkit-filter: blur(3px);
+  -moz-filter: blur(3px);
+  -o-filter: blur(3px);
+  -ms-filter: blur(3px);
+  filter: blur(3px);
+}
+
+.brightness {
+  -webkit-filter: brightness(5);
+  -moz-filter: brightness(5);
+  -o-filter: brightness(5);
+  -ms-filter: brightness(5);
+  filter: brightness(5);
+}
+
+.contrast {
+  -webkit-filter: contrast(8);
+  -moz-filter: contrast(8);
+  -o-filter: contrast(8);
+  -ms-filter: contrast(8);
+  filter: contrast(8);
+}
+
+.hue-rotate {
+  -webkit-filter: hue-rotate(90deg);
+  -moz-filter: hue-rotate(90deg);
+  -o-filter: hue-rotate(90deg);
+  -ms-filter: hue-rotate(90deg);
+  filter: hue-rotate(90deg);
+}
+
+.hue-rotate2 {
+  -webkit-filter: hue-rotate(180deg);
+  -moz-filter: hue-rotate(180deg);
+  -o-filter: hue-rotate(180deg);
+  -ms-filter: hue-rotate(180deg);
+  filter: hue-rotate(180deg);
+}
+
+.hue-rotate3 {
+  -webkit-filter: hue-rotate(270deg);
+  -moz-filter: hue-rotate(270deg);
+  -o-filter: hue-rotate(270deg);
+  -ms-filter: hue-rotate(270deg);
+  filter: hue-rotate(270deg);
+}
+
+.saturate {
+  -webkit-filter: saturate(10);
+  -moz-filter: saturate(10);
+  -o-filter: saturate(10);
+  -ms-filter: saturate(10);
+  filter: saturate(10);
+}
+
+.grayscale {
+  -webkit-filter: grayscale(1);
+  -moz-filter: grayscale(1);
+  -o-filter: grayscale(1);
+  -ms-filter: grayscale(1);
+  filter: grayscale(1);
+}
+
+.sepia {
+  -webkit-filter: sepia(1);
+  -moz-filter: sepia(1);
+  -o-filter: sepia(1);
+  -ms-filter: sepia(1);
+  filter: sepia(1);
+}
+
+.invert {
+  -webkit-filter: invert(1);
+  -moz-filter: invert(1);
+  -o-filter: invert(1);
+  -ms-filter: invert(1);
+  filter: invert(1);
+}
+
+</style>
+<div class="container"></div>
+<script>
+
+(function getQueryParams() {
+    location.query = {};
+    var url = location.search.replace(/^\?+/, '');
+    if (!url) {
+        return;
+    }
+    
+    url.split('&').forEach(function (a) {
+        var i = a.indexOf('=');
+        if (i === -1) {
+            location.query[null] = a;
+        } else {
+            location.query[a.substr(0, i)] = decodeURIComponent(a.substr(i + 1));
+        }
+    });
+})();
+
+if (location.query.idx === '3') {
+    initDemo3();
+} else if (location.query.idx === '2') {
+    initDemo2();
+} else {
+    initDemo1();
+}
+
+function initDemo1() {
+    document.querySelector('.container').innerHTML = '<div id="demo1" style="text-align:center;"><video></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p></div>';
+
+    const constraints = { video: true };
+
+    const video = document.querySelector('#demo1 video');
+    const captureBtn = document.querySelector('#demo1 .capture-button');
+    const stopBtn = document.querySelector('#demo1 .stop-button');
+    let localMediaStream;
+
+    captureBtn.onclick = function() {
+        navigator.mediaDevices.getUserMedia(constraints).
+        then(function(mediaStram) {
+            localMediaStream = mediaStram;
+            video.srcObject = mediaStram;
+
+            video.onloadedmetadata = function(e) {
+                video.play();
+            }
+            stopBtn.disabled = false;
+        }).catch(handleError);
+    };
+
+    stopBtn.onclick = function() {
+        video.pause();
+        localMediaStream.getTracks()[0].stop();
+        stopBtn.disabled = true;
+    };
+}
+
+
+function initDemo2() {
+    document.querySelector('.container').innerHTML = '<div id="demo2" style="text-align:center;"><video></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="screenshot-button" disabled>截屏</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p><p>canvas:</p><canvas id="canvas" width="320" height="240"></canvas><p>img:</p><img></div>';
+
+    const constraints = { video: true };
+
+    const video = document.querySelector('#demo2 video');
+    const captureBtn = document.querySelector('#demo2 .capture-button');
+    const shotBtn = document.querySelector('#demo2 .screenshot-button');
+    const stopBtn = document.querySelector('#demo2 .stop-button');
+    const img = document.querySelector('#demo2 img');
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+
+    captureBtn.onclick = function() {
+        navigator.mediaDevices.getUserMedia(constraints).
+        then(function(mediaStram) {
+            localMediaStream = mediaStram;
+            video.srcObject = mediaStram;
+
+            video.onloadedmetadata = function(e) {
+                video.play();
+            }
+            shotBtn.disabled = false;
+            stopBtn.disabled = false;
+        }).catch(handleError);
+    }
+
+    shotBtn.onclick = function() {
+        context.drawImage(video, 0, 0, 320, 240);
+        img.src = canvas.toDataURL('image/webp');
+    }
+
+    stopBtn.onclick = function() {
+        video.pause();
+        localMediaStream.getTracks()[0].stop();
+        shotBtn.disabled = true;
+        stopBtn.disabled = true;
+    }
+}
+
+function initDemo3() {
+    document.querySelector('.container').innerHTML = '<div id="demo3" style="text-align:center;"><video></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="filter-button">添加滤镜</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p></div>';
+
+    const constraints = { video: true };
+
+    const video = document.querySelector('#demo3 video');
+    const captureBtn = document.querySelector('#demo3 .capture-button');
+    const stopBtn = document.querySelector('#demo3 .stop-button');
+    const filterBtn = document.querySelector('#demo3 .filter-button');
+    const filters = [
+        'grayscale',
+        'sepia',
+        'blur',
+        'brightness',
+        'contrast',
+        'hue-rotate',
+        'hue-rotate2',
+        'hue-rotate3',
+        'saturate',
+        'invert',
+        ''
+    ];
+    let filterIndex = 0;
+
+    captureBtn.onclick = function() {
+        navigator.mediaDevices.getUserMedia(constraints).
+        then(function(mediaStram) {
+            localMediaStream = mediaStram;
+            video.srcObject = mediaStram;
+
+            video.onloadedmetadata = function(e) {
+                video.play();
+            }
+            stopBtn.disabled = false;
+        }).catch(handleError);
+    }
+
+    stopBtn.onclick = function() {
+        video.pause();
+        localMediaStream.getTracks()[0].stop();
+        stopBtn.disabled = true;
+    }
+
+    filterBtn.onclick = function() {
+        video.className = filters[filterIndex++ % filters.length];
+    }
+}
+
+
+function handleError(error) {
+    console.error('navigator.mediaDevices.getUserMedia error: ', error);
+}
+
+</script>
