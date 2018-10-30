@@ -291,6 +291,7 @@ function initDemo4() {
     
     let faceUser = true;
     let constraints = { audio: false, video: { facingMode: 'user' } };
+    let deviceInfos = [];
 
     const video = document.querySelector('#demo4 video');
     const captureBtn = document.querySelector('#demo4 .capture-button');
@@ -298,6 +299,7 @@ function initDemo4() {
     const toggleBtn = document.querySelector('#demo4 .toggle-button');
 
     function getMedia() {
+        console.log(constraints)
         navigator.mediaDevices.getUserMedia(constraints).
         then(function(mediaStram) {
             localMediaStream = mediaStram;
@@ -338,16 +340,27 @@ function initDemo4() {
         if (!(infos && infos.length)) {
             return;
         }
+
+        deviceInfos = infos;
+
         var str = '<p style="font-weight: bold;">enumerateDevices:</p>';
         for (var i = 0; i < infos.length; i++) {
             str += '<p>'+ infos[i].kind +'&nbsp;&nbsp;'+ infos[i].label + '</p>';
         }
         str += '<p style="font-weight: bold;">deviceIds:</p>';
         for (var i = 0; i < infos.length; i++) {
-            str += '<p style="word-break: break-all;">'+ infos[i].deviceId +'</p>';
+            str += '<p class="device-id" style="word-break: break-all;">'+ infos[i].deviceId +'</p>';
         }
         document.querySelector('#demo4 .device-info').innerHTML = str;
-    })
+    });
+
+    document.querySelector('#demo4 .device-info').onclick = function(e) {
+        if (e.target.classList && e.target.classList[0] === 'device-id') {
+            constraints = { audio: false, video: { deviceId: { exact: e.target.innerText } } };
+            toggleBtn.innerHTML = '设备ID';
+            getMedia();
+        }
+    }
 }
 
 

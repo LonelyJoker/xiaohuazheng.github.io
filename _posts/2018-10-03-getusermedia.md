@@ -255,7 +255,7 @@ constraints 参数是一个包含了video 和 audio两个成员的MediaStreamCon
 
 二维码：
 
-![filter][10]
+![facingMode][10]
 
 
 ### 历史
