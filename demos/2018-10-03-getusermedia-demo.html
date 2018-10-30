@@ -279,6 +279,7 @@ function initDemo3() {
 
 
 function handleError(error) {
+    document.querySelector('.container').innerHTML = '<h3>Error</h3><p>' + error + '</p>';
     console.error('navigator.mediaDevices.getUserMedia error: ', error);
 }
 
