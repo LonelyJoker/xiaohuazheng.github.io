@@ -287,7 +287,7 @@ function initDemo3() {
 
 
 function initDemo4() {
-    document.querySelector('.container').innerHTML = '<div id="demo4" style="text-align:center;"><video></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p><p><div class="select"><label for="audioSource">Audio source: </label><select id="audioSource"></select></div><div class="select"><label for="videoSource">Video source: </label><select id="videoSource"></select></div></p><p class="device-info"></p></div>';
+    document.querySelector('.container').innerHTML = '<div id="demo4" style="text-align:center;"><video muted autoplay></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p><p><div class="select"><label for="audioSource">Audio source: </label><select id="audioSource"></select></div><div class="select"><label for="videoSource">Video source: </label><select id="videoSource"></select></div></p><p class="device-info"></p></div>';
     
     var faceUser = true;
     var constraints = { audio: false, video: { facingMode: 'user' } };
@@ -310,13 +310,13 @@ function initDemo4() {
             video.srcObject = mediaStram;
 
             if (!!ua.match(/iphone/i)) {
-                document.body.addEventListener('click', function() {
-                    video.play();
-                });
-            } else {
-                video.onloadedmetadata = function(e) {
+                video.onclick = function() {
                     video.play();
                 }
+            }
+
+            video.onloadedmetadata = function(e) {
+                video.play();
             }
                 
             stopBtn.disabled = false;
