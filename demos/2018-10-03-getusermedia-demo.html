@@ -287,7 +287,7 @@ function initDemo3() {
 
 
 function initDemo4() {
-    document.querySelector('.container').innerHTML = '<div id="demo4" style="text-align:center;"><video></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="toggle-button">user</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p></div>';
+    document.querySelector('.container').innerHTML = '<div id="demo4" style="text-align:center;"><video></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="toggle-button">前置</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p><p class="device-info"></p></div>';
     
     let faceUser = true;
     let constraints = { audio: false, video: { facingMode: 'user' } };
@@ -322,16 +322,25 @@ function initDemo4() {
 
     toggleBtn.onclick = function() {
         if (faceUser) {
-            toggleBtn.innerHTML = 'environment';
+            toggleBtn.innerHTML = '后置';
             constraints = { audio: false, video: { facingMode: 'environment' } };
         } else {
-            toggleBtn.innerHTML = 'user';
+            toggleBtn.innerHTML = '前置';
             constraints = { audio: false, video: { facingMode: 'user' } };
         }
         
         getMedia();
         faceUser = !faceUser;
     }
+
+    navigator.mediaDevices.enumerateDevices()
+    .then(function(infos) {
+        var str = '<p>enumerateDevices:</p>';
+        for (var i = 0; i < infos.length; i++) {
+            str += '<p>'+ infos[i].kind +'</p>';
+        }
+        document.querySelector('#demo4 .device-info').innerHTML = str;
+    })
 }
 
 
