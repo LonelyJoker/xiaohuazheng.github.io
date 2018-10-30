@@ -169,12 +169,12 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 function initDemo1() {
     document.querySelector('.container').innerHTML = '<div id="demo1" style="text-align:center;"><video></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p></div>';
 
-    const constraints = { video: true };
+    var constraints = { video: true };
 
-    const video = document.querySelector('#demo1 video');
-    const captureBtn = document.querySelector('#demo1 .capture-button');
-    const stopBtn = document.querySelector('#demo1 .stop-button');
-    let localMediaStream;
+    var video = document.querySelector('#demo1 video');
+    var captureBtn = document.querySelector('#demo1 .capture-button');
+    var stopBtn = document.querySelector('#demo1 .stop-button');
+    var localMediaStream;
 
     captureBtn.onclick = function() {
         navigator.mediaDevices.getUserMedia(constraints).
@@ -200,15 +200,15 @@ function initDemo1() {
 function initDemo2() {
     document.querySelector('.container').innerHTML = '<div id="demo2" style="text-align:center;"><video></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="screenshot-button" disabled>截屏</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p><p>canvas:</p><canvas id="canvas" width="320" height="240"></canvas><p>img:</p><img></div>';
 
-    const constraints = { video: true };
+    var constraints = { video: true };
 
-    const video = document.querySelector('#demo2 video');
-    const captureBtn = document.querySelector('#demo2 .capture-button');
-    const shotBtn = document.querySelector('#demo2 .screenshot-button');
-    const stopBtn = document.querySelector('#demo2 .stop-button');
-    const img = document.querySelector('#demo2 img');
-    const canvas = document.getElementById('canvas');
-    const context = canvas.getContext('2d');
+    var video = document.querySelector('#demo2 video');
+    var captureBtn = document.querySelector('#demo2 .capture-button');
+    var shotBtn = document.querySelector('#demo2 .screenshot-button');
+    var stopBtn = document.querySelector('#demo2 .stop-button');
+    var img = document.querySelector('#demo2 img');
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
 
     captureBtn.onclick = function() {
         navigator.mediaDevices.getUserMedia(constraints).
@@ -240,13 +240,13 @@ function initDemo2() {
 function initDemo3() {
     document.querySelector('.container').innerHTML = '<div id="demo3" style="text-align:center;"><video></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="filter-button">添加滤镜</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p></div>';
 
-    const constraints = { video: true };
+    var constraints = { video: true };
 
-    const video = document.querySelector('#demo3 video');
-    const captureBtn = document.querySelector('#demo3 .capture-button');
-    const stopBtn = document.querySelector('#demo3 .stop-button');
-    const filterBtn = document.querySelector('#demo3 .filter-button');
-    const filters = [
+    var video = document.querySelector('#demo3 video');
+    var captureBtn = document.querySelector('#demo3 .capture-button');
+    var stopBtn = document.querySelector('#demo3 .stop-button');
+    var filterBtn = document.querySelector('#demo3 .filter-button');
+    var filters = [
         'grayscale',
         'sepia',
         'blur',
@@ -259,7 +259,7 @@ function initDemo3() {
         'invert',
         ''
     ];
-    let filterIndex = 0;
+    var filterIndex = 0;
 
     captureBtn.onclick = function() {
         navigator.mediaDevices.getUserMedia(constraints).
@@ -289,15 +289,15 @@ function initDemo3() {
 function initDemo4() {
     document.querySelector('.container').innerHTML = '<div id="demo4" style="text-align:center;"><video></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p><p><div class="select"><label for="audioSource">Audio source: </label><select id="audioSource"></select></div><div class="select"><label for="videoSource">Video source: </label><select id="videoSource"></select></div></p><p class="device-info"></p></div>';
     
-    let faceUser = true;
-    let constraints = { audio: false, video: { facingMode: 'user' } };
+    var faceUser = true;
+    var constraints = { audio: false, video: { facingMode: 'user' } };
 
-    const video = document.querySelector('#demo4 video');
-    const captureBtn = document.querySelector('#demo4 .capture-button');
-    const stopBtn = document.querySelector('#demo4 .stop-button');
+    var video = document.querySelector('#demo4 video');
+    var captureBtn = document.querySelector('#demo4 .capture-button');
+    var stopBtn = document.querySelector('#demo4 .stop-button');
 
-    let audioSelect = document.querySelector('select#audioSource');
-    let videoSelect = document.querySelector('select#videoSource');
+    var audioSelect = document.querySelector('select#audioSource');
+    var videoSelect = document.querySelector('select#videoSource');
 
     audioSelect.onchange = getStream;
     videoSelect.onchange = getStream;
@@ -352,12 +352,12 @@ function initDemo4() {
             return;
         }
 
-        let str = '<p style="font-weight: bold;">enumerateDevices:</p>';
-        for (let i = 0; i < infos.length; i++) {
+        var str = '<p style="font-weight: bold;">enumerateDevices:</p>';
+        for (var i = 0; i < infos.length; i++) {
             str += '<p>'+ infos[i].kind +'&nbsp;&nbsp;'+ infos[i].label + '</p>';
 
-            let deviceInfo = infos[i];
-            let option = document.createElement('option');
+            var deviceInfo = infos[i];
+            var option = document.createElement('option');
 
             option.value = deviceInfo.deviceId;
             
