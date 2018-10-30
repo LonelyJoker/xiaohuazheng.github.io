@@ -335,9 +335,16 @@ function initDemo4() {
 
     navigator.mediaDevices.enumerateDevices()
     .then(function(infos) {
-        var str = '<p>enumerateDevices:</p>';
+        if (!(infos && infos.length)) {
+            return;
+        }
+        var str = '<p style="font-weight: bold;">enumerateDevices:</p>';
         for (var i = 0; i < infos.length; i++) {
-            str += '<p>'+ infos[i].kind +'</p>';
+            str += '<p>'+ infos[i].kind +'&nbsp;&nbsp;'+ infos[i].label + '</p>';
+        }
+        str += '<p style="font-weight: bold;">deviceIds:</p>';
+        for (var i = 0; i < infos.length; i++) {
+            str += '<p style="word-break: break-all;">'+ infos[i].deviceId +'</p>';
         }
         document.querySelector('#demo4 .device-info').innerHTML = str;
     })
