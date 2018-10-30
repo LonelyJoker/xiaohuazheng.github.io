@@ -304,15 +304,21 @@ function initDemo4() {
 
 
     function getMedia() {
-        console.log(constraints)
         navigator.mediaDevices.getUserMedia(constraints).
         then(function(mediaStram) {
             localMediaStream = mediaStram;
             video.srcObject = mediaStram;
 
-            video.onloadedmetadata = function(e) {
-                video.play();
+            if (!!ua.match(/iphone/i)) {
+                document.body.addEventListener('click', function() {
+                    video.play();
+                });
+            } else {
+                video.onloadedmetadata = function(e) {
+                    video.play();
+                }
             }
+                
             stopBtn.disabled = false;
         }).catch(handleError);
     }
