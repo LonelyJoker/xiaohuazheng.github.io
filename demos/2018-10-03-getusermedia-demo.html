@@ -287,16 +287,21 @@ function initDemo3() {
 
 
 function initDemo4() {
-    document.querySelector('.container').innerHTML = '<div id="demo4" style="text-align:center;"><video></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="toggle-button">前置</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p><p class="device-info"></p></div>';
+    document.querySelector('.container').innerHTML = '<div id="demo4" style="text-align:center;"><video></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p><p><div class="select"><label for="audioSource">Audio source: </label><select id="audioSource"></select></div><div class="select"><label for="videoSource">Video source: </label><select id="videoSource"></select></div></p><p class="device-info"></p></div>';
     
     let faceUser = true;
     let constraints = { audio: false, video: { facingMode: 'user' } };
-    let deviceInfos = [];
 
     const video = document.querySelector('#demo4 video');
     const captureBtn = document.querySelector('#demo4 .capture-button');
     const stopBtn = document.querySelector('#demo4 .stop-button');
-    const toggleBtn = document.querySelector('#demo4 .toggle-button');
+
+    let audioSelect = document.querySelector('select#audioSource');
+    let videoSelect = document.querySelector('select#videoSource');
+
+    audioSelect.onchange = getStream;
+    videoSelect.onchange = getStream;
+
 
     function getMedia() {
         console.log(constraints)
@@ -312,6 +317,25 @@ function initDemo4() {
         }).catch(handleError);
     }
 
+    function getStream() {
+        if (localMediaStream) {
+            localMediaStream.getTracks().forEach(function(track) {
+                track.stop();
+            });
+        }
+
+        constraints = {
+            audio: {
+                deviceId: { exact: audioSelect.value }
+            },
+            video: {
+                deviceId: { exact: videoSelect.value }
+            }
+        };
+
+        getMedia();
+    }
+
     captureBtn.onclick = function() {
         getMedia();
     }
@@ -322,45 +346,31 @@ function initDemo4() {
         stopBtn.disabled = true;
     }
 
-    toggleBtn.onclick = function() {
-        if (faceUser) {
-            toggleBtn.innerHTML = '后置';
-            constraints = { audio: false, video: { facingMode: 'environment' } };
-        } else {
-            toggleBtn.innerHTML = '前置';
-            constraints = { audio: false, video: { facingMode: 'user' } };
-        }
-        
-        getMedia();
-        faceUser = !faceUser;
-    }
-
     navigator.mediaDevices.enumerateDevices()
     .then(function(infos) {
         if (!(infos && infos.length)) {
             return;
         }
 
-        deviceInfos = infos;
-
-        var str = '<p style="font-weight: bold;">enumerateDevices:</p>';
-        for (var i = 0; i < infos.length; i++) {
+        let str = '<p style="font-weight: bold;">enumerateDevices:</p>';
+        for (let i = 0; i < infos.length; i++) {
             str += '<p>'+ infos[i].kind +'&nbsp;&nbsp;'+ infos[i].label + '</p>';
-        }
-        str += '<p style="font-weight: bold;">deviceIds:</p>';
-        for (var i = 0; i < infos.length; i++) {
-            str += '<p class="device-id" style="word-break: break-all;">'+ infos[i].deviceId +'</p>';
+
+            let deviceInfo = infos[i];
+            let option = document.createElement('option');
+
+            option.value = deviceInfo.deviceId;
+            
+            if (deviceInfo.kind === 'audioinput') {
+                option.text = deviceInfo.label || 'microphone ' + (audioSelect.length + 1);
+                audioSelect.appendChild(option);
+            } else if (deviceInfo.kind === 'videoinput') {
+                option.text = deviceInfo.label || 'camera ' + (videoSelect.length + 1);
+                videoSelect.appendChild(option);
+            }
         }
         document.querySelector('#demo4 .device-info').innerHTML = str;
     });
-
-    document.querySelector('#demo4 .device-info').onclick = function(e) {
-        if (e.target.classList && e.target.classList[0] === 'device-id') {
-            constraints = { audio: false, video: { deviceId: { exact: e.target.innerText } } };
-            toggleBtn.innerHTML = '设备ID';
-            getMedia();
-        }
-    }
 }
 
 
