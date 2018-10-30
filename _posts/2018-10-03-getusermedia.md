@@ -262,17 +262,17 @@ constraints 参数是一个包含了video 和 audio两个成员的MediaStreamCon
 
 #### 2、设备元素
 
-因为上面input标签局限，很多实时的交互不能实现，后来又出现了<device>。
+因为上面input标签局限，很多实时的交互不能实现，后来又出现了`<device>`。
 
-从h5语言这一点上来说，这个标签还是设计得很合理的。但似乎没有被正式支持过。
+从h5语义化这一点上来说，这个标签还是设计得很合理的。但似乎没有被正式支持过。
 
 #### 3、navigator.getUserMedia
 
-在 WebRTC（网络即时通信）的协助下，各厂商实现了navigator.getUserMedia，支持访问用户本地相机/麦克风，获取媒体流。
+在 WebRTC（网络即时通信）的协助下，各厂商实现了`navigator.getUserMedia`，支持访问用户本地相机/麦克风，获取媒体流。
 
 #### 4、navigator.mediaDevices.getUserMedia
 
-navigator.getUserMedia 特性已经从 Web 标准中删除，为了兼容某些浏览器还继续支持。更好的语义更强的navigator.mediaDevices.getUserMedia。
+`navigator.getUserMedia` 特性已经从 Web 标准中删除，为了兼容某些浏览器还继续支持。更好的语义更强的`navigator.mediaDevices.getUserMedia`。
 
 期待未来在web中能更好的支持捕获摄像头和麦克风，给用户更好的体验，给前端更大的空间。
 
