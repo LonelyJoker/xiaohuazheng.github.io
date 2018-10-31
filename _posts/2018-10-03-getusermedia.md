@@ -213,8 +213,33 @@ constraints 参数是一个包含了video 和 audio两个成员的MediaStreamCon
             }
         }
     }
+    
+    // audio 还有一些各厂商支持不一的参数：
+    {
+        audio: {
+            sampleRate: 44000,
+            channelCount: 2,
+            volume: 0.8
+        }
+    }
+    
+    sampleRate：指定采样率，不确定它应该被用作编码设置还是作为硬件要求，越高越好（比如CD的采样率就是44000 samples/s或44kHz）。
+    
+    sampleSize：每个采样点大小的位数，越高越好（CD的采样大小为16 bits/sample）
+    
+    volume：从0（静音）到1（最大）取值，被用作每个样本值的乘数
+    
+    echoCancellation：是否使用回声消除来尝试去除通过麦克风回传到扬声器的音频
+    
+    autoGainControl：是否要修改麦克风的输入音量
+    
+    noiseSuppression：是否尝试去除音频信号中的背景噪声
+    
+    latency：以秒为单位，控制开始处理声音和下一步可以使用数据之间的时间，不是很确定为什么要设更高的延迟，但是音频编解码器的延时确实有所不同。
+    
+    channelCount：规定了单声道的时候为1，立体声的时候为2。
 
-
+[audio-constraints-getusermedia][15]
 
 ### Demo && Code
 
@@ -262,7 +287,7 @@ constraints 参数是一个包含了video 和 audio两个成员的MediaStreamCon
 
 [facingMode 值参考][11]
 
-Android支持还可以，Safari支持得还不友好，需要高版本才支持。
+Android支持还可以，Safari其他浏览器支持不友好，Safari 高版本可支持。
 
 [is WebRTC Ready ?][12]
 
@@ -348,5 +373,6 @@ navigator.permissions 下有个query方法可以查询。
   [12]: http://iswebrtcreadyyet.com/
   [13]: https://www.html5rocks.com/en/tutorials/getusermedia/intro/
   [14]: https://dvcs.w3.org/hg/speech-api/raw-file/9a0075d25326/speechapi.html
+  [15]: https://addpipe.com/blog/audio-constraints-getusermedia/
 
 
