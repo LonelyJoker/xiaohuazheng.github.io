@@ -307,12 +307,12 @@ function initDemo4() {
         navigator.mediaDevices.getUserMedia(constraints).
         then(function(mediaStram) {
             localMediaStream = mediaStram;
-            video.srcObject = mediaStram;
-
+            
             if (!!ua.match(/iphone/i)) {
-                video.onclick = function() {
-                    video.play();
-                }
+                // URL.createObjectURL with media streams is deprecated and will be removed in M71, around December 2018. Please use HTMLMediaElement.srcObject instead.
+                video.src = window.URL.createObjectURL(mediaStram);
+            } else {
+                video.srcObject = mediaStram;
             }
 
             video.onloadedmetadata = function(e) {
