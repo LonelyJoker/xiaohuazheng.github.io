@@ -287,7 +287,7 @@ function initDemo3() {
 
 
 function initDemo4() {
-    document.querySelector('.container').innerHTML = '<div id="demo4" style="text-align:center;"><video muted autoplay></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p><p><div class="select"><label for="audioSource">Audio source: </label><select id="audioSource"></select></div><div class="select"><label for="videoSource">Video source: </label><select id="videoSource"></select></div></p><p class="device-info"></p></div>';
+    document.querySelector('.container').innerHTML = '<div id="demo4" style="text-align:center;"><video muted autoplay webkit-playsinline="true" playsinline="true"></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p><p><div class="select"><label for="audioSource">Audio source: </label><select id="audioSource"></select></div><div class="select"><label for="videoSource">Video source: </label><select id="videoSource"></select></div></p><p class="device-info"></p></div>';
     
     var faceUser = true;
     var constraints = { audio: false, video: { facingMode: 'user' } };
@@ -307,13 +307,7 @@ function initDemo4() {
         navigator.mediaDevices.getUserMedia(constraints).
         then(function(mediaStram) {
             localMediaStream = mediaStram;
-            
-            if (!!ua.match(/iphone/i)) {
-                // URL.createObjectURL with media streams is deprecated and will be removed in M71, around December 2018. Please use HTMLMediaElement.srcObject instead.
-                video.src = window.URL.createObjectURL(mediaStram);
-            } else {
-                video.srcObject = mediaStram;
-            }
+            video.srcObject = mediaStram;
 
             video.onloadedmetadata = function(e) {
                 video.play();

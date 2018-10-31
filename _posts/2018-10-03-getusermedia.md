@@ -258,9 +258,13 @@ constraints 参数是一个包含了video 和 audio两个成员的MediaStreamCon
 ![facingMode][10]
 
 
+文档里有四个值，但一部分浏览器只支持 `user, environment` ，暂时还没有浏览器支持`left, right`.
+
+[facingMode 值参考][11]
+
 Android支持还可以，Safari支持得还不友好，需要高版本才支持。
 
-[is WebRTC Ready ?][11]
+[is WebRTC Ready ?][12]
 
 ### 历史
 
@@ -325,10 +329,10 @@ navigator.permissions 下有个query方法可以查询。
 
 
 
-[参考：getusermedia intro][12]
+[参考：getusermedia intro][13]
 
 
-[参考：Web Speech API][13]
+[参考：Web Speech API][14]
 
   [1]: https://developer.mozilla.org/zh-CN/docs/Web/API/MediaDevices/getUserMedia
   [2]: /demos/2018-10-03-getusermedia-demo.html?idx=1
@@ -340,8 +344,9 @@ navigator.permissions 下有个query方法可以查询。
   [8]: https://developer.mozilla.org/zh-CN/docs/Web/CSS/filter
   [9]: /demos/2018-10-03-getusermedia-demo.html?idx=4
   [10]: /img/qrCode/getusermedia-demo4.png
-  [11]: http://iswebrtcreadyyet.com/
-  [12]: https://www.html5rocks.com/en/tutorials/getusermedia/intro/
-  [13]: https://dvcs.w3.org/hg/speech-api/raw-file/9a0075d25326/speechapi.html
+  [11]: https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints/facingMode
+  [12]: http://iswebrtcreadyyet.com/
+  [13]: https://www.html5rocks.com/en/tutorials/getusermedia/intro/
+  [14]: https://dvcs.w3.org/hg/speech-api/raw-file/9a0075d25326/speechapi.html
 
 
