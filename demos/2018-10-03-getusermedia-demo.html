@@ -167,7 +167,7 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     
 
 function initDemo1() {
-    document.querySelector('.container').innerHTML = '<div id="demo1" style="text-align:center;"><video></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p></div>';
+    document.querySelector('.container').innerHTML = '<div id="demo1" style="text-align:center;"><video webkit-playsinline="true" playsinline="true"></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p></div>';
 
     var constraints = { video: true };
 
@@ -198,7 +198,7 @@ function initDemo1() {
 
 
 function initDemo2() {
-    document.querySelector('.container').innerHTML = '<div id="demo2" style="text-align:center;"><video></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="screenshot-button" disabled>截屏</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p><p>canvas:</p><canvas id="canvas" width="320" height="240"></canvas><p>img:</p><img></div>';
+    document.querySelector('.container').innerHTML = '<div id="demo2" style="text-align:center;"><video webkit-playsinline="true" playsinline="true"></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="screenshot-button" disabled>截屏</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p><p>canvas:</p><canvas id="canvas" width="320" height="240"></canvas><p>img:</p><img></div>';
 
     var constraints = { video: true };
 
@@ -238,7 +238,7 @@ function initDemo2() {
 }
 
 function initDemo3() {
-    document.querySelector('.container').innerHTML = '<div id="demo3" style="text-align:center;"><video></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="filter-button">添加滤镜</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p></div>';
+    document.querySelector('.container').innerHTML = '<div id="demo3" style="text-align:center;"><video webkit-playsinline="true" playsinline="true"></video><p><button class="capture-button">开始捕获</button>&nbsp;&nbsp;<button class="filter-button">添加滤镜</button>&nbsp;&nbsp;<button class="stop-button" disabled>停止捕获</button></p></div>';
 
     var constraints = { video: true };
 
