@@ -482,9 +482,11 @@ pre {
     }
 
     function endRecord() {
-        localMediaStream.getTracks()[0].stop();
-        audioInput.disconnect();
-        recorder.disconnect();
+        try {
+            localMediaStream.getTracks()[0].stop();
+            audioInput.disconnect();
+            recorder.disconnect();
+        } catch(e) {}
         // we stop recording
         recording = false;
 
