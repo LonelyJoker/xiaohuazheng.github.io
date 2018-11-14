@@ -307,6 +307,16 @@ pre {
         posMove = 0,
         startTime = 0;
 
+    if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
+        if (!!ua.match(/iphone/i) || !!ua.match(/ipad/i)) {
+            $('.chat-tit').html('当前浏览器不支持，请用Safari打开！');
+            $('.record-btn').hide();
+        } else {
+            $('.chat-tit').html('当前浏览器不支持');
+            $('.record-btn').hide();
+        }
+    }
+
 
     if (!!ua.match(/iphone/i) || !!ua.match(/ipad/i) || !!ua.match(/android/i)) {
         wapEvents();
