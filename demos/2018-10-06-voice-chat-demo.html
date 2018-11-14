@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<meta HTTP-EQUIV="Pragma" CONTENT="no-cache"/>
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache"/>
+<meta HTTP-EQUIV="Expires" CONTENT="0"/>
+<meta http-equiv="x-dns-prefetch-control" content="on"/>
+<meta name="description" content="Capturing Audio Video in HTML5">
+<meta name="keywords"  content="navigator.mediaDevices.getUserMedia">
+<meta name="author" content="Xzavier">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<link rel="Shortcut Icon" href="https://xiaohuazheng.github.io/img/favicon.ico"/>
+<title>audio-voice-chat</title>
+<style>
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+html {
+    font-family: Arial,Helvetica,sans-serif;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    word-wrap: break-word;
+    word-break: break-all;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+pre {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  white-space: pre-wrap;
+}
+
+.chat-house {
+    overflow: auto;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+.chat-room {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding: 10px 0 100px;
+}
+
+.chat-one {
+    max-width: 70%;
+    margin: 15px;
+    padding: 8px 10px;
+    font-size: 17px;
+    line-height: 25px;
+}
+
+.bubble {
+    position: relative;
+    background-color: #fff;
+    -webkit-align-self: flex-start;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+    color: #333;
+    border-radius: 4px;
+    animation: goup .5s;
+}
+
+.bubble.me {
+    -webkit-align-self: flex-end;
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+    background-color: #90d936;
+}
+
+.bubble:before {
+    content: '';
+    box-sizing: border-box;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: 15px;
+    background-color: inherit;
+    border-right-color: inherit;
+    border-bottom-color: inherit;
+}
+
+.bubble.xz:before{
+    left: -4px;
+    transform: rotate(135deg);
+    border-color: #919191;
+}
+
+.bubble.me:before {
+    right: -4px;
+    transform: rotate(-45deg);
+    border-color: #6c9a36;
+}
+
+@keyframes goup {
+    0% {
+        transform: translate(0, 1.875rem);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.record-btn {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    -webkit-transform: translate(-50%,0);
+    -ms-transform: translate(-50%,0);
+    transform: translate(-50%,0);
+    border-radius: 50%;
+}
+
+.record-btn button {
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    outline: none;
+    border-radius: 50%;
+}
+
+.record-btn img {
+    border-radius: 50%;
+}
+
+.small {
+    width: 10px;
+    height: 10px;
+    border-style: solid;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    box-sizing: border-box;
+    vertical-align: middle;
+    display: inline-block;
+    color:#A2A2A2;
+}
+
+.middle {
+    width: 20px;
+    height: 20px;
+    border-style: solid;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    box-sizing: border-box;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: -18px;
+    opacity: 1;
+    color:#A2A2A2;
+}
+@keyframes showMiddle {
+    0% { opacity: 0;}
+    30% { opacity: 1;}
+    100% { opacity: 0;}
+}
+.loop-box {
+    width: 100%;
+    margin-right: 10px;
+}
+
+.me .loop-box {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.large {
+    width: 30px;
+    height: 30px;
+    border-style: solid;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    box-sizing: border-box;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: -27px;
+    opacity: 1;
+    color:#A2A2A2;
+}
+@keyframes showLarge {
+    0% { opacity: 0;}
+    60% { opacity: 1;}
+    100% { opacity: 0;}
+}
+
+.playing .middle {
+    -webkit-animation: showMiddle 1s step-end infinite;
+    animation: showMiddle 1s step-end infinite;
+}
+
+.playing .large {
+    -webkit-animation: showLarge 1s step-end infinite;
+    animation: showLarge 1s step-end infinite;
+}
+
+.me .small, .me .middle, .me .large {
+    color: #32b14e;
+}
+
+.duration {
+    position: absolute;
+    width: auto;
+    top: 50%;
+    height: 30px;
+    line-height: 30px;
+    margin-top: -15px;
+    color: #999;
+    font-weight: bold;
+}
+
+.xz .duration {
+    right: -40px;
+}
+
+.me .duration {
+    left: -40px;
+}
+
+.long-tip {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 60%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    color: #999;
+    text-align: center;
+    background: #fff;
+    border-radius: 5px;
+    z-index: 9;
+    box-shadow: 0 1px 15px 0 rgba(0, 0, 0, .3);
+    display: none;
+}
+
+</style>
+
+<div class="container">
+    <div class="chat-house">
+        <div class="chat-room">
+            <div class="chat-one chat-tit bubble xz">长按下方录音按钮即可开始对话！</div>
+        </div>
+    </div>
+    <div class="record-btn">
+        <button>
+            <img src="https://xiaohuazheng.github.io/demos/img/recordstart.gif">
+        </button>
+    </div>
+    <div class="long-tip"></div>
+</div>
+
+<script src="https://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    var $room = $('.chat-room'),
+        $recordBtn = $('.record-btn'),
+        recordBtnEle = $recordBtn[0],
+        gif0 = 'https://xiaohuazheng.github.io/demos/img/recordstart.gif',
+        gif1 = 'https://xiaohuazheng.github.io/demos/img/recording.gif';
+
+
+    var leftchannel = [],
+        rightchannel = [],
+        recorder = null,
+        recording = false,
+        recordingLength = 0,
+        volume = null,
+        audioInput = null,
+        sampleRate = null,
+        audioContext = null,
+        context = null,
+        localMediaStream;
+
+    var xzTimer = null;
+
+    var posStart = 0,
+        posEnd = 0,
+        posMove = 0;
+
+
+    if (!!ua.match(/iphone/i) || !!ua.match(/ipad/i) || !!ua.match(/android/i)) {
+        wapEvents();
+    } else {
+        webEvents();
+    }
+
+    // 开发时使用webEvents，没有https,http、file: 下每次都询问，无法长按录音，换用点击事件
+    // webEvents();
+
+    function webEvents() {
+        $('.record-btn').click(function() {
+            var $this = $(this);
+            if ($this.hasClass('recording')) {
+                $this.removeClass('recording');
+                $('.record-btn img').attr('src', gif0);
+                endRecord();
+            } else {
+                $this.addClass('recording');
+                $('.record-btn img').attr('src', gif1); 
+                startRecord();
+            }
+        });
+    }
+
+    
+    function wapEvents() {
+        recordBtnEle.addEventListener('touchstart', function(event) {
+            event.preventDefault();
+
+            posStart = 0;
+            posStart = event.targetTouches[0].pageY;
+
+            $('.long-tip').html('手指上滑，取消发送').show();
+
+            $recordBtn.addClass('recording');
+            $('.record-btn img').attr('src', gif1);
+
+            startRecord();
+        });
+
+        recordBtnEle.addEventListener('touchmove', function() {
+            event.preventDefault();
+
+            posMove = 0;
+            posMove = event.targetTouches[0].pageY;
+            
+            if(posStart - posMove < 60) {
+                $('.long-tip').html('松开手指，发送录音');
+            } else {
+                $('.long-tip').html('松开手指，取消发送');
+            }
+        });
+
+        recordBtnEle.addEventListener('touchend', function() {
+            event.preventDefault();
+            posEnd = 0;
+            posEnd = event.changedTouches[0].pageY;
+
+            if(posStart - posEnd < 60){
+                endRecord();
+            } else {
+                $('.long-tip').html('取消发送');
+            }
+
+            $recordBtn.removeClass('recording');
+            $('.record-btn img').attr('src', gif0);
+            $('.long-tip').hide();
+        });
+
+        recordBtnEle.addEventListener('touchcancel', function() {
+            $recordBtn.removeClass('recording');
+            $('.record-btn img').attr('src', gif0);
+            $('.long-tip').hide();
+        });
+    }
+
+
+    function interleave(leftChannel, rightChannel){
+        var length = leftChannel.length + rightChannel.length;
+        var result = new Float32Array(length);
+
+        var inputIndex = 0;
+
+        for (var index = 0; index < length;){
+            result[index++] = leftChannel[inputIndex];
+            result[index++] = rightChannel[inputIndex];
+            inputIndex++;
+        }
+        return result;
+    }
+
+    function mergeBuffers(channelBuffer, recordingLength){
+        var result = new Float32Array(recordingLength);
+        var offset = 0;
+        var lng = channelBuffer.length;
+        for (var i = 0; i < lng; i++){
+            var buffer = channelBuffer[i];
+            result.set(buffer, offset);
+            offset += buffer.length;
+        }
+        return result;
+    }
+
+    function writeUTFBytes(view, offset, string){ 
+        var lng = string.length;
+        for (var i = 0; i < lng; i++){
+            view.setUint8(offset + i, string.charCodeAt(i));
+        }
+    }
+
+    function startRecord() {
+        recording = true;
+        // reset the buffers for the new recording
+        leftchannel.length = rightchannel.length = 0;
+        recordingLength = 0;
+
+        navigator.mediaDevices.getUserMedia({audio:true}).then(function(e) {
+            onSuccess(e);
+            localMediaStream = e;
+        }, function(error) {
+            $('.record-btn').removeClass('recording');
+            $('.record-btn img').attr('src', gif0);
+            $('.chat-tit').html('Error: ' + error);
+        })
+    }
+
+    function endRecord() {
+        localMediaStream.getTracks()[0].stop();
+        audioInput.disconnect();
+        recorder.disconnect();
+        // we stop recording
+        recording = false;
+
+        // we flat the left and right channels down
+        var leftBuffer = mergeBuffers ( leftchannel, recordingLength );
+        var rightBuffer = mergeBuffers ( rightchannel, recordingLength );
+        // we interleave both channels together
+        var interleaved = interleave ( leftBuffer, rightBuffer );
+
+        // we create our wav file
+        var buffer = new ArrayBuffer(44 + interleaved.length * 2);
+
+
+        var view = new DataView(buffer);
+
+        // RIFF chunk descriptor
+        writeUTFBytes(view, 0, 'RIFF');
+        view.setUint32(4, 44 + interleaved.length * 2, true);
+        writeUTFBytes(view, 8, 'WAVE');
+        // FMT sub-chunk
+        writeUTFBytes(view, 12, 'fmt ');
+        view.setUint32(16, 16, true);
+        view.setUint16(20, 1, true);
+        // stereo (2 channels)
+        view.setUint16(22, 2, true);
+        view.setUint32(24, sampleRate, true);
+        view.setUint32(28, sampleRate * 4, true);
+        view.setUint16(32, 4, true);
+        view.setUint16(34, 16, true);
+        // data sub-chunk
+        writeUTFBytes(view, 36, 'data');
+        view.setUint32(40, interleaved.length * 2, true);
+
+        // write the PCM samples
+        var lng = interleaved.length;
+        var index = 44;
+        var volume = 1;
+        for (var i = 0; i < lng; i++){
+            view.setInt16(index, interleaved[i] * (0x7FFF * volume), true);
+            index += 2;
+        }
+
+        var blob = new Blob ( [ view ], { type : 'audio/mpeg' } );
+
+        // blob 形式播放
+        // var t = +new Date();
+        // var voiceBox = $('<div class="chat-one voice-one voice-init bubble me" vid="'+ t +'">\
+        //     <audio src="" preload="auto" id="voice-'+ t +'" style="width: 0;height: 0;overflow: hidden;"></audio>\
+        //     <div class="loop-box">\
+        //         <div class="small"></div>\
+        //         <div class="middle "></div>\
+        //         <div class="large "></div>\
+        //     </div>\
+        //     <span class="duration"></span>\
+        // </div>');
+
+        // voiceBox.find('audio')[0].src = URL.createObjectURL(blob);
+        // $room.append(voiceBox);
+        // vc.initVoice();
+
+        
+        var reader = new FileReader();
+        reader.onload = function(event){
+
+            var t = +new Date();
+
+            var voiceBox = $('<div class="chat-one voice-one voice-init bubble me" vid="'+ t +'">\
+                <audio src="" preload="auto" id="voice-'+ t +'" style="width: 0;height: 0;overflow: hidden;"></audio>\
+                <div class="loop-box">\
+                    <div class="small"></div>\
+                    <div class="middle "></div>\
+                    <div class="large "></div>\
+                </div>\
+                <span class="duration"></span>\
+            </div>');
+
+            voiceBox.find('audio')[0].src = event.target.result;
+
+            $room.append(voiceBox);
+            scrollRoom();
+            vc.initVoice();
+
+            clearTimeout(xzTimer);
+
+            xzTimer = setTimeout(function() {
+                var t = +new Date();
+
+                var voiceBoxz = $('<div class="chat-one voice-one voice-init bubble xz" vid="'+ t +'">\
+                    <audio src="" preload="auto" id="voice-'+ t +'" style="width: 0;height: 0;overflow: hidden;"></audio>\
+                    <div class="loop-box">\
+                        <div class="small"></div>\
+                        <div class="middle "></div>\
+                        <div class="large "></div>\
+                    </div>\
+                    <span class="duration"></span>\
+                </div>');
+
+                voiceBoxz.find('audio')[0].src = event.target.result;
+
+                $room.append(voiceBoxz);
+                scrollRoom();
+                vc.initVoice();
+            }, Math.ceil(Math.random() * 3) * 1000);
+        };
+        // 转换base64
+        reader.readAsDataURL(blob);
+    }
+
+    function onSuccess(e){
+        // creates the audio context
+        audioContext = window.AudioContext || window.webkitAudioContext;
+        context = new audioContext();
+
+        // we query the context sample rate (varies depending on platforms)
+        sampleRate = context.sampleRate;
+
+        // creates a gain node
+        volume = context.createGain();
+
+        // creates an audio node from the microphone incoming stream
+        audioInput = context.createMediaStreamSource(e);
+
+        // connect the stream to the gain node
+        audioInput.connect(volume);
+
+        var bufferSize = 2048;
+        recorder = context.createScriptProcessor(bufferSize, 2, 2);
+
+        recorder.onaudioprocess = function(e){
+            if (!recording) return;
+            var left = e.inputBuffer.getChannelData (0);
+            var right = e.inputBuffer.getChannelData (1);
+            // we clone the samples
+            leftchannel.push (new Float32Array (left.slice(0)));
+            rightchannel.push (new Float32Array (right.slice(0)));
+            recordingLength += bufferSize;
+        }
+
+        // we connect the recorder
+        volume.connect (recorder);
+        recorder.connect (context.destination); 
+    }
+
+    function scrollRoom() {
+        window.scrollTo(0, $('.chat-room').children().last()[0].offsetTop);
+    }
+
+    var vc = {
+        init: function() {
+            this.bindEvents();
+            this.voice = {};
+            this.initVoice();
+        },
+        bindEvents: function() {
+            var _this = this;
+            // 音频点击
+            $(document).on('click', '.voice-one', function() {
+                var $this = $(this),
+                    vid = $this.attr('vid');
+                if ($this.hasClass('playing')) {
+                    _this.stopPlay(vid);
+                } else {
+                    _this.startPlay(vid);
+                }
+            });
+        },
+        // 初始化音频
+        initVoice: function() {
+            var _this = this;
+
+            if (!$('.voice-one').length) {
+                return;
+            }
+
+            function renderDuration(v) {
+                if ($('.voice-one[vid="'+v+'"]').find('.duration').hasClass('ed')) {
+                    return;
+                }
+
+                if ($.isNumeric(_this.voice[v].duration)) {
+                    var d = Math.ceil(_this.voice[v].duration);
+                    $('.voice-one[vid="'+v+'"]').find('.duration').html(d + '"').addClass('ed');
+
+                    if (d > 3) {
+                        if (d > 35) {
+                            $('.voice-one[vid="'+v+'"]').css('width', '70%');
+                        } else {
+                            $('.voice-one[vid="'+v+'"]').css('width', (2 * d) + '%');
+                        }
+                    }
+                }
+            }
+
+            $('.voice-init').each(function() {
+                var $this = $(this),
+                    vid = $this.attr('vid'),
+                    vSelector = 'voice-' + vid;
+
+                _this.voice[vid] = document.getElementById(vSelector);
+                // 监听音频数据加载
+                _this.voice[vid].addEventListener('loadeddata', function() {
+                    renderDuration(vid);
+                });
+                _this.voice[vid].addEventListener('canplay', function() {
+                    renderDuration(vid);
+                });
+                _this.voice[vid].addEventListener('durationchange', function() {
+                    renderDuration(vid);
+                });
+                _this.voice[vid].addEventListener('canplaythrough', function() {
+                    renderDuration(vid);
+                });
+                _this.voice[vid].addEventListener('loadedmetadata', function() {
+                    renderDuration(vid);
+                });
+
+                // 监听音频播放完毕
+                _this.voice[vid].addEventListener('ended', function() {
+                    _this.voice[vid].currentTime = 0;
+                    _this.stopPlay(vid);
+                });
+
+                $this.removeClass('voice-init');
+            });
+
+            var visProp = _this.getHackHidden();
+            if (visProp) {
+                var evtname = visProp.replace(/[H|h]idden/, '') + 'visibilitychange';
+                document.addEventListener(evtname, function() {
+                    if (_this.isHidden() || _this.getHackVisibilityState() === 'hidden') {
+                        _this.closeAllVoice();
+                    }
+                }, false);
+            }
+
+            // 即将离开时触发
+            window.addEventListener('beforeunload', function() {
+                _this.closeAllVoice();
+            }, false);
+
+            // 离开时触发
+            window.addEventListener('unload', function() {
+                _this.closeAllVoice();
+            }, false);
+        },
+        // 关闭所有音频
+        closeAllVoice: function(vid) {
+            for(var i in this.voice) {
+                if (vid != i) {
+                    this.stopPlay(i);
+                }
+            }
+        },
+        // 开始音频播放效果
+        startPlay: function(vid) {
+            this.closeAllVoice(vid);
+            this.voice[vid].play();
+            $('.voice-one[vid="'+vid+'"]').addClass('playing');
+        },
+        // 暂停音频播放效果
+        stopPlay: function(vid) {
+            this.voice[vid].pause();
+            $('.voice-one[vid="'+vid+'"]').removeClass('playing');
+        },
+        getHackHidden: function() {
+            if ('hidden' in document) {
+                return 'hidden';
+            }
+
+            var prefixes = ['webkit', 'moz', 'ms', 'o'];
+            for (var i = 0; i < prefixes.length; i++) {
+                if ((prefixes[i] + 'Hidden') in document) {
+                    return prefixes[i] + 'Hidden';
+                }
+            }
+            return null;
+        },
+        getHackVisibilityState: function() {
+            if ('visibilityState' in document) {
+                return 'visibilityState';
+            }
+
+            var prefixes = ['webkit', 'moz', 'ms', 'o'];
+            for (var i = 0; i < prefixes.length; i++) {
+                if ((prefixes[i] + 'VisibilityState') in document) {
+                    return prefixes[i] + 'VisibilityState';
+                }
+            }
+            return null;
+        },
+        isHidden: function() {
+            var prop = this.getHackHidden();
+            if (!prop) {
+                return false;
+            }
+        
+            return document[prop];
+        }
+    }
+
+    vc.init();
+</script>
