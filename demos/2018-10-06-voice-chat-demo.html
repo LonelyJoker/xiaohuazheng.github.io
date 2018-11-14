@@ -280,7 +280,7 @@ pre {
 <script src="https://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
     var ua = navigator.userAgent.toLocaleLowerCase();
-    
+
     var $room = $('.chat-room'),
         $recordBtn = $('.record-btn'),
         recordBtnEle = $recordBtn[0],
@@ -304,13 +304,15 @@ pre {
 
     var posStart = 0,
         posEnd = 0,
-        posMove = 0;
+        posMove = 0,
+        startTime = 0;
 
 
     if (!!ua.match(/iphone/i) || !!ua.match(/ipad/i) || !!ua.match(/android/i)) {
         wapEvents();
     } else {
         webEvents();
+        $('.chat-tit').html('点击录音按钮即可开始语音对话！');
     }
 
     // 开发时使用webEvents，没有https,http、file: 下每次都询问，无法长按录音，换用点击事件
@@ -322,11 +324,21 @@ pre {
             if ($this.hasClass('recording')) {
                 $this.removeClass('recording');
                 $('.record-btn img').attr('src', gif0);
-                endRecord();
+
+                if ((+new Date()) - startTime > 1000) {
+                    endRecord();
+                } else {
+                    try {
+                        localMediaStream.getTracks()[0].stop();
+                        audioInput.disconnect();
+                        recorder.disconnect();
+                    } catch(e) {}
+                }
             } else {
                 $this.addClass('recording');
-                $('.record-btn img').attr('src', gif1); 
+                $('.record-btn img').attr('src', gif1);
                 startRecord();
+                startTime = +new Date();
             }
         });
     }
@@ -345,6 +357,7 @@ pre {
             $('.record-btn img').attr('src', gif1);
 
             startRecord();
+            startTime = +new Date();
         });
 
         recordBtnEle.addEventListener('touchmove', function() {
@@ -365,8 +378,16 @@ pre {
             posEnd = 0;
             posEnd = event.changedTouches[0].pageY;
 
-            if(posStart - posEnd < 60){
-                endRecord();
+            if(posStart - posEnd < 60) {
+                if ((+new Date()) - startTime > 1000) {
+                    endRecord();
+                } else {
+                    try {
+                        localMediaStream.getTracks()[0].stop();
+                        audioInput.disconnect();
+                        recorder.disconnect();
+                    } catch(e) {}
+                }
             } else {
                 $('.long-tip').html('取消发送');
             }
@@ -380,6 +401,12 @@ pre {
             $recordBtn.removeClass('recording');
             $('.record-btn img').attr('src', gif0);
             $('.long-tip').hide();
+
+            try {
+                localMediaStream.getTracks()[0].stop();
+                audioInput.disconnect();
+                recorder.disconnect();
+            } catch(e) {}
         });
     }
 
