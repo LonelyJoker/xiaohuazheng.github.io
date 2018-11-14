@@ -390,6 +390,11 @@ pre {
                 }
             } else {
                 $('.long-tip').html('取消发送');
+                try {
+                    localMediaStream.getTracks()[0].stop();
+                    audioInput.disconnect();
+                    recorder.disconnect();
+                } catch(e) {}
             }
 
             $recordBtn.removeClass('recording');
@@ -449,6 +454,12 @@ pre {
         // reset the buffers for the new recording
         leftchannel.length = rightchannel.length = 0;
         recordingLength = 0;
+
+        try {
+            localMediaStream.getTracks()[0].stop();
+            audioInput.disconnect();
+            recorder.disconnect();
+        } catch(e) {}
 
         navigator.mediaDevices.getUserMedia({audio:true}).then(function(e) {
             onSuccess(e);
