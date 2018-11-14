@@ -307,16 +307,6 @@ pre {
         posMove = 0,
         startTime = 0;
 
-    var afterTapTimeout;
-    function preventPuncture(t) {
-        t = t - 0;
-        afterTapTimeout && clearTimeout(afterTapTimeout)
-        document.body.style.pointerEvents = 'none';
-        afterTapTimeout = setTimeout(function () {
-            document.body.style.pointerEvents = '';
-            document.body.style.removeProperty('pointer-events');
-        }, t || 800);
-    }
 
     if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
         if (!!ua.match(/iphone/i) || !!ua.match(/ipad/i)) {
@@ -355,7 +345,6 @@ pre {
                         recorder.disconnect();
                     } catch(e) {}
                 }
-                preventPuncture();
             } else {
                 $this.addClass('recording');
                 $('.record-btn img').attr('src', gif1);
@@ -422,14 +411,12 @@ pre {
             $recordBtn.removeClass('recording');
             $('.record-btn img').attr('src', gif0);
             $('.long-tip').hide();
-            preventPuncture();
         });
 
         recordBtnEle.addEventListener('touchcancel', function() {
             $recordBtn.removeClass('recording');
             $('.record-btn img').attr('src', gif0);
             $('.long-tip').hide();
-            preventPuncture();
 
             try {
                 localMediaStream.getTracks()[0].stop();
