@@ -367,7 +367,7 @@ pre {
             event.preventDefault();
             var $this = $(this);
 
-            if (invokeCount > 5) {
+            if ((!!ua.match(/iphone/i) || !!ua.match(/ipad/i) || !!ua.match(/android/i)) &&invokeCount > 5) {
                 if (!deadCountShowed) {
                     deadCountShowed = true;
                     $room.append('<div class="chat-one bubble xz">navigator.mediaDevices.getUserMedia调用次数达到上限，正在努力调研解决！</div>');
@@ -404,8 +404,8 @@ pre {
     
     function wapEvents() {
         // 移动端因为要使用touch事件先调用一次
+        invokeCount += 1;
         navigator.mediaDevices.getUserMedia({audio:true}).then(function(e) {
-            invokeCount += 1;
             localMediaStream = e;
             localMediaStream.getTracks()[0].stop();
         }, function(error) {
@@ -417,7 +417,7 @@ pre {
         recordBtnEle.addEventListener('touchstart', function(event) {
             event.preventDefault();
 
-            if (invokeCount > 5) {
+            if ((!!ua.match(/iphone/i) || !!ua.match(/ipad/i) || !!ua.match(/android/i)) && invokeCount > 5) {
                 if (!deadCountShowed) {
                     deadCountShowed = true;
                     $room.append('<div class="chat-one bubble xz">navigator.mediaDevices.getUserMedia调用次数达到上限，正在努力调研解决！</div>');
@@ -546,11 +546,15 @@ pre {
             recorder.disconnect();
         } catch(e) {}
 
-        navigator.mediaDevices.getUserMedia({audio:true}).then(function(e) {
+        invokeCount += 1;
+        navigator.mediaDevices.getUserMedia({audio:{
+            sampleRate: 44000,
+            channelCount: 2,
+            volume: 1.0
+        }}).then(function(e) {
             onSuccess(e);
             localMediaStream = e;
             startTime = +new Date();
-            invokeCount += 1;
             $room.append('<div class="chat-one bubble xz">调用麦克风成功！</div>');
             $('.record-btn').addClass('recording');
             $('.record-btn img').attr('src', gif1);
