@@ -268,7 +268,7 @@ pre {
         <div class="chat-room">
             <div class="chat-one chat-tit bubble xz">长按下方录音按钮即可开始对话！</div>
             <div class="chat-one voice-one voice-init bubble me" vid="xzavier">
-                <audio src="https://static.faniuwenda.com/wxfile/audio/8w0CuvYClpdhqAhRw5JRTZkQv9i0n0t1jvgFHlzohBsevaf5OCZWtnwjOTYzcYub.mp3" preload="auto" id="voice-xzavier" style="width: 0;height: 0;overflow: hidden;"></audio>
+                <audio src="https://static.faniuwenda.com/wxfile/audio/8w0CuvYClpdhqAhRw5JRTZkQv9i0n0t1jvgFHlzohBsevaf5OCZWtnwjOTYzcYub.mp3" preload="auto" id="voice-xzavier"></audio>
                 <div class="loop-box">
                     <div class="small"></div>
                     <div class="middle "></div>
@@ -742,7 +742,7 @@ pre {
         initVoice: function() {
             var _this = this;
 
-            if (!$('.voice-one').length) {
+            if (!$('.voice-init').length) {
                 return;
             }
 
@@ -776,6 +776,9 @@ pre {
                     renderDuration(vid);
                 });
                 _this.voice[vid].addEventListener('canplay', function() {
+                    renderDuration(vid);
+                });
+                _this.voice[vid].addEventListener('timeupdate', function() {
                     renderDuration(vid);
                 });
                 _this.voice[vid].addEventListener('durationchange', function() {
