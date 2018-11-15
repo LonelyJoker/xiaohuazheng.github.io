@@ -346,13 +346,12 @@ pre {
     webEvents();
 
     function webEvents() {
-        $('.record-btn').click(function() {
+        $('.record-btn').click(function(event) {
+            event.preventDefault();
             var $this = $(this);
             if ($this.hasClass('recording')) {
                 $this.removeClass('recording');
                 $('.record-btn img').attr('src', gif0);
-
-                console.log((+new Date()) - startTime);
 
                 if (startTime > 0 && (+new Date()) - startTime > 1200) {
                     endRecord();
@@ -360,6 +359,7 @@ pre {
                     $room.append('<div class="chat-one bubble xz">录音时间太短！</div>');
                     scrollRoom();
                     recording = false;
+                    startTime = 0;
                     try {
                         localMediaStream.getTracks()[0].stop();
                         audioInput.disconnect();
@@ -425,6 +425,7 @@ pre {
                     $room.append('<div class="chat-one bubble xz">录音时间太短！</div>');
                     scrollRoom();
                     recording = false;
+                    startTime = 0;
                     try {
                         localMediaStream.getTracks()[0].stop();
                         audioInput.disconnect();
@@ -434,6 +435,7 @@ pre {
             } else {
                 $('.long-tip').html('取消发送');
                 recording = false;
+                startTime = 0;
                 try {
                     localMediaStream.getTracks()[0].stop();
                     audioInput.disconnect();
@@ -451,6 +453,7 @@ pre {
             $('.record-btn img').attr('src', gif0);
             $('.long-tip').hide();
             recording = false;
+            startTime = 0;
             try {
                 localMediaStream.getTracks()[0].stop();
                 audioInput.disconnect();
@@ -524,6 +527,7 @@ pre {
         } catch(e) {}
         // we stop recording
         recording = false;
+        startTime = 0;
 
         // we flat the left and right channels down
         var leftBuffer = mergeBuffers ( leftchannel, recordingLength );
