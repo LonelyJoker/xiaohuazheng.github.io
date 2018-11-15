@@ -267,6 +267,15 @@ pre {
     <div class="chat-house">
         <div class="chat-room">
             <div class="chat-one chat-tit bubble xz">长按下方录音按钮即可开始对话！</div>
+            <div class="chat-one voice-one voice-init bubble me" vid="xzavier">
+                <audio src="https://static.faniuwenda.com/wxfile/audio/8w0CuvYClpdhqAhRw5JRTZkQv9i0n0t1jvgFHlzohBsevaf5OCZWtnwjOTYzcYub.mp3" preload="auto" id="voice-xzavier" style="width: 0;height: 0;overflow: hidden;"></audio>
+                <div class="loop-box">
+                    <div class="small"></div>
+                    <div class="middle "></div>
+                    <div class="large "></div>
+                </div>
+                <span class="duration"></span>
+            </div>
         </div>
     </div>
     <div class="record-btn">
@@ -326,15 +335,15 @@ pre {
     }
 
 
-    if (!!ua.match(/iphone/i) || !!ua.match(/ipad/i) || !!ua.match(/android/i)) {
-        wapEvents();
-    } else {
-        webEvents();
-        $('.chat-tit').html('点击录音按钮即可开始语音对话！');
-    }
+    // if (!!ua.match(/iphone/i) || !!ua.match(/ipad/i) || !!ua.match(/android/i)) {
+    //     wapEvents();
+    // } else {
+    //     webEvents();
+    //     $('.chat-tit').html('点击录音按钮即可开始语音对话！');
+    // }
 
     // 开发时使用webEvents，没有https,http、file: 下每次都询问，无法长按录音，换用点击事件
-    // webEvents();
+    webEvents();
 
     function webEvents() {
         $('.record-btn').click(function() {
@@ -581,14 +590,7 @@ pre {
                 <span class="duration"></span>\
             </div>');
 
-            if (!!ua.match(/iphone/i) || !!ua.match(/ipad/i)) {
-                var blobUrl = URL.createObjectURL(blob);
-                voiceBox.find('audio')[0].src = blobUrl;
-                URL.revokeObjectURL(blobUrl);
-            } else {
-                voiceBox.find('audio')[0].src = event.target.result;
-            }
-            
+            voiceBox.find('audio')[0].src = event.target.result;
 
             $room.append(voiceBox);
             scrollRoom();
@@ -609,13 +611,7 @@ pre {
                     <span class="duration"></span>\
                 </div>');
 
-                if (!!ua.match(/iphone/i) || !!ua.match(/ipad/i)) {
-                    var blobUrl = URL.createObjectURL(blob);
-                    voiceBoxz.find('audio')[0].src = blobUrl;
-                    URL.revokeObjectURL(blobUrl);
-                } else {
-                    voiceBoxz.find('audio')[0].src = event.target.result;
-                }
+                voiceBoxz.find('audio')[0].src = event.target.result;
 
                 $room.append(voiceBoxz);
                 scrollRoom();
