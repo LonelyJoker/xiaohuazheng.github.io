@@ -557,7 +557,7 @@ pre {
         }, function(error) {
             $('.record-btn').removeClass('recording');
             $('.record-btn img').attr('src', gif0);
-            $('.chat-tit').html('Error: ' + error);
+            $room.append('<div class="chat-one bubble xz">'+ 'Error: ' + error +'</div>');
         });
     }
 
