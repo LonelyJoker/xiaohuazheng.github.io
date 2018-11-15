@@ -323,13 +323,13 @@ pre {
             $('.record-btn').hide();
 
             setTimeout(function() {
-                $room.append('<div class="chat-one bubble xz">你可以用IOS11以上的Safari打开此页面试试！</div>')
+                $room.append('<div class="chat-one bubble xz">你可以用IOS11以上的Safari打开此页面试试！</div>');
             }, 1500);
         } else {
             $('.chat-tit').html('当前浏览器不支持！');
             $('.record-btn').hide();
             setTimeout(function() {
-                $room.append('<div class="chat-one bubble xz">你可以升级浏览器试试！</div>')
+                $room.append('<div class="chat-one bubble xz">你可以升级浏览器试试！</div>');
             }, 1500);
         }
     }
@@ -352,9 +352,14 @@ pre {
                 $this.removeClass('recording');
                 $('.record-btn img').attr('src', gif0);
 
-                if ((+new Date()) - startTime > 1000) {
+                console.log((+new Date()) - startTime);
+
+                if (startTime > 0 && (+new Date()) - startTime > 1200) {
                     endRecord();
                 } else {
+                    $room.append('<div class="chat-one bubble xz">录音时间太短！</div>');
+                    scrollRoom();
+                    recording = false;
                     try {
                         localMediaStream.getTracks()[0].stop();
                         audioInput.disconnect();
@@ -365,7 +370,6 @@ pre {
                 $this.addClass('recording');
                 $('.record-btn img').attr('src', gif1);
                 startRecord();
-                startTime = +new Date();
             }
         });
     }
@@ -394,7 +398,6 @@ pre {
             $('.record-btn img').attr('src', gif1);
 
             startRecord();
-            startTime = +new Date();
         });
 
         recordBtnEle.addEventListener('touchmove', function() {
@@ -416,9 +419,12 @@ pre {
             posEnd = event.changedTouches[0].pageY;
 
             if(posStart - posEnd < 60) {
-                if ((+new Date()) - startTime > 1000) {
+                if (tartTime > 0 && (+new Date()) - startTime > 1200) {
                     endRecord();
                 } else {
+                    $room.append('<div class="chat-one bubble xz">录音时间太短！</div>');
+                    scrollRoom();
+                    recording = false;
                     try {
                         localMediaStream.getTracks()[0].stop();
                         audioInput.disconnect();
@@ -427,6 +433,7 @@ pre {
                 }
             } else {
                 $('.long-tip').html('取消发送');
+                recording = false;
                 try {
                     localMediaStream.getTracks()[0].stop();
                     audioInput.disconnect();
@@ -443,7 +450,7 @@ pre {
             $recordBtn.removeClass('recording');
             $('.record-btn img').attr('src', gif0);
             $('.long-tip').hide();
-
+            recording = false;
             try {
                 localMediaStream.getTracks()[0].stop();
                 audioInput.disconnect();
@@ -501,6 +508,7 @@ pre {
         navigator.mediaDevices.getUserMedia({audio:true}).then(function(e) {
             onSuccess(e);
             localMediaStream = e;
+            startTime = +new Date();
         }, function(error) {
             $('.record-btn').removeClass('recording');
             $('.record-btn img').attr('src', gif0);
