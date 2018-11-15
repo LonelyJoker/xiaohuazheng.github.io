@@ -332,6 +332,10 @@ pre {
                 $room.append('<div class="chat-one bubble xz">你可以升级浏览器试试！</div>');
             }, 1500);
         }
+    } else {
+        setTimeout(function() {
+            $room.append('<div class="chat-one bubble xz">为保障录音时间，点击录音后1s内按钮不可点击！</div>');
+        }, 1500);
     }
 
 
@@ -353,7 +357,7 @@ pre {
         afterTapTimeout = setTimeout(function () {
             document.body.style.pointerEvents = '';
             document.body.style.removeProperty('pointer-events');
-        }, t || 1000);
+        }, t || 1500);
     }
 
     function webEvents() {
@@ -364,19 +368,20 @@ pre {
                 $this.removeClass('recording');
                 $('.record-btn img').attr('src', gif0);
 
-                if (startTime > 0 && (+new Date()) - startTime > 1200) {
-                    endRecord();
-                } else {
-                    $room.append('<div class="chat-one bubble xz">录音时间太短！</div>');
-                    scrollRoom();
-                    recording = false;
-                    startTime = 0;
-                    try {
-                        localMediaStream.getTracks()[0].stop();
-                        audioInput.disconnect();
-                        recorder.disconnect();
-                    } catch(e) {}
-                }
+                endRecord();
+                // if (startTime > 0 && (+new Date()) - startTime > 1200) {
+                //     endRecord();
+                // } else {
+                //     $room.append('<div class="chat-one bubble xz">录音时间太短！</div>');
+                //     scrollRoom();
+                //     recording = false;
+                //     startTime = 0;
+                //     try {
+                //         localMediaStream.getTracks()[0].stop();
+                //         audioInput.disconnect();
+                //         recorder.disconnect();
+                //     } catch(e) {}
+                // }
             } else {
                 $this.addClass('recording');
                 $('.record-btn img').attr('src', gif1);
@@ -431,19 +436,20 @@ pre {
             posEnd = event.changedTouches[0].pageY;
 
             if(posStart - posEnd < 60) {
-                if (tartTime > 0 && (+new Date()) - startTime > 1200) {
-                    endRecord();
-                } else {
-                    $room.append('<div class="chat-one bubble xz">录音时间太短！</div>');
-                    scrollRoom();
-                    recording = false;
-                    startTime = 0;
-                    try {
-                        localMediaStream.getTracks()[0].stop();
-                        audioInput.disconnect();
-                        recorder.disconnect();
-                    } catch(e) {}
-                }
+                ndRecord();
+                // if (tartTime > 0 && (+new Date()) - startTime > 1200) {
+                //     endRecord();
+                // } else {
+                //     $room.append('<div class="chat-one bubble xz">录音时间太短！</div>');
+                //     scrollRoom();
+                //     recording = false;
+                //     startTime = 0;
+                //     try {
+                //         localMediaStream.getTracks()[0].stop();
+                //         audioInput.disconnect();
+                //         recorder.disconnect();
+                //     } catch(e) {}
+                // }
             } else {
                 $('.long-tip').html('取消发送');
                 recording = false;
