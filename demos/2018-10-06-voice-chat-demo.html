@@ -345,6 +345,7 @@ pre {
     // 开发时使用webEvents，没有https,http、file: 下每次都询问，无法长按录音，换用点击事件
     webEvents();
 
+    var afterTapTimeout;
     function preventPuncture(t) {
         t = t - 0;
         afterTapTimeout && clearTimeout(afterTapTimeout)
