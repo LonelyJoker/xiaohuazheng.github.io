@@ -345,6 +345,16 @@ pre {
     // 开发时使用webEvents，没有https,http、file: 下每次都询问，无法长按录音，换用点击事件
     webEvents();
 
+    function preventPuncture(t) {
+        t = t - 0;
+        afterTapTimeout && clearTimeout(afterTapTimeout)
+        document.body.style.pointerEvents = 'none';
+        afterTapTimeout = setTimeout(function () {
+            document.body.style.pointerEvents = '';
+            document.body.style.removeProperty('pointer-events');
+        }, t || 1000);
+    }
+
     function webEvents() {
         $('.record-btn').click(function(event) {
             event.preventDefault();
@@ -370,6 +380,7 @@ pre {
                 $this.addClass('recording');
                 $('.record-btn img').attr('src', gif1);
                 startRecord();
+                preventPuncture();
             }
         });
     }
@@ -498,7 +509,7 @@ pre {
 
     function startRecord() {
         recording = true;
-        // reset the buffers for the new recording
+        // reset the buffers for a new recording
         leftchannel.length = rightchannel.length = 0;
         recordingLength = 0;
 
