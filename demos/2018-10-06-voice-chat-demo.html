@@ -312,9 +312,16 @@ pre {
         if (!!ua.match(/iphone/i) || !!ua.match(/ipad/i)) {
             $('.chat-tit').html('当前浏览器不支持！');
             $('.record-btn').hide();
+
+            setTimeout(function() {
+                $room.append('<div class="chat-one bubble xz">你可以用IOS11以上的Safari打开此页面试试！</div>')
+            }, 1500);
         } else {
             $('.chat-tit').html('当前浏览器不支持！');
             $('.record-btn').hide();
+            setTimeout(function() {
+                $room.append('<div class="chat-one bubble xz">你可以升级浏览器试试！</div>')
+            }, 1500);
         }
     }
 
@@ -356,6 +363,16 @@ pre {
 
     
     function wapEvents() {
+        // 移动端因为要使用touch事件先调用一次
+        navigator.mediaDevices.getUserMedia({audio:true}).then(function(e) {
+            localMediaStream = e;
+            localMediaStream.getTracks()[0].stop();
+        }, function(error) {
+            $('.record-btn').removeClass('recording');
+            $('.record-btn img').attr('src', gif0);
+            $('.chat-tit').html('Error: ' + error);
+        });
+
         recordBtnEle.addEventListener('touchstart', function(event) {
             event.preventDefault();
 
@@ -479,7 +496,7 @@ pre {
             $('.record-btn').removeClass('recording');
             $('.record-btn img').attr('src', gif0);
             $('.chat-tit').html('Error: ' + error);
-        })
+        });
     }
 
     function endRecord() {
