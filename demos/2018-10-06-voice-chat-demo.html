@@ -581,7 +581,14 @@ pre {
                 <span class="duration"></span>\
             </div>');
 
-            voiceBox.find('audio')[0].src = event.target.result;
+            if (!!ua.match(/iphone/i) || !!ua.match(/ipad/i)) {
+                var blobUrl = URL.createObjectURL(blob);
+                voiceBox.find('audio')[0].src = blobUrl;
+                URL.revokeObjectURL(blobUrl);
+            } else {
+                voiceBox.find('audio')[0].src = event.target.result;
+            }
+            
 
             $room.append(voiceBox);
             scrollRoom();
@@ -602,7 +609,13 @@ pre {
                     <span class="duration"></span>\
                 </div>');
 
-                voiceBoxz.find('audio')[0].src = event.target.result;
+                if (!!ua.match(/iphone/i) || !!ua.match(/ipad/i)) {
+                    var blobUrl = URL.createObjectURL(blob);
+                    voiceBoxz.find('audio')[0].src = blobUrl;
+                    URL.revokeObjectURL(blobUrl);
+                } else {
+                    voiceBoxz.find('audio')[0].src = event.target.result;
+                }
 
                 $room.append(voiceBoxz);
                 scrollRoom();
