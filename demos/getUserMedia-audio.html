@@ -135,22 +135,22 @@
 
         var blob = new Blob ( [ view ], { type : 'audio/mpeg' } );
 
-        // var audio = window.document.createElement('audio');
-        // audio.src = URL.createObjectURL(blob);
-        // audio.controls = true;
-        // myAudio.appendChild(audio);
+        var audio = window.document.createElement('audio');
+        audio.src = URL.createObjectURL(blob);
+        audio.controls = true;
+        myAudio.appendChild(audio);
 
         // android chrome audio不支持blob
 
-        var reader = new FileReader();
-        reader.onload = function(event){
-            var audio = window.document.createElement('audio');
-            audio.src = event.target.result;
-            audio.controls = true;
-            myAudio.appendChild(audio);
-        };
-        // 转换base64
-        reader.readAsDataURL(blob);
+        // var reader = new FileReader();
+        // reader.onload = function(event){
+        //     var audio = window.document.createElement('audio');
+        //     audio.src = event.target.result;
+        //     audio.controls = true;
+        //     myAudio.appendChild(audio);
+        // };
+        // // 转换base64
+        // reader.readAsDataURL(blob);
 
     });
 
