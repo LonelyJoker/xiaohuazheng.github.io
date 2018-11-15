@@ -371,6 +371,7 @@ pre {
                 if (!deadCountShowed) {
                     deadCountShowed = true;
                     $room.append('<div class="chat-one bubble xz">navigator.mediaDevices.getUserMedia调用次数达到上限，正在努力调研解决！</div>');
+                    $('.record-btn');
                 }
                 
                 return;
@@ -415,6 +416,16 @@ pre {
 
         recordBtnEle.addEventListener('touchstart', function(event) {
             event.preventDefault();
+
+            if (invokeCount > 5) {
+                if (!deadCountShowed) {
+                    deadCountShowed = true;
+                    $room.append('<div class="chat-one bubble xz">navigator.mediaDevices.getUserMedia调用次数达到上限，正在努力调研解决！</div>');
+                    $('.record-btn');
+                }
+                
+                return;
+            }
 
             posStart = 0;
             posStart = event.targetTouches[0].pageY;
