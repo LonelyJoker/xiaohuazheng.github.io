@@ -503,43 +503,9 @@ pre {
         });
     }
 
-    // 交叉合并左右声道数据
-    function interleave(leftChannel, rightChannel){
-        var length = leftChannel.length + rightChannel.length;
-        var result = new Float32Array(length);
-
-        var inputIndex = 0;
-
-        for (var index = 0; index < length;){
-            result[index++] = leftChannel[inputIndex];
-            result[index++] = rightChannel[inputIndex];
-            inputIndex++;
-        }
-        return result;
-    }
-
-    function mergeBuffers(channelBuffer, recordingLength){
-        var result = new Float32Array(recordingLength);
-        var offset = 0;
-        var lng = channelBuffer.length;
-        for (var i = 0; i < lng; i++){
-            var buffer = channelBuffer[i];
-            result.set(buffer, offset);
-            offset += buffer.length;
-        }
-        return result;
-    }
-
-    function writeUTFBytes(view, offset, string){ 
-        var lng = string.length;
-        for (var i = 0; i < lng; i++){
-            view.setUint8(offset + i, string.charCodeAt(i));
-        }
-    }
-
     function startRecord() {
         recording = true;
-        // reset the buffers for a new recording
+        // 重置缓冲区
         leftchannel.length = rightchannel.length = 0;
         recordingLength = 0;
 
@@ -573,47 +539,89 @@ pre {
         });
     }
 
+    function onSuccess(e){
+        audioContext = window.AudioContext || window.webkitAudioContext;
+        context = new audioContext();
+    
+        // 设置采样率，根据查询上下文采样率（因平台而异）
+        sampleRate = context.sampleRate;
+    
+        // 创建 gain 节点
+        volume = context.createGain();
+    
+        // 从麦克风输入流创建音频节点
+        audioInput = context.createMediaStreamSource(e);
+    
+        // 将流连接到 gain 节点
+        audioInput.connect(volume);
+    
+        var bufferSize = 2048;
+        recorder = context.createScriptProcessor(bufferSize, 2, 2);
+    
+        recorder.onaudioprocess = function(e){
+            if (!recording) return;
+            var left = e.inputBuffer.getChannelData (0);
+            var right = e.inputBuffer.getChannelData (1);
+            
+            leftchannel.push (new Float32Array (left.slice(0)));
+            rightchannel.push (new Float32Array (right.slice(0)));
+            recordingLength += bufferSize;
+        }
+    
+        // 连接录音设备
+        volume.connect (recorder);
+        recorder.connect (context.destination);
+    }
+
     function endRecord() {
         try {
             localMediaStream.getTracks()[0].stop();
             audioInput.disconnect();
             recorder.disconnect();
         } catch(e) {}
-        // we stop recording
+        
         recording = false;
         startTime = 0;
 
-        // we flat the left and right channels down
+        // 将左右通道向下平放
         var leftBuffer = mergeBuffers ( leftchannel, recordingLength );
         var rightBuffer = mergeBuffers ( rightchannel, recordingLength );
-        // we interleave both channels together
+        // 交叉合并左右声道
         var interleaved = interleave ( leftBuffer, rightBuffer );
-
-        // we create our wav file
+    
+        // 创建buffer
         var buffer = new ArrayBuffer(44 + interleaved.length * 2);
-
-
+    
         var view = new DataView(buffer);
-
-        // RIFF chunk descriptor
+    
+        // 写入资源交换文件标识符
         writeUTFBytes(view, 0, 'RIFF');
+        // 设置下个地址开始到文件尾总字节数
         view.setUint32(4, 44 + interleaved.length * 2, true);
+        // 写入WAV文件标志
         writeUTFBytes(view, 8, 'WAVE');
-        // FMT sub-chunk
+        // FMT 格式标志
         writeUTFBytes(view, 12, 'fmt ');
+        // 设置过滤字节,一般为 0x10 = 16
         view.setUint32(16, 16, true);
+        // 设置格式类别 (PCM形式采样数据)
         view.setUint16(20, 1, true);
-        // stereo (2 channels)
+        // 设置通道数 (2 channels)
         view.setUint16(22, 2, true);
+        // 设置采样率，每秒样本数，表示每个通道的播放速度
         view.setUint32(24, sampleRate, true);
+        // 波形数据传输率 (每秒平均字节数) 
         view.setUint32(28, sampleRate * 4, true);
+        // 设置快数据调整数 采样一次占用字节数
         view.setUint16(32, 4, true);
+        // 设置单个样本数据位数
         view.setUint16(34, 16, true);
-        // data sub-chunk
+        // 数据标识符 sub-chunk
         writeUTFBytes(view, 36, 'data');
+        // 设置采样数据总数
         view.setUint32(40, interleaved.length * 2, true);
-
-        // write the PCM samples
+    
+        // 写入采样数据
         var lng = interleaved.length;
         var index = 44;
         var volume = 1;
@@ -621,7 +629,8 @@ pre {
             view.setInt16(index, interleaved[i] * (0x7FFF * volume), true);
             index += 2;
         }
-
+    
+        // 转换BLOB
         var blob = new Blob ( [ view ], { type : 'audio/mpeg' } );
 
         // blob 形式播放
@@ -690,39 +699,39 @@ pre {
         reader.readAsDataURL(blob);
     }
 
-    function onSuccess(e){
-        // creates the audio context
-        audioContext = window.AudioContext || window.webkitAudioContext;
-        context = new audioContext();
+    // 交叉合并左右声道数据
+    function interleave(leftChannel, rightChannel){
+        var length = leftChannel.length + rightChannel.length;
+        var result = new Float32Array(length);
 
-        // we query the context sample rate (varies depending on platforms)
-        sampleRate = context.sampleRate;
+        var inputIndex = 0;
 
-        // creates a gain node
-        volume = context.createGain();
-
-        // creates an audio node from the microphone incoming stream
-        audioInput = context.createMediaStreamSource(e);
-
-        // connect the stream to the gain node
-        audioInput.connect(volume);
-
-        var bufferSize = 2048;
-        recorder = context.createScriptProcessor(bufferSize, 2, 2);
-
-        recorder.onaudioprocess = function(e){
-            if (!recording) return;
-            var left = e.inputBuffer.getChannelData (0);
-            var right = e.inputBuffer.getChannelData (1);
-            // we clone the samples
-            leftchannel.push (new Float32Array (left.slice(0)));
-            rightchannel.push (new Float32Array (right.slice(0)));
-            recordingLength += bufferSize;
+        for (var index = 0; index < length;){
+            result[index++] = leftChannel[inputIndex];
+            result[index++] = rightChannel[inputIndex];
+            inputIndex++;
         }
+        return result;
+    }
+    
+    // 合并多个Float32Array成一个单个Float32Array
+    function mergeBuffers(channelBuffer, recordingLength){
+        var result = new Float32Array(recordingLength);
+        var offset = 0;
+        var lng = channelBuffer.length;
+        for (var i = 0; i < lng; i++){
+            var buffer = channelBuffer[i];
+            result.set(buffer, offset);
+            offset += buffer.length;
+        }
+        return result;
+    }
 
-        // we connect the recorder
-        volume.connect (recorder);
-        recorder.connect (context.destination); 
+    function writeUTFBytes(view, offset, string){ 
+        var lng = string.length;
+        for (var i = 0; i < lng; i++){
+            view.setUint8(offset + i, string.charCodeAt(i));
+        }
     }
 
     function scrollRoom() {
