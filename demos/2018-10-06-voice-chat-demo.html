@@ -376,17 +376,17 @@ pre {
 
             isTouchStart = false;
 
-            if (mediaInvoking) {
-                return;
-            }
-
-            if ((!!ua.match(/iphone/i) || !!ua.match(/ipad/i) || !!ua.match(/android/i)) &&invokeCount > 5) {
+            if ((!!ua.match(/iphone/i) || !!ua.match(/ipad/i) || !!ua.match(/android/i)) && invokeCount > 5) {
                 if (!deadCountShowed) {
                     deadCountShowed = true;
                     $room.append('<div class="chat-one bubble xz">navigator.mediaDevices.getUserMedia调用次数达到上限，正在努力调研解决！</div>');
                     $('.record-btn').hide();
                 }
                 
+                return;
+            }
+
+            if (mediaInvoking) {
                 return;
             }
 
@@ -680,6 +680,8 @@ pre {
                 voiceBoxz.find('audio')[0].src = event.target.result;
 
                 $room.append(voiceBoxz);
+                $room.append('<div class="chat-one bubble xz">'+ invokeCount +'</div>');
+
                 scrollRoom();
                 vc.initVoice();
             }, Math.ceil(Math.random() * 3) * 1000);
