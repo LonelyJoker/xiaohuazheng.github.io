@@ -267,7 +267,7 @@ pre {
 <div class="container">
     <div class="chat-house">
         <div class="chat-room">
-            <div class="chat-one chat-tit bubble xz">点击下方录音按钮即可开始录音对话！</div>
+            <div class="chat-one chat-tit bubble xz">点击下方录音按钮即可录音对话！</div>
         </div>
     </div>
     <div class="record-btn">
@@ -376,7 +376,7 @@ pre {
 
             isTouchStart = false;
 
-            if ((!!ua.match(/iphone/i) || !!ua.match(/ipad/i) || !!ua.match(/android/i)) && invokeCount > 5) {
+            if ((!!ua.match(/iphone/i) || !!ua.match(/ipad/i) || !!ua.match(/android/i)) && invokeCount > 4) {
                 if (!deadCountShowed) {
                     deadCountShowed = true;
                     $room.append('<div class="chat-one bubble xz">navigator.mediaDevices.getUserMedia调用次数达到上限，正在努力调研解决！</div>');
@@ -419,7 +419,7 @@ pre {
         recordBtnEle.addEventListener('touchstart', function(event) {
             event.preventDefault();
 
-            if ((!!ua.match(/iphone/i) || !!ua.match(/ipad/i) || !!ua.match(/android/i)) && invokeCount > 5) {
+            if ((!!ua.match(/iphone/i) || !!ua.match(/ipad/i) || !!ua.match(/android/i)) && invokeCount > 4) {
                 if (!deadCountShowed) {
                     deadCountShowed = true;
                     $room.append('<div class="chat-one bubble xz">navigator.mediaDevices.getUserMedia调用次数达到上限，正在努力调研解决！</div>');
