@@ -267,7 +267,7 @@ pre {
 <div class="container">
     <div class="chat-house">
         <div class="chat-room">
-            <div class="chat-one chat-tit bubble xz">长按下方录音按钮即可开始对话！</div>
+            <div class="chat-one chat-tit bubble xz">点击下方录音按钮即可开始录音对话！</div>
         </div>
     </div>
     <div class="record-btn">
@@ -342,6 +342,7 @@ pre {
             $('.record-btn').removeClass('recording');
             $('.record-btn img').attr('src', gif0);
             $('.chat-tit').html('Error: ' + error);
+            $room.append('<div class="chat-one bubble xz">你可以打开浏览器设置对麦克风捕获授权试试！</div>');
         });
     } catch(e) {}
 
