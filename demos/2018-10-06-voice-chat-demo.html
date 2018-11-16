@@ -309,6 +309,8 @@ pre {
         posMove = 0,
         startTime = 0;
 
+    var mediaInvoking = false;
+
 
     if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
         if (!!ua.match(/iphone/i) || !!ua.match(/ipad/i)) {
@@ -332,15 +334,27 @@ pre {
     }
 
 
-    if (!!ua.match(/iphone/i) || !!ua.match(/ipad/i) || !!ua.match(/android/i)) {
-        wapEvents();
-    } else {
-        webEvents();
-        $('.chat-tit').html('点击录音按钮即可开始语音对话！');
-    }
+    try {
+        navigator.mediaDevices.getUserMedia({audio:true}).then(function(e) {
+            localMediaStream = e;
+            localMediaStream.getTracks()[0].stop();
+        }, function(error) {
+            $('.record-btn').removeClass('recording');
+            $('.record-btn img').attr('src', gif0);
+            $('.chat-tit').html('Error: ' + error);
+        });
+    } catch(e) {}
+
+
+    // if (!!ua.match(/iphone/i) || !!ua.match(/ipad/i) || !!ua.match(/android/i)) {
+    //     wapEvents();
+    // } else {
+    //     webEvents();
+    //     $('.chat-tit').html('点击录音按钮即可开始语音对话！');
+    // }
 
     // 开发时使用webEvents，没有https,http、file: 下每次都询问，无法长按录音，换用点击事件
-    // webEvents();
+    webEvents();
 
     var afterTapTimeout;
     function preventPuncture(t) {
@@ -350,7 +364,7 @@ pre {
         afterTapTimeout = setTimeout(function () {
             document.body.style.pointerEvents = '';
             document.body.style.removeProperty('pointer-events');
-        }, t || 400);
+        }, t || 800);
     }
 
     var deadCountShowed = false;
@@ -360,6 +374,10 @@ pre {
             var $this = $(this);
 
             isTouchStart = false;
+
+            if (mediaInvoking) {
+                return;
+            }
 
             if ((!!ua.match(/iphone/i) || !!ua.match(/ipad/i) || !!ua.match(/android/i)) &&invokeCount > 5) {
                 if (!deadCountShowed) {
@@ -397,17 +415,6 @@ pre {
 
     var isTouchStart = false;    
     function wapEvents() {
-        // 移动端因为要使用touch事件先调用一次
-        invokeCount += 1;
-        navigator.mediaDevices.getUserMedia({audio:true}).then(function(e) {
-            localMediaStream = e;
-            localMediaStream.getTracks()[0].stop();
-        }, function(error) {
-            $('.record-btn').removeClass('recording');
-            $('.record-btn img').attr('src', gif0);
-            $('.chat-tit').html('Error: ' + error);
-        });
-
         recordBtnEle.addEventListener('touchstart', function(event) {
             event.preventDefault();
 
@@ -542,6 +549,8 @@ pre {
         } catch(e) {}
 
         invokeCount += 1;
+        mediaInvoking = true;
+
         navigator.mediaDevices.getUserMedia({audio:{
             sampleRate: 44000,
             channelCount: 2,
@@ -554,7 +563,9 @@ pre {
                 $('.record-btn').addClass('recording');
                 $('.record-btn img').attr('src', gif1);
             }
+            mediaInvoking = false;
         }, function(error) {
+            mediaInvoking = false;
             $('.record-btn').removeClass('recording');
             $('.record-btn img').attr('src', gif0);
             $room.append('<div class="chat-one bubble xz">'+ 'Error: ' + error +'</div>');
