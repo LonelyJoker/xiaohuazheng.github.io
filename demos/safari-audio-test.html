@@ -277,6 +277,7 @@ pre {
                 <span class="duration"></span>
             </div>
         </div>
+        <audio src="https://static.faniuwenda.com/wxfile/audio/8w0CuvYClpdhqAhRw5JRTZkQv9i0n0t1jvgFHlzohBsevaf5OCZWtnwjOTYzcYub.mp3" preload="auto" id="voice-xzavier" controls></audio>
     </div>
     <div class="record-btn">
         <button>
@@ -306,6 +307,7 @@ pre {
             var self = this;
             // 音频点击
             $(document).on('click', '.voice-one', function() {
+                $room.append('<div class="chat-one bubble xz">click</div>');
                 var $this = $(this),
                     vid = $this.attr('vid');
                 if ($this.hasClass('playing')) {
@@ -416,13 +418,16 @@ pre {
         // 开始音频播放效果
         startPlay: function(vid) {
             this.closeAllVoice(vid);
-            this.voice[vid].play();
             $room.append('<div class="chat-one bubble xz">play</div>');
+            this.voice[vid].play();
+            $room.append('<div class="chat-one bubble xz">play OK</div>');
             $('.voice-one[vid="'+vid+'"]').addClass('playing');
         },
         // 暂停音频播放效果
         stopPlay: function(vid) {
+            $room.append('<div class="chat-one bubble xz">stopPlay</div>');
             this.voice[vid].pause();
+            $room.append('<div class="chat-one bubble xz">stopPlay OK</div>');
             $('.voice-one[vid="'+vid+'"]').removeClass('playing');
         },
         getHackHidden: function() {
