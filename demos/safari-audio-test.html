@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<meta HTTP-EQUIV="Pragma" CONTENT="no-cache"/>
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache"/>
+<meta HTTP-EQUIV="Expires" CONTENT="0"/>
+<meta http-equiv="x-dns-prefetch-control" content="on"/>
+<meta name="description" content="Capturing Audio Video in HTML5">
+<meta name="keywords"  content="navigator.mediaDevices.getUserMedia">
+<meta name="author" content="Xzavier">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<link rel="Shortcut Icon" href="https://xiaohuazheng.github.io/img/favicon.ico"/>
+<title>audio-voice-chat</title>
+<style>
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+html {
+    font-family: Arial,Helvetica,sans-serif;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    word-wrap: break-word;
+    word-break: break-all;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+pre {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  white-space: pre-wrap;
+}
+
+.chat-house {
+    overflow: auto;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+.chat-room {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding: 10px 0 100px;
+}
+
+.chat-one {
+    max-width: 70%;
+    margin: 15px;
+    padding: 8px 10px;
+    font-size: 17px;
+    line-height: 25px;
+}
+
+.bubble {
+    position: relative;
+    background-color: #fff;
+    -webkit-align-self: flex-start;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+    color: #333;
+    border-radius: 4px;
+    animation: goup .5s;
+}
+
+.bubble.me {
+    -webkit-align-self: flex-end;
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+    background-color: #90d936;
+}
+
+.bubble:before {
+    content: '';
+    box-sizing: border-box;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: 15px;
+    background-color: inherit;
+    border-right-color: inherit;
+    border-bottom-color: inherit;
+}
+
+.bubble.xz:before{
+    left: -4px;
+    transform: rotate(135deg);
+    border-color: #919191;
+}
+
+.bubble.me:before {
+    right: -4px;
+    transform: rotate(-45deg);
+    border-color: #6c9a36;
+}
+
+@keyframes goup {
+    0% {
+        transform: translate(0, 1.875rem);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.record-btn {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    -webkit-transform: translate(-50%,0);
+    -ms-transform: translate(-50%,0);
+    transform: translate(-50%,0);
+    border-radius: 50%;
+}
+
+.record-btn button {
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    outline: none;
+    border-radius: 50%;
+}
+
+.record-btn img {
+    border-radius: 50%;
+}
+
+.small {
+    width: 10px;
+    height: 10px;
+    border-style: solid;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    box-sizing: border-box;
+    vertical-align: middle;
+    display: inline-block;
+    color:#A2A2A2;
+}
+
+.middle {
+    width: 20px;
+    height: 20px;
+    border-style: solid;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    box-sizing: border-box;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: -18px;
+    opacity: 1;
+    color:#A2A2A2;
+}
+@keyframes showMiddle {
+    0% { opacity: 0;}
+    30% { opacity: 1;}
+    100% { opacity: 0;}
+}
+.loop-box {
+    width: 100%;
+    margin-right: 10px;
+}
+
+.me .loop-box {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.large {
+    width: 30px;
+    height: 30px;
+    border-style: solid;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    box-sizing: border-box;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: -27px;
+    opacity: 1;
+    color:#A2A2A2;
+}
+@keyframes showLarge {
+    0% { opacity: 0;}
+    60% { opacity: 1;}
+    100% { opacity: 0;}
+}
+
+.playing .middle {
+    -webkit-animation: showMiddle 1s step-end infinite;
+    animation: showMiddle 1s step-end infinite;
+}
+
+.playing .large {
+    -webkit-animation: showLarge 1s step-end infinite;
+    animation: showLarge 1s step-end infinite;
+}
+
+.me .small, .me .middle, .me .large {
+    color: #32b14e;
+}
+
+.duration {
+    position: absolute;
+    width: auto;
+    top: 50%;
+    height: 30px;
+    line-height: 30px;
+    margin-top: -15px;
+    color: #999;
+    font-weight: bold;
+}
+
+.xz .duration {
+    right: -40px;
+}
+
+.me .duration {
+    left: -40px;
+}
+
+.long-tip {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 60%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    color: #999;
+    text-align: center;
+    background: #fff;
+    border-radius: 5px;
+    z-index: 9;
+    box-shadow: 0 1px 15px 0 rgba(0, 0, 0, .3);
+    display: none;
+}
+
+</style>
+
+<div class="container">
+    <div class="chat-house">
+        <div class="chat-room">
+            <div class="chat-one chat-tit bubble xz">长按下方录音按钮即可开始对话！</div>
+            <div class="chat-one voice-one voice-init bubble me" vid="xzavier">
+                <audio src="https://static.faniuwenda.com/wxfile/audio/8w0CuvYClpdhqAhRw5JRTZkQv9i0n0t1jvgFHlzohBsevaf5OCZWtnwjOTYzcYub.mp3" preload="auto" id="voice-xzavier"></audio>
+                <div class="loop-box">
+                    <div class="small"></div>
+                    <div class="middle "></div>
+                    <div class="large "></div>
+                </div>
+                <span class="duration"></span>
+            </div>
+        </div>
+    </div>
+    <div class="record-btn">
+        <button>
+            <img src="https://xiaohuazheng.github.io/demos/img/recordstart.gif">
+        </button>
+    </div>
+    <div class="long-tip"></div>
+</div>
+
+<script src="https://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    var ua = navigator.userAgent.toLocaleLowerCase();
+
+    var $room = $('.chat-room'),
+        $recordBtn = $('.record-btn'),
+        recordBtnEle = $recordBtn[0],
+        gif0 = 'https://xiaohuazheng.github.io/demos/img/recordstart.gif',
+        gif1 = 'https://xiaohuazheng.github.io/demos/img/recording.gif';
+
+    var vc = {
+        init: function() {
+            this.bindEvents();
+            this.voice = {};
+            this.initVoice();
+        },
+        bindEvents: function() {
+            var self = this;
+            // 音频点击
+            $(document).on('click', '.voice-one', function() {
+                var $this = $(this),
+                    vid = $this.attr('vid');
+                if ($this.hasClass('playing')) {
+                    self.stopPlay(vid);
+                } else {
+                    self.startPlay(vid);
+                }
+            });
+        },
+        // 初始化音频
+        initVoice: function() {
+            var self = this;
+
+            if (!$('.voice-init').length) {
+                return;
+            }
+
+            function renderDuration(v) {
+                if ($('.voice-one[vid="'+v+'"]').find('.duration').hasClass('ed')) {
+                    return;
+                }
+
+                if ($.isNumeric(self.voice[v].duration)) {
+                    var d = Math.ceil(self.voice[v].duration);
+                    $('.voice-one[vid="'+v+'"]').find('.duration').html(d + '"').addClass('ed');
+
+                    if (d > 3) {
+                        if (d > 35) {
+                            $('.voice-one[vid="'+v+'"]').css('width', '70%');
+                        } else {
+                            $('.voice-one[vid="'+v+'"]').css('width', (2 * d) + '%');
+                        }
+                    }
+                    $room.append('<div class="chat-one bubble xz">d:'+d+'</div>');
+                }
+            }
+
+            $('.voice-init').each(function() {
+                var $this = $(this),
+                    vid = $this.attr('vid'),
+                    vSelector = 'voice-' + vid;
+
+                $room.append('<div class="chat-one bubble xz">vSelector:'+vSelector+'</div>');
+
+                self.voice[vid] = document.getElementById(vSelector);
+                // 监听音频数据加载
+                self.voice[vid].addEventListener('loadeddata', function() {
+                    renderDuration(vid);
+                    $room.append('<div class="chat-one bubble xz">loadeddata</div>');
+                });
+                self.voice[vid].addEventListener('canplay', function() {
+                    renderDuration(vid);
+                    $room.append('<div class="chat-one bubble xz">canplay</div>');
+                });
+                self.voice[vid].addEventListener('timeupdate', function() {
+                    renderDuration(vid);
+                });
+                self.voice[vid].addEventListener('durationchange', function() {
+                    renderDuration(vid);
+                    $room.append('<div class="chat-one bubble xz">durationchange</div>');
+                });
+                self.voice[vid].addEventListener('canplaythrough', function() {
+                    renderDuration(vid);
+                    $room.append('<div class="chat-one bubble xz">canplaythrough</div>');
+                });
+                self.voice[vid].addEventListener('loadedmetadata', function() {
+                    renderDuration(vid);
+                    $room.append('<div class="chat-one bubble xz">loadedmetadata</div>');
+                });
+
+                // 监听音频播放完毕
+                self.voice[vid].addEventListener('ended', function() {
+                    self.voice[vid].currentTime = 0;
+                    self.stopPlay(vid);
+                });
+
+                $this.removeClass('voice-init');
+            });
+
+            var visProp = self.getHackHidden();
+            if (visProp) {
+                var evtname = visProp.replace(/[H|h]idden/, '') + 'visibilitychange';
+                document.addEventListener(evtname, function() {
+                    if (self.isHidden() || self.getHackVisibilityState() === 'hidden') {
+                        self.closeAllVoice();
+                    }
+                }, false);
+            }
+
+            // 即将离开时触发
+            window.addEventListener('beforeunload', function() {
+                self.closeAllVoice();
+            }, false);
+
+            // 离开时触发
+            window.addEventListener('unload', function() {
+                self.closeAllVoice();
+            }, false);
+        },
+        // 关闭所有音频
+        closeAllVoice: function(vid) {
+            for(var i in this.voice) {
+                if (vid != i) {
+                    this.stopPlay(i);
+                }
+            }
+        },
+        // 开始音频播放效果
+        startPlay: function(vid) {
+            this.closeAllVoice(vid);
+            this.voice[vid].play();
+            $room.append('<div class="chat-one bubble xz">play</div>');
+            $('.voice-one[vid="'+vid+'"]').addClass('playing');
+        },
+        // 暂停音频播放效果
+        stopPlay: function(vid) {
+            this.voice[vid].pause();
+            $('.voice-one[vid="'+vid+'"]').removeClass('playing');
+        },
+        getHackHidden: function() {
+            if ('hidden' in document) {
+                return 'hidden';
+            }
+
+            var prefixes = ['webkit', 'moz', 'ms', 'o'];
+            for (var i = 0; i < prefixes.length; i++) {
+                if ((prefixes[i] + 'Hidden') in document) {
+                    return prefixes[i] + 'Hidden';
+                }
+            }
+            return null;
+        },
+        getHackVisibilityState: function() {
+            if ('visibilityState' in document) {
+                return 'visibilityState';
+            }
+
+            var prefixes = ['webkit', 'moz', 'ms', 'o'];
+            for (var i = 0; i < prefixes.length; i++) {
+                if ((prefixes[i] + 'VisibilityState') in document) {
+                    return prefixes[i] + 'VisibilityState';
+                }
+            }
+            return null;
+        },
+        isHidden: function() {
+            var prop = this.getHackHidden();
+            if (!prop) {
+                return false;
+            }
+        
+            return document[prop];
+        }
+    }
+
+    vc.init();
+</script>
