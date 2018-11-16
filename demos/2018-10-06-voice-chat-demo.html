@@ -268,15 +268,6 @@ pre {
     <div class="chat-house">
         <div class="chat-room">
             <div class="chat-one chat-tit bubble xz">长按下方录音按钮即可开始对话！</div>
-            <div class="chat-one voice-one voice-init bubble me" vid="xzavier">
-                <audio src="https://static.faniuwenda.com/wxfile/audio/8w0CuvYClpdhqAhRw5JRTZkQv9i0n0t1jvgFHlzohBsevaf5OCZWtnwjOTYzcYub.mp3" preload="auto" id="voice-xzavier"></audio>
-                <div class="loop-box">
-                    <div class="small"></div>
-                    <div class="middle "></div>
-                    <div class="large "></div>
-                </div>
-                <span class="duration"></span>
-            </div>
         </div>
     </div>
     <div class="record-btn">
@@ -334,7 +325,7 @@ pre {
                 $room.append('<div class="chat-one bubble xz">你可以升级浏览器试试！</div>');
             }, 1500);
         }
-    } else {
+    } else if (!(!!ua.match(/iphone/i) || !!ua.match(/ipad/i) || !!ua.match(/android/i))) {
         setTimeout(function() {
             $room.append('<div class="chat-one bubble xz">为保障录音时间，点击录音后1s内按钮不可点击！</div>');
         }, 1500);
@@ -367,6 +358,8 @@ pre {
         $('.record-btn').click(function(event) {
             event.preventDefault();
             var $this = $(this);
+
+            isTouchStart = false;
 
             if ((!!ua.match(/iphone/i) || !!ua.match(/ipad/i) || !!ua.match(/android/i)) &&invokeCount > 5) {
                 if (!deadCountShowed) {
@@ -402,7 +395,7 @@ pre {
         });
     }
 
-    
+    var isTouchStart = false;    
     function wapEvents() {
         // 移动端因为要使用touch事件先调用一次
         invokeCount += 1;
@@ -431,10 +424,11 @@ pre {
             posStart = 0;
             posStart = event.targetTouches[0].pageY;
 
-            $('.long-tip').html('手指上滑，取消发送').show();
-
-            $recordBtn.addClass('recording');
+            isTouchStart = true;
+            $('.record-btn').addClass('recording');
             $('.record-btn img').attr('src', gif1);
+
+            $('.long-tip').html('手指上滑，取消发送').show();
 
             startRecord();
         });
@@ -556,9 +550,10 @@ pre {
             onSuccess(e);
             localMediaStream = e;
             startTime = +new Date();
-            $room.append('<div class="chat-one bubble xz">调用麦克风成功！</div>');
-            $('.record-btn').addClass('recording');
-            $('.record-btn img').attr('src', gif1);
+            if (!isTouchStart) {
+                $('.record-btn').addClass('recording');
+                $('.record-btn img').attr('src', gif1);
+            }
         }, function(error) {
             $('.record-btn').removeClass('recording');
             $('.record-btn img').attr('src', gif0);
