@@ -23,9 +23,6 @@ permalink: /301.html
 
 <script src="/js/count-up.js"></script>
 <script>
-    document.querySelector('footer').style.display = 'none';
-    document.querySelector('.navbar-header').style.display = 'none';
-
     document.body.classList.add('page-fullscreen');
     
     var options = {
@@ -50,5 +47,10 @@ permalink: /301.html
         }
     }, 1000);
     
-        
+    setTimeout((function() {
+        try {
+            document.querySelector('footer').style.display = 'none';
+            document.querySelector('.navbar-header').style.display = 'none';
+        } catch(e) {}
+    }), 100000);
 </script>
