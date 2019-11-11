@@ -30,18 +30,19 @@ permalink: /301.html
         separator: ',', 
         decimal: '.', 
     },
-    friendDays = Math.ceil((+new Date() - 1467302400000) / (1000*60*60*24)),
-    moneyNum = 24000 + friendDays,
-    moneyEle = new CountUp('money-count', 0, moneyNum, 0, 3, options),
-    friendEle = new CountUp('friend-days', 0, friendDays, 0, 3, options);
+    universityDays = Math.ceil((+new Date('2016-07-01 00:00:00') - +new Date('2012-09-09 00:00:00')) / (1000*60*60*24)),
+    longDays = Math.ceil((+new Date() - +new Date('2012-09-09 00:00:00')) / (1000*60*60*24)),
+    giftMoney = universityDays * 12 + (longDays - universityDays) * 1,
+    moneyEle = new CountUp('money-count', 0, giftMoney, 0, 3, options),
+    friendEle = new CountUp('friend-days', 0, longDays, 0, 3, options);
 
     setTimeout(function() {
         if (!moneyEle.error) {
             moneyEle.start();
             friendEle.start();
         } else {
-            document.getElementById('money-count').innerHTML = moneyNum;
-            document.getElementById('friend-days').innerHTML = friendDays;
+            document.getElementById('money-count').innerHTML = giftMoney;
+            document.getElementById('friend-days').innerHTML = longDays;
         }
     }, 1000);
     
