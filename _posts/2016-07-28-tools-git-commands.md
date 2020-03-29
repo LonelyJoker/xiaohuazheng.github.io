@@ -2,6 +2,8 @@
 layout:     post
 title:      "工具系列（1）- Git"
 subtitle:   "Git常用命令and设置快捷命令"
+description: "Git 快捷命令 常用"
+keyword:    "Git 快捷命令 常用"
 date:       2016-07-28
 author:     "xzavier"
 catalog: true

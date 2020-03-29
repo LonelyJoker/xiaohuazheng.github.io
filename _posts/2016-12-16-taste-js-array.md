@@ -2,6 +2,8 @@
 layout:     post
 title:      "温故js系列（12）"
 subtitle:   "数组 & 数组使用详解"
+description: "js Javascript splice slice 数组 isArray"
+keyword:    "js Javascript splice slice 数组 isArray"
 date:       2016-12-16
 author:     "xzavier"
 catalog: true

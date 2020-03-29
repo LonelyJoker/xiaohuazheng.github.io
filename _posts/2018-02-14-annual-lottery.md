@@ -2,6 +2,8 @@
 layout:     post
 title:      "双色球"
 subtitle:   "年会娱乐项目"
+description: "年会前端代码 前端特效 前端效果"
+keyword:    "年会 canvas 前端"
 date:       2018-02-14
 author:     "xzavier"
 catalog: true

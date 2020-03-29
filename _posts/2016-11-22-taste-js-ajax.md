@@ -2,6 +2,8 @@
 layout:     post
 title:      "温故js系列（10）"
 subtitle:   "Ajax&&优缺点&&node后端"
+description: "js Javascript ajax"
+keyword:    "js Javascript ajax"
 date:       2016-11-22
 author:     "xzavier"
 catalog: true

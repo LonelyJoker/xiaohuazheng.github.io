@@ -2,7 +2,9 @@
 layout:     post
 title:      "DIY audio player"
 subtitle:   "自定义audio播放器样式"
-date:       2018-06-02
+description: "自定义 audio播放器样式 音频播放器样式 美化"
+keyword:    "html5 h5 audio 视频播放器"
+date:       2019-03-02
 author:     "xzavier"
 catalog: true
 tags:

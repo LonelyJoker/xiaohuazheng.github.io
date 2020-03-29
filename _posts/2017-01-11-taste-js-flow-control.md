@@ -2,6 +2,8 @@
 layout:     post
 title:      "温故js系列（14）"
 subtitle:   "详解代码中的流程控制"
+description: "js Javascript If else break continue"
+keyword:    "js Javascript if else break continue"
 date:       2017-01-11
 author:     "xzavier"
 catalog: true

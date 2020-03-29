@@ -2,6 +2,8 @@
 layout:     post
 title:      "js富文本编辑器"
 subtitle:   "自己动手搞一个给业务用"
+description: "自己实现富文本编辑器"
+keyword:    "contenteditable execCommand"
 date:       2018-03-29
 author:     "xzavier"
 catalog: true

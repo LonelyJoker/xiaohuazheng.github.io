@@ -2,6 +2,8 @@
 layout:     post
 title:      "来，做做这六个题"
 subtitle:   "加深对JavaScript基础核心特性的理解"
+description: "js 前端思考题 JavaScript基础"
+keyword:    "js 前端思考题 JavaScript基础"
 date:       2017-10-01
 author:     "xzavier"
 catalog: true

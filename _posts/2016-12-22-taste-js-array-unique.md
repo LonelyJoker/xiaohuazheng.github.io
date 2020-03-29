@@ -2,6 +2,8 @@
 layout:     post
 title:      "温故js系列（13）"
 subtitle:   "数组去重 - 由慢到快由繁到简"
+description: "js Javascript 数组去重"
+keyword:    "js Javascript 数组去重"
 date:       2016-12-22
 author:     "xzavier"
 catalog: true

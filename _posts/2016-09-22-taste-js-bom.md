@@ -2,6 +2,8 @@
 layout:     post
 title:      "温故js系列（7）"
 subtitle:   "BOM - 浏览器对象模型"
+description: "js Javascript BOM 浏览器对象"
+keyword:    "js Javascript BOM 浏览器对象"
 date:       2016-09-22
 author:     "xzavier"
 catalog: true

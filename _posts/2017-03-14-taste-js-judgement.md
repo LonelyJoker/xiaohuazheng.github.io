@@ -2,6 +2,8 @@
 layout:     post
 title:      "温故js系列（17）"
 subtitle:   "相等==&严格相等===&代码里的那些判断"
+description: "js Javascript ==和=== 相等 严格相等"
+keyword:    "js Javascript ==和=== 相等 严格相等"
 date:       2017-03-14
 author:     "xzavier"
 catalog: true

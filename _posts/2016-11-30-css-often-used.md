@@ -2,6 +2,8 @@
 layout:     post
 title:      "CSS小技巧"
 subtitle:   "业务代码中常常遇到的小总结"
+description: "CSS 技巧 css居中"
+keyword:    "CSS 技巧 css居中"
 date:       2016-11-30
 author:     "xzavier"
 catalog: true

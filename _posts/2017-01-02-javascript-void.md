@@ -2,6 +2,8 @@
 layout:     post
 title:      "Javascript: void(0);"
 subtitle:   "为啥我们的代码中会用到void？"
+description: "js Javascript void"
+keyword:    "js Javascript void"
 date:       2017-01-02
 author:     "xzavier"
 catalog: true

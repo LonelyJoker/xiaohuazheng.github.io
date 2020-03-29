@@ -2,6 +2,8 @@
 layout:     post
 title:      "温故js系列（15）"
 subtitle:   "闭包 & 垃圾回收 & 内存泄露 & 闭包应用 & 作用域链"
+description: "js Javascript 闭包 垃圾回收 内存泄露 闭包应用 作用域链"
+keyword:    "js Javascript 闭包 垃圾回收 内存泄露 闭包应用 作用域链"
 date:       2017-02-08
 author:     "xzavier"
 catalog: true

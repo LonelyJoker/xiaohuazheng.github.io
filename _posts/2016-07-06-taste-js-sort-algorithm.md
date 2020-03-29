@@ -2,6 +2,8 @@
 layout:     post
 title:      "温故js系列（2）"
 subtitle:   "快速排序 & 插入排序 & 选择排序 & 冒泡排序算法 & 优化"
+description: "js Javascript 排序算法"
+keyword:    "js Javascript 排序算法 快速 插入 选择 冒泡 算法"
 date:       2016-07-06
 author:     "xzavier"
 catalog: true

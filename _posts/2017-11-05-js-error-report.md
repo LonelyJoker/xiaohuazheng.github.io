@@ -2,6 +2,8 @@
 layout:     post
 title:      "前端异常监控上报"
 subtitle:   "代码报错 & 请求异常 & 主动上报"
+description: "js 前端异常监控 "
+keyword:    "js window.onerror 前端异常监控"
 date:       2017-11-05
 author:     "xzavier"
 catalog: true

@@ -2,6 +2,8 @@
 layout:     post
 title:      "jQuery笔记（1）"
 subtitle:   "选择器"
+description: "js jQuery 选择器"
+keyword:    "js jQuery 选择器"
 date:       2016-10-31
 author:     "xzavier"
 catalog: true

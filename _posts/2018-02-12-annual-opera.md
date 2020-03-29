@@ -2,6 +2,8 @@
 layout:     post
 title:      "互动剧"
 subtitle:   "年会娱乐项目"
+description: "年会 前端"
+keyword:    "前端 年会"
 date:       2018-02-12
 author:     "xzavier"
 catalog: true

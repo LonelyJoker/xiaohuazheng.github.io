@@ -2,6 +2,8 @@
 layout:     post
 title:      "温故js系列（9）"
 subtitle:   "详解加法运算符"
+description: "js Javascript 加法"
+keyword:    "js Javascript 加法 valueOf toString"
 date:       2016-11-07
 author:     "xzavier"
 catalog: true

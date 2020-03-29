@@ -2,7 +2,9 @@
 layout:     post
 title:      "前端捕获麦克风录音 && 语音聊天"
 subtitle:   "Capturing Audio && Voice Chat"
-date:       2018-10-06
+description: "前端捕获麦克风录音 实现语音聊天"
+keyword:    "navigator.mediaDevices.getUserMedia 捕获麦克风 摄像头 RecordRTC"
+date:       2019-11-06
 author:     "xzavier"
 catalog: true
 tags:

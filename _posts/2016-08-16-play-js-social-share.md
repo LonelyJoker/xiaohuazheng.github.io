@@ -2,6 +2,8 @@
 layout:     post
 title:      "SocialShare-分享到"
 subtitle:   "微博，QQ，空间，Twitter，Facebook - 简易版社会化分享代码"
+description: "js Javascript SocialShare"
+keyword:    "js Javascript SocialShare 分享"
 date:       2016-08-16
 author:     "xzavier"
 catalog: true

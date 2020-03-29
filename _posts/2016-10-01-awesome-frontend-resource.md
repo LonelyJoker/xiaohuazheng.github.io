@@ -2,11 +2,18 @@
 layout:     post
 title:      "前端资源汇总"
 subtitle:   "教程/模块化/规范化/工程化/优化&工具/调试/值得关注的博客/Git/面试资源"
+description: "js Javascript 面试 前端 资源 教程"
+keyword:    "js Javascript 面试 前端 资源 教程"
 date:       2016-10-01
 author:     "xzavier"
 catalog: true
 tags:
-    - 资源汇总
+    - Javascript
+    - Node
+    - HTML5
+    - CSS3
+    - React
+    - Vue
 ---
 
 ## 简介

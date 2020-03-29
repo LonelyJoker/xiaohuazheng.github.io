@@ -2,6 +2,8 @@
 layout:     post
 title:      "jQuery笔记（2）"
 subtitle:   "动画效果"
+description: "js jQuery jQuery animate"
+keyword:    "js jQuery jQuery animate"
 date:       2016-10-31
 author:     "xzavier"
 catalog: true

@@ -2,6 +2,8 @@
 layout:     post
 title:      "温故js系列（3）"
 subtitle:   "cookie优缺点 & cookie操作"
+description: "js cookie"
+keyword:    "js cookie"
 date:       2016-07-08
 author:     "xzavier"
 catalog: true

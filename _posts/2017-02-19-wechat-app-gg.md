@@ -2,6 +2,8 @@
 layout:     post
 title:      "微信小程序"
 subtitle:   "实操一把 - 一个圈子版小程序"
+description: "微信小程序 实战 项目"
+keyword:    "微信 小程序"
 date:       2017-02-19
 author:     "xzavier"
 catalog: true

@@ -2,6 +2,8 @@
 layout:     post
 title:      "温故js系列（16）"
 subtitle:   "原型 & 原型链 & 原型继承"
+description: "js Javascript 原型 原型链 原型继承"
+keyword:    "js Javascript 原型 原型链 原型继承"
 date:       2017-03-03
 author:     "xzavier"
 catalog: true

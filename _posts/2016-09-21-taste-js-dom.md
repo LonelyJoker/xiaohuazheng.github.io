@@ -2,6 +2,8 @@
 layout:     post
 title:      "温故js系列（6）"
 subtitle:   "DOM - 对象&节点&方法"
+description: "js Javascript DOM"
+keyword:    "js Javascript DOM"
 date:       2016-09-21
 author:     "xzavier"
 catalog: true

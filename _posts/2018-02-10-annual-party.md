@@ -2,6 +2,8 @@
 layout:     post
 title:      "皮一下很开心"
 subtitle:   "年会娱乐项目"
+description: "前端 年会"
+keyword:    "前端 娱乐"
 date:       2018-02-10
 author:     "xzavier"
 catalog: true

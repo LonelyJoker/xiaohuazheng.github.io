@@ -2,6 +2,8 @@
 layout:     post
 title:      "温故js系列（8）"
 subtitle:   "事件Event"
+description: "js Javascript Event 捕获 冒泡"
+keyword:    "js Javascript Event 捕获 冒泡"
 date:       2016-10-18
 author:     "xzavier"
 catalog: true

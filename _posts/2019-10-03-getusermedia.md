@@ -2,7 +2,9 @@
 layout:     post
 title:      "捕获用户麦克风 && 摄像头"
 subtitle:   "Capturing Audio && Video"
-date:       2018-10-03
+description: "捕获用户麦克风 捕获摄像头"
+keyword:    "AudioContext 麦克风 摄像头 捕获"
+date:       2019-10-03
 author:     "xzavier"
 catalog: true
 tags:
@@ -33,7 +35,7 @@ tags:
 
 捕获了音频用`audio`元素播放出来，也可以使用 Web Audio API `AudioContext` 播放。把下面这段代码复制到控制台也阔以实现捕获麦克风并播放。
 
-    window.AudioContext = window.AudioContext ||window.webkitAudioContext;
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
     
     const context = new AudioContext();
     

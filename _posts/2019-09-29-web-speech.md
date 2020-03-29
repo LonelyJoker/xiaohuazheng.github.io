@@ -2,7 +2,9 @@
 layout:     post
 title:      "Web Speech 语音 && 麦克风"
 subtitle:   "SpeechSynthesisUtterance SpeechSynthesis SpeechRecognition"
-date:       2018-09-29
+description: "前端实现语音朗读"
+keyword:    "Web Speech SpeechSynthesisUtterance SpeechSynthesis SpeechRecognition"
+date:       2019-09-29
 author:     "xzavier"
 catalog: true
 tags:

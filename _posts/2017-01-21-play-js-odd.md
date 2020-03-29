@@ -2,12 +2,13 @@
 layout:     post
 title:      "你真懂JavaScript吗？"
 subtitle:   "JavaScript奇味探索"
+description: "js JavaScript 为什么 奇怪"
+keyword:    "js JavaScript 为什么 奇怪"
 date:       2017-01-21
 author:     "xzavier"
 catalog: true
 tags:
     - Javascript
-    - 资源汇总
 ---
 
 

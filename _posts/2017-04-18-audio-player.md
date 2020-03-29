@@ -2,6 +2,8 @@
 layout:     post
 title:      "Audio采坑"
 subtitle:   "自动播放？Safari？"
+description: "Audio 音频自动播放 Safari问题"
+keyword:    "Safari Audio 音频自动播放"
 date:       2017-04-18
 author:     "xzavier"
 catalog: true

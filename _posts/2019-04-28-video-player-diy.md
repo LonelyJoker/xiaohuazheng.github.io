@@ -2,7 +2,9 @@
 layout:     post
 title:      "DIY video player"
 subtitle:   "自定义video播放器样式"
-date:       2018-07-28
+description: "自定义 video播放器样式 视频播放器样式 美化"
+keyword:    "html5 h5 video 视频播放器"
+date:       2019-04-28
 author:     "xzavier"
 catalog: true
 tags:

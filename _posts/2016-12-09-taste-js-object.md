@@ -2,6 +2,8 @@
 layout:     post
 title:      "温故js系列（11）"
 subtitle:   "对象 & 对象使用详解"
+description: "js Javascript 对象"
+keyword:    "js Javascript 对象"
 date:       2016-12-09
 author:     "xzavier"
 catalog: true

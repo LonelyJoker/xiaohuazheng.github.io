@@ -2,6 +2,8 @@
 layout:     post
 title:      "温故js系列（5）"
 subtitle:   "正则表达式&常用正则代码"
+description: "js Javascript 正则表达式 常用正则"
+keyword:    "js Javascript 正则表达式 常用正则 匹配中文字符 匹配Email"
 date:       2016-09-12
 author:     "xzavier"
 catalog: true

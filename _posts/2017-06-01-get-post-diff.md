@@ -2,6 +2,8 @@
 layout:     post
 title:      "GET和POST的区别"
 subtitle:   "站在HTML or 浏览器的标准上"
+description: "GET和POST的区别"
+keyword:    "GET POST"
 date:       2017-06-01
 author:     "xzavier"
 catalog: true

@@ -2,6 +2,8 @@
 layout:     post
 title:      "Developer随笔"
 subtitle:   "我这开发闲时都在想啥呢"
+description: "前端随笔"
+keyword:    "前端 随笔 工作效率 汇报 流程 进度"
 date:       2017-06-19
 author:     "xzavier"
 catalog: true

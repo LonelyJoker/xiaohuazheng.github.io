@@ -2,11 +2,14 @@
 layout:     post
 title:      "AMP初探"
 subtitle:   "Hello , Accelerated Mobile Page"
+description: "AMP学习 实践"
+keyword:    "AMP"
 date:       2017-12-06
 author:     "xzavier"
 catalog: true
 tags:
-    - AMP
+    - Javascript
+    - HTML5
 ---
 
 AMP已经出来很久了，最近看到官方说12月会在北京上海有路演，才想起自己好久没接触这个AMP了，之前为了试一试，把自己博客的about页面改成了AMP页面，当时还在上线前后用了google developer toos - pagespeed 测了下速，确实快了许多，个人感觉还是有速度的提升。但是不知道咋地就是还没看到市场上火起来，大概是它暂时局限于内容页面。好了，现在又有roadshow了，那我也又来尝尝这口粥。
