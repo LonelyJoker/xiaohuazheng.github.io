@@ -8,7 +8,7 @@ date:       2020-02-06
 author:     "xzavier"
 catalog: true
 tags:
-    - CSS
+    - Javascript
 ---
 
 疫情期间，在家办公，虽说少了上班路上的消耗，但工位确实没有公司舒服。希望疫情早点过去，我们摘下口罩，欢快地讨论技术和需求。
