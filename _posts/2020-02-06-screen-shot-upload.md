@@ -89,12 +89,14 @@ tags:
             if (!pasteFiles || !pasteFiles.length) {
                 return;
             }
-            
+    
+            let file = pasteFiles[0];
+    
             // reader 读取数据用于预览
             reader.readAsDataURL(file);
     
             // 上传
-            doUpload(pasteFiles[0]);
+            doUpload(file);
         }
     
         // 获取粘贴的图片文件
