@@ -35,7 +35,7 @@ tags:
         reader.onload = (e) => {
             $('.preview-img-box').html(`<h3>预览：</h3><img src="${e.target.result}" class="upload-image" style="width: 100%;border: 1px solid #ddd;" />`);
         }
-
+    
         // 初始化
         let init = () => {
             addJQuery();
@@ -49,7 +49,7 @@ tags:
             script.onload = script.onreadystatechange = function() {
                 if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete" ) {
                     //  成功后我们把页面改成我们的粘贴框，自己写的样式，肯定将就看了
-                    $('body').html('<div class="xzavier-box" style="padding: 20px;"><div style="border: 1px solid #ccc; overflow: hidden;width: 300px; height: 60px; margin: 0 auto;"><div class="screentshot-paste" contentEditable style="float: left; width: 100%; height: 100%; padding: 2px 10px; line-height: 54px"></div></div><div class="file-res-info" style="width: 300px;height: auto;word-break: break-all;margin: 20px auto 0;"></div></div>');
+                    $('body').html('<div class="xzavier-box" style="padding: 20px;"><div style="border: 1px solid #ccc; overflow: hidden;width: 300px; height: 60px; margin: 0 auto;"><div class="screentshot-paste" contentEditable style="float: left; width: 100%; height: 100%; padding: 2px 10px; line-height: 54px"></div></div><div class="file-res-info" style="width: 300px;height: auto;word-break: break-all;margin: 20px auto 0;"></div><div class="preview-img-box" style="width: 300px;height: auto;margin: 20px auto 0;"></div></div>');
     
                     // 绑定交互事件
                     bindEvents();
